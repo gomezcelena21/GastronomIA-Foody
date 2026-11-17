@@ -1,0 +1,31 @@
+.ex-wrap{max-width:900px;margin:0 auto;padding:24px 20px 60px;color:#102653;font-family:inherit}
+.ex-wrap h2{margin:0 0 6px;font-size:26px}
+.ex-sub{color:#5477a7;margin:0 0 18px}
+.ex-card{background:#fff;border:1px solid #d6e8fa;border-radius:20px;padding:20px;margin:0 0 16px;box-shadow:0 8px 28px rgba(77,139,200,.08)}
+.ex-card h3{margin:0 0 10px;font-size:18px}
+.ex-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ex-wrap label{display:block;font-size:13px;font-weight:700;color:#5477a7;margin-bottom:4px}
+.ex-wrap input[type=text],.ex-wrap input[type=number],.ex-wrap textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #d6e8fa;border-radius:12px;font:inherit;background:#fff;color:#102653}
+.ex-wrap textarea{min-height:70px;resize:vertical}
+.ex-chk{display:inline-flex;gap:6px;align-items:center;margin-right:14px;font-weight:600}
+.ex-btn{border:0;cursor:pointer;background:linear-gradient(95deg,#258bf5,#8462f5);color:#fff;font-weight:700;padding:10px 20px;border-radius:999px;font:inherit}
+.ex-btn.ex-ghost{background:#fff;color:#1d6fd6;border:1px solid #d6e8fa}
+.ex-btn:disabled{opacity:.5;cursor:not-allowed}
+.ex-pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:#eaf4ff;color:#1d6fd6;margin-right:6px}
+.ex-pill.ex-ad{background:#fff3d6;color:#9a6a00}
+.ex-pill.ex-prem{background:#f0e8ff;color:#6b45d6}
+.ex-note{color:#5477a7;font-size:13px}
+.ex-msg{margin:10px 0;color:#b3261e;font-weight:600}
+.ex-ok{margin:10px 0;color:#1b7f46;font-weight:700}
+.ex-promo{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-top:1px solid #e6f0fb;padding:14px 0}
+.ex-promo:first-of-type{border-top:0}
+.tipo{display:flex;gap:8px;justify-content:center;margin-bottom:10px}
+.tipo button{border:1px solid #d6e8fa;background:#fff;color:#1d6fd6;border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:700}
+.tipo button.on{background:linear-gradient(95deg,#258bf5,#8462f5);color:#fff;border-color:transparent}
+@media(max-width:640px){.ex-grid{grid-template-columns:1fr}.ex-promo{flex-direction:column}}
+.ex-list{margin:0;padding-left:20px;display:grid;gap:8px;color:#34507e}
+.ex-radio{display:block;margin:6px 0;font-weight:600;color:#102653}
+.ex-radio input{margin-right:8px}
+.ex-soon{background:linear-gradient(135deg,#f6f1ff,#eef6ff);border:1px dashed #b9a7f5}
+.ex-wrap select{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #d6e8fa;border-radius:12px;font:inherit;background:#fff;color:#102653}
