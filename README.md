@@ -26,10 +26,6 @@ Frontend: React 19, Vite, TypeScript | Backend: Python, FastAPI, SQLAlchemy | IA
 Variables de `backend/.env`: `GEMINI_API_KEY`, `GEMINI_MODEL`, `DATABASE_URL`, `PORT`, `VALORACIONES_CON_IA` (0 por defecto), `GEMINI_RPM` (10), `GEMINI_MAX_ESPERA` (20), `GEMINI_TIMEOUT` (12) y `OPTIMIZAR_AL_INICIAR` (1). Si el plan gratis de Gemini se agota o no contesta a tiempo, el chat responde en modo sin IA: ver `docs/cuota_gemini.md`. Las demás variables (límites diarios, `ADMIN_EMAILS`, `COMERCIOS_AUTOAPROBADOS`, `FRONTEND_ORIGINS`, etc.) están comentadas en `backend/.env.example` y `.env.produccion.example`.
 Los scripts nuevos de `scripts/` leen `DATABASE_URL` de `backend/.env` o del entorno; si no está, usan `PGPASSWORD` (y opcionalmente `PGHOST`, `PGPORT`, `PGUSER`, `PGDATABASE`).
 
-## Publicarlo
-- **Gratis y sin tarjeta (recomendado para este proyecto):** frontend en **Vercel**, backend en **Render** (servicio web gratis, con un monitor que visita `/ping` para que no se duerma) y base en **Neon**. Paso a paso: `deploy/GUIA_GRATIS_VERCEL_RENDER_NEON.md`. La base se carga una sola vez con `scripts/cargar_base_nube.py`.
-- **Servidor propio con Docker** (Oracle Cloud u otro): `docker-compose.yml` + Caddy con HTTPS automático, backups y logs rotados. Ver `deploy/README.md`. En este modo solo Caddy (80/443) es público: el backend no publica el puerto 8000 al exterior.
-- `/ping` responde sin consultar la base (sirve para monitoreo); `/health` además comprueba la conexión a la base.
 
 ## Configuración de la IA
 - **Proveedor y modelo:** Gemini, con el SDK oficial `google-genai`. El modelo se elige con `GEMINI_MODEL` (el valor por defecto está en `backend/gemini_service.py`).
