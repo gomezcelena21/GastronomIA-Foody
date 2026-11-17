@@ -223,6 +223,19 @@ def cargar_env(ruta: Path) -> dict:
     return datos
 
 
+def redactar_texto_log(texto: str) -> str:
+    if not isinstance(texto, str):
+        return texto
+    t = texto
+    t = re.sub(
+        r"(?i)\b([A-Z0-9_]*(?:SECRET|TOKEN|PASSWORD|PASS|API[_-]?KEY|PRIVATE[_-]?KEY)[A-Z0-9_]*)\s*=\s*([^\s,;]+)",
+        r"\1=[REDACTED]",
+        t,
+    )
+    t = re.sub(r"(?i)(https?://[^/\s:@]+:)([^@\s/]+)@", r"\1[REDACTED]@", t)
+    return t
+
+
 def main(argv):
     sin_pruebas = "--sin-pruebas" in argv
     resultados = []
@@ -241,7 +254,9 @@ def main(argv):
     simbolo = {"OK": "[  OK  ]", "AVISO": "[AVISO ]", "FALTA": "[FALTA ]"}
     print("VERIFICACIÓN PREVIA AL DESPLIEGUE\n" + "=" * 36)
     for estado, nombre, detalle in resultados:
-        print("%s %-26s %s" % (simbolo[estado], nombre, detalle))
+        nombre_seguro = redactar_texto_log(nombre)
+        detalle_seguro = redactar_texto_log(detalle)
+        print("%s %-26s %s" % (simbolo[estado], nombre_seguro, detalle_seguro))
     faltas = sum(1 for r in resultados if r[0] == "FALTA")
     avisos = sum(1 for r in resultados if r[0] == "AVISO")
     print("\nResultado: %d FALTA, %d AVISO, %d OK" % (faltas, avisos, len(resultados) - faltas - avisos))
