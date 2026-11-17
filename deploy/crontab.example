@@ -1,0 +1,5 @@
+# GastronomIA - ejemplo de crontab (backup diario a las 03:30).
+# Editar con: crontab -e
+# Requiere postgresql-client en el servidor y .env.produccion completó.
+#
+# 30 3 * * * cd /home/ubuntu/gastronomia && set -a && . ./.env.produccion && set +a && BACKUP_DIR=/home/ubuntu/gastronomia/backups PGHOST=127.0.0.1 sh deploy/backup.sh >> /home/ubuntu/gastronomia/backups/backup.log 2>&1

@@ -1,0 +1,6 @@
+# Caddy obtiene certificado HTTPS automático si DOMINIO es un dominio real
+# (o algo como TU_IP.nip.io). Para localhost sirve HTTP.
+{$DOMINIO} {
+    encode gzip zstd
+    reverse_proxy backend:8000
+}

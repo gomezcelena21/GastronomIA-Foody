@@ -1,0 +1,28 @@
+# GastronomIA - backup diario con systemd (alternativa al servicio `backup` de Docker).
+#
+# Requiere:
+#   sudo apt-get install -y postgresql-client
+#   Copiar este archivo y el .timer a /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now gastronomia-backup.timer
+#
+# Si usás el PostgreSQL del docker-compose, dejá PGHOST=127.0.0.1 y publicá el
+# puerto de la base o ejecutá el backup dentro del contenedor (ver deploy/README.md).
+[Unit]
+Description=Backup de PostgreSQL de Gastronomia
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/gastronomia
+EnvironmentFile=/home/ubuntu/gastronomia/.env.produccion
+Environment=BACKUP_DIR=/home/ubuntu/gastronomia/backups
+Environment=BACKUP_RETENER_DIAS=14
+# Para el PostGIS del compose, el host publicado es 127.0.0.1.
+Environment=PGHOST=127.0.0.1
+Environment=PGPORT=5432
+ExecStart=/bin/sh /home/ubuntu/gastronomia/deploy/backup.sh
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
