@@ -1,0 +1,4220 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-08-23T20:24:49Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 573401934,
+      "lat": -34.8167079,
+      "lon": -58.4716788,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "indoor_seating": "yes",
+        "name": "La Quintana",
+        "note": "Pizza, Café y Restaurant",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 573401937,
+      "lat": -34.7450682,
+      "lon": -58.3965982,
+      "tags": {
+        "addr:housenumber": "1302",
+        "addr:postcode": "1828",
+        "addr:street": "Leandro N. Alem",
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "La Farola Express"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661043992,
+      "lat": -34.7971924,
+      "lon": -58.3916296,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:housenumber": "1195",
+        "addr:postcode": "B1846",
+        "addr:street": "Bartolomé Mitre",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "María Bonita",
+        "payment:american_express": "yes",
+        "payment:cash": "yes",
+        "payment:mastercard": "yes",
+        "payment:visa": "yes",
+        "payment:visa_debit": "yes",
+        "phone": "+54 11 4294-1184; +54 11 4214-5245",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661071808,
+      "lat": -34.7641368,
+      "lon": -58.4004515,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pertutti"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661071841,
+      "lat": -34.7592282,
+      "lon": -58.4009708,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Las Carabelas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661076843,
+      "lat": -34.7982461,
+      "lon": -58.3935911,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "indoor_seating": "yes",
+        "name": "Nuevo Tempo",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661076853,
+      "lat": -34.798369,
+      "lon": -58.3907461,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Faro"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661076865,
+      "lat": -34.7974356,
+      "lon": -58.3915535,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:housenumber": "1184",
+        "addr:postcode": "B1846",
+        "addr:street": "Bartolomé Mitre",
+        "amenity": "restaurant",
+        "cuisine": "mexican",
+        "name": "Planet Taco",
+        "phone:AR": "0810-222-8226",
+        "website": "http://www.planettaco.com.ar/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661077494,
+      "lat": -34.8049637,
+      "lon": -58.4055155,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "delivery": "yes",
+        "internet_access": "wlan",
+        "internet_access:ssid": "Tio Loco",
+        "name": "Tío Loco",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 4293-8177; +54 11 4293-0300"
+      }
+    },
+    {
+      "type": "node",
+      "id": 661077495,
+      "lat": -34.80643,
+      "lon": -58.403943,
+      "tags": {
+        "addr:housenumber": "13015",
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "Parrilla Los Pilares del Tano"
+      }
+    },
+    {
+      "type": "node",
+      "id": 726901163,
+      "lat": -34.7004508,
+      "lon": -58.5865304,
+      "tags": {
+        "addr:street": "República de Portugal",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizza Voialtri",
+        "opening_hours": "Mo-Su 11:45-00:00",
+        "phone": "+54 11 4486-9990"
+      }
+    },
+    {
+      "type": "node",
+      "id": 726964580,
+      "lat": -34.7009359,
+      "lon": -58.582507,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pizza Hanoy"
+      }
+    },
+    {
+      "type": "node",
+      "id": 997902999,
+      "lat": -35.0312491,
+      "lon": -58.4163908,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Chiquito"
+      }
+    },
+    {
+      "type": "node",
+      "id": 997970988,
+      "lat": -35.0254856,
+      "lon": -58.4227855,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Lo De Gra"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1042029919,
+      "lat": -34.7097638,
+      "lon": -58.4049026,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1060505848,
+      "lat": -34.7066055,
+      "lon": -58.3914985,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Las Palmas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1095537320,
+      "lat": -34.9985795,
+      "lon": -58.3971575,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Estelita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1104875550,
+      "lat": -34.7066164,
+      "lon": -58.393264,
+      "tags": {
+        "addr:street": "Enrique Del Valle Iberlucea",
+        "amenity": "restaurant",
+        "name": "Vedia"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1380543446,
+      "lat": -34.7048587,
+      "lon": -58.3928281,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "El Noble"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1380543448,
+      "lat": -34.7048587,
+      "lon": -58.3929992,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pasta",
+        "name": "Pastas 12 de Octubre"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1571743401,
+      "lat": -34.7978184,
+      "lon": -58.3355505,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzeria don Lito"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1626489475,
+      "lat": -34.7649309,
+      "lon": -58.4019355,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "387",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "name": "Izzaro"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1630362320,
+      "lat": -34.9268781,
+      "lon": -58.9475704,
+      "tags": {
+        "addr:city": "General Las Heras",
+        "addr:country": "AR",
+        "addr:housenumber": "917",
+        "addr:postcode": "1741",
+        "addr:state": "Buenos Aires",
+        "addr:street": "Narciso P. Lozano",
+        "amenity": "restaurant",
+        "building": "yes",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "internet_access": "no",
+        "name": "Cheff Empanadas & Pizza",
+        "phone": "+54 220 476 3756",
+        "smoking": "no",
+        "takeaway": "only",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1630580918,
+      "lat": -34.7788442,
+      "lon": -58.4058037,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería Presto"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1671538412,
+      "lat": -34.7753856,
+      "lon": -58.458945,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "sandwich"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1696156217,
+      "lat": -34.8194944,
+      "lon": -58.4691977,
+      "tags": {
+        "air_conditioning": "yes",
+        "amenity": "restaurant",
+        "cuisine": "argentinian",
+        "diet:vegetarian": "yes",
+        "indoor_seating": "yes",
+        "name": "Lo de Carlitos",
+        "outdoor_seating": "yes",
+        "smoking": "outside"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1784328554,
+      "lat": -34.7711855,
+      "lon": -58.4027331,
+      "tags": {
+        "addr:housenumber": "88",
+        "addr:street": "Coronel Suárez",
+        "amenity": "restaurant",
+        "contact:instagram": "burzako_restoran_",
+        "contact:mobile": "+54 9 11 6524-3768",
+        "delivery": "yes",
+        "name": "Burzako Restoran & Tapas",
+        "opening_hours": "Mo off; Tu-Th 20:00-00:00; Fr-Sa 12:00-15:30, 20:00-00:00; Su 12:00-15:30",
+        "phone": "+54 011 2137-2857"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2000861534,
+      "lat": -34.7449748,
+      "lon": -58.3789924,
+      "tags": {
+        "addr:housenumber": "1198",
+        "addr:postcode": "1828",
+        "addr:street": "Maipú",
+        "amenity": "restaurant",
+        "name": "Parrilla Argentina"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2068034922,
+      "lat": -34.7761546,
+      "lon": -58.3954348,
+      "tags": {
+        "addr:housenumber": "104",
+        "addr:street": "Fray Justo Santa María de Oro",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Rialto",
+        "ref:vatin": "AR20127088250"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2132651072,
+      "lat": -34.7781548,
+      "lon": -58.4057229,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "argentinian",
+        "name": "Parrilla Lo de Claudio"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2269732786,
+      "lat": -34.9263563,
+      "lon": -58.9621093,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "internet_access": "no",
+        "internet_access:fee": "no",
+        "name": "Parrilla el curvón",
+        "smoking": "no",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2269732787,
+      "lat": -34.9228829,
+      "lon": -58.9584646,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "internet_access": "no",
+        "internet_access:fee": "no",
+        "name": "Parrilla el Vasco"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2283452196,
+      "lat": -34.7745428,
+      "lon": -58.3956,
+      "tags": {
+        "addr:housenumber": "20",
+        "addr:street": "14 de Julio",
+        "amenity": "restaurant",
+        "name": "Las Maestras"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2296576585,
+      "lat": -34.727641,
+      "lon": -58.3686457,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzeria Lo de Pipi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2299226649,
+      "lat": -34.7432546,
+      "lon": -58.3927387,
+      "tags": {
+        "addr:housenumber": "230",
+        "addr:postcode": "1828",
+        "addr:street": "Maipú",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "internet_access": "wlan",
+        "name": "Juancito",
+        "opening_hours": "12:00-16:00,19:30-00:00",
+        "phone": "+54 11 4202-2148; +54 11 4248-1927",
+        "ref:vatin": "AR30710938837",
+        "website": "https://pizzeriajuancito.com.ar/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2299226659,
+      "lat": -34.7433034,
+      "lon": -58.3923056,
+      "tags": {
+        "addr:housenumber": "258",
+        "addr:postcode": "1828",
+        "addr:street": "Maipú",
+        "amenity": "restaurant",
+        "name": "Negro El 11"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2328400716,
+      "lat": -34.7746981,
+      "lon": -58.3974423,
+      "tags": {
+        "amenity": "restaurant",
+        "internet_access": "wlan",
+        "name": "Vieja Esquina"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2330176813,
+      "lat": -34.7788258,
+      "lon": -58.3971235,
+      "tags": {
+        "addr:housenumber": "1457",
+        "addr:street": "Avenida Meeks",
+        "amenity": "restaurant",
+        "internet_access": "wlan",
+        "name": "El Club",
+        "opening_hours": "12:00-15:00,20:00-01:00",
+        "source:position": "estimated"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2348883353,
+      "lat": -34.7506918,
+      "lon": -58.3943642,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "Las Brasas",
+        "phone": "+54 11 4202-9501"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2541232468,
+      "lat": -34.8164255,
+      "lon": -58.471612,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Hamburga",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2541232471,
+      "lat": -34.8166227,
+      "lon": -58.4715049,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Piu Ristorante",
+        "outdoor_seating": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2541232474,
+      "lat": -34.8167415,
+      "lon": -58.4714116,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Restaurante 1889"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2541232480,
+      "lat": -34.8168288,
+      "lon": -58.469587,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Faro"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2541232612,
+      "lat": -34.8157758,
+      "lon": -58.4706097,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Más Pizza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2595743215,
+      "lat": -35.0294383,
+      "lon": -58.7478212,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "Parrilla La Dominga"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2643643161,
+      "lat": -34.7639389,
+      "lon": -58.4017264,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizza Lo+ Hot"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2788593860,
+      "lat": -34.8100445,
+      "lon": -58.4486731,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Don Cipriano",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2810296337,
+      "lat": -34.7408258,
+      "lon": -58.3943403,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Gusteau's",
+        "phone": "+54 11 4202-7885; +54 11 4202-7833",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2891857256,
+      "lat": -34.776285,
+      "lon": -58.3974584,
+      "tags": {
+        "addr:housenumber": "1295",
+        "addr:street": "Avenida Meeks",
+        "amenity": "restaurant",
+        "name": "La Farola Express"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2920535086,
+      "lat": -34.7416742,
+      "lon": -58.3970794,
+      "tags": {
+        "addr:housenumber": "192",
+        "addr:street": "Nicolás Rodríguez Peña",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Roderick"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2971906000,
+      "lat": -34.7259326,
+      "lon": -58.3956805,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "La Nueva Mocona",
+        "phone": "+54 11 4242-3710"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2971931845,
+      "lat": -34.7022946,
+      "lon": -58.3947492,
+      "tags": {
+        "addr:street": "Doctor Arturo Melo",
+        "amenity": "restaurant",
+        "name": "Cosenza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2986877184,
+      "lat": -34.7762264,
+      "lon": -58.3974418,
+      "tags": {
+        "addr:housenumber": "1283",
+        "addr:street": "Avenida Meeks",
+        "amenity": "restaurant",
+        "name": "Los Dos Cañones",
+        "ref:vatin": "AR27232923127"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3074271644,
+      "lat": -34.858346,
+      "lon": -58.3864223,
+      "tags": {
+        "addr:city": "Longchamps",
+        "addr:housenumber": "1280",
+        "addr:street": "Manuel Belgrano",
+        "amenity": "restaurant",
+        "cuisine": "barbecue;pizza;sandwich",
+        "delivery": "yes",
+        "name": "Del Toro",
+        "outdoor_seating": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3090079038,
+      "lat": -34.7503748,
+      "lon": -58.3946491,
+      "tags": {
+        "addr:housenumber": "1199",
+        "addr:postcode": "1828",
+        "addr:street": "Avenida Alsina",
+        "amenity": "restaurant",
+        "name": "Bodegón La Popular"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3090079049,
+      "lat": -34.7563536,
+      "lon": -58.3957934,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "Lo de Ale",
+        "phone": "+54 11 4243-5346"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3090091978,
+      "lat": -34.7487973,
+      "lon": -58.4060623,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Vieja Esquina"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3140949403,
+      "lat": -34.7585362,
+      "lon": -58.3990734,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Riganatta"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3219388755,
+      "lat": -34.7971498,
+      "lon": -58.3880884,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "indoor_seating": "yes",
+        "name": "Cuidate Vaca",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3219388757,
+      "lat": -34.7975529,
+      "lon": -58.3913982,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "soviet"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3231492449,
+      "lat": -34.821884,
+      "lon": -58.4253878,
+      "tags": {
+        "amenity": "restaurant",
+        "covered": "yes",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3294728444,
+      "lat": -34.7016077,
+      "lon": -58.4015796,
+      "tags": {
+        "addr:city": "Lanús Oeste",
+        "addr:street": "José María Moreno",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "name": "Parrilla Cinco Esquinas",
+        "old_name": "La Republica"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3369016222,
+      "lat": -34.7486782,
+      "lon": -58.3984963,
+      "tags": {
+        "addr:housenumber": "1001",
+        "addr:postcode": "1828",
+        "addr:street": "Manuel Acevedo",
+        "amenity": "restaurant",
+        "cuisine": "sushi",
+        "name": "Azul Profundo",
+        "phone": "+54 11 4202-0954",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3369016223,
+      "lat": -34.7488945,
+      "lon": -58.3985433,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "parrilla",
+        "delivery": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3658821279,
+      "lat": -34.9280457,
+      "lon": -58.9441049,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "burger;regional;sandwich",
+        "name": "Matute",
+        "phone": "+54 220 476 3956",
+        "smoking": "no",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3662448186,
+      "lat": -35.0240555,
+      "lon": -58.4240243,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Clock",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3670196932,
+      "lat": -35.0235184,
+      "lon": -58.4246284,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "El Establo",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3672161961,
+      "lat": -34.7107318,
+      "lon": -58.397824,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "La Esquina Blanca",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3672170712,
+      "lat": -34.7050701,
+      "lon": -58.416371,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "Siglo XX"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688476037,
+      "lat": -35.0375958,
+      "lon": -58.7573494,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla la Huerta"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688476038,
+      "lat": -35.0369943,
+      "lon": -58.7578565,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla La Querencia"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688476039,
+      "lat": -35.0353118,
+      "lon": -58.755766,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688496713,
+      "lat": -35.0417934,
+      "lon": -58.7621895,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688526890,
+      "lat": -35.051043,
+      "lon": -58.7647669,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla La Escuela"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688541669,
+      "lat": -35.0531622,
+      "lon": -58.7621588,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Hueney"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688541673,
+      "lat": -35.0540729,
+      "lon": -58.7625295,
+      "tags": {
+        "addr:city": "Cañuelas",
+        "addr:housenumber": "870",
+        "addr:postcode": "1814",
+        "addr:street": "Lara",
+        "amenity": "restaurant",
+        "name": "Pizzeria Punto y Banca"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688551343,
+      "lat": -35.0550016,
+      "lon": -58.7598364,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Praliné"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688551345,
+      "lat": -35.0552344,
+      "lon": -58.76011,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Doña Julia Pastas Caseras"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688566325,
+      "lat": -35.0563125,
+      "lon": -58.7582283,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pessego"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3688683002,
+      "lat": -34.8181043,
+      "lon": -58.4706105,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Casona Dorrego"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3722217877,
+      "lat": -35.0312599,
+      "lon": -58.7502525,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "diet:meat": "yes",
+        "diet:non-vegetarian": "yes",
+        "name": "Parrilla Lo de Beto"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3722217878,
+      "lat": -35.0286668,
+      "lon": -58.7488676,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Don Santiago"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3731954523,
+      "lat": -34.8089077,
+      "lon": -58.4460265,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "indoor_seating": "yes",
+        "name": "Pizzeria El Angel",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3759802097,
+      "lat": -34.8484099,
+      "lon": -58.5140363,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3763299946,
+      "lat": -34.8404382,
+      "lon": -58.5074249,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "description": "Tenedor libre",
+        "name": "Parrilla Grimaldi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3763301160,
+      "lat": -34.8522683,
+      "lon": -58.5217712,
+      "tags": {
+        "addr:street": "French",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "La Estacion de O'Higgins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3763637441,
+      "lat": -34.8199407,
+      "lon": -58.4652111,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Rincón De La Plaza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3823494380,
+      "lat": -34.7282863,
+      "lon": -58.3983522,
+      "tags": {
+        "addr:housenumber": "642",
+        "addr:postcode": "1826",
+        "addr:street": "Avenida Rosales",
+        "amenity": "restaurant",
+        "name": "Sociedad Italiana"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3858127075,
+      "lat": -34.8427741,
+      "lon": -58.5076476,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3858127080,
+      "lat": -34.8470979,
+      "lon": -58.5114963,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863118830,
+      "lat": -34.8222142,
+      "lon": -58.4715134,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Stilo Gourmet"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863118835,
+      "lat": -34.8221729,
+      "lon": -58.4709892,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "disused:shop": "yes",
+        "indoor_seating": "yes",
+        "name": "Vuelta de Obligado",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863118842,
+      "lat": -34.8203046,
+      "lon": -58.4675567,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "indoor_seating": "yes",
+        "name": "Pizza Blu",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863118843,
+      "lat": -34.819879,
+      "lon": -58.4671692,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Tinajón"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863118850,
+      "lat": -34.8189605,
+      "lon": -58.4854309,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla Express"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863118851,
+      "lat": -34.8177276,
+      "lon": -58.4866093,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla La Esquina de Cervetti"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3863120276,
+      "lat": -34.8104973,
+      "lon": -58.488601,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería La Campana"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3872647583,
+      "lat": -34.742522,
+      "lon": -58.3931986,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3881307157,
+      "lat": -35.0264151,
+      "lon": -58.4323495,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3882073673,
+      "lat": -34.9105098,
+      "lon": -58.5930462,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pizzeria"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3899196432,
+      "lat": -34.793828,
+      "lon": -58.5278692,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3910177156,
+      "lat": -34.8781671,
+      "lon": -58.5846205,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3921100510,
+      "lat": -34.8513932,
+      "lon": -58.5043614,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3933202007,
+      "lat": -34.7433561,
+      "lon": -58.393082,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "Tiara",
+        "phone": "4242-0617;4242-1381",
+        "ref:vatin": "AR30662283238"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3952912237,
+      "lat": -35.0381049,
+      "lon": -58.75795,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Rogelia"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4097570469,
+      "lat": -34.8543122,
+      "lon": -58.3936439,
+      "tags": {
+        "addr:city": "Longchamps",
+        "addr:postcode": "1854",
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "capacity": "100",
+        "delivery": "yes",
+        "name": "La Morada",
+        "opening_hours": "00:00-02:00,20:00-24:00",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4099641466,
+      "lat": -35.053192,
+      "lon": -58.7619386,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Scilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4129555499,
+      "lat": -34.8172351,
+      "lon": -58.4672508,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Sabor Express",
+        "outdoor_seating": "yes",
+        "shop": "bakery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4129555508,
+      "lat": -34.8182947,
+      "lon": -58.4686533,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pizzeria La Nueva",
+        "name:es": "Pizzería La Nueva"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4145308840,
+      "lat": -34.7184282,
+      "lon": -58.3941253,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "hot_dog",
+        "name": "Panchos Riki"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4178308096,
+      "lat": -35.0207243,
+      "lon": -58.7495562,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla Parador 36"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4223027053,
+      "lat": -34.7433234,
+      "lon": -58.411034,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "spanish",
+        "name": "Siglo XX"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4247857498,
+      "lat": -34.7428267,
+      "lon": -58.3971982,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Astral"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4303277141,
+      "lat": -34.7014056,
+      "lon": -58.5807214,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "chicken",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4346245354,
+      "lat": -34.7634289,
+      "lon": -58.6192583,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pizzeria Crocatta"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4346245356,
+      "lat": -34.7633893,
+      "lon": -58.61932,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Gourmet"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4352764970,
+      "lat": -34.7676174,
+      "lon": -58.3963469,
+      "tags": {
+        "addr:city": "Temperley",
+        "addr:housenumber": "2480",
+        "addr:postcode": "1834",
+        "addr:street": "Almirante Brown",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "name": "Don Segundo",
+        "phone": "+54 11 4243-9067",
+        "smoking": "no",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4352795613,
+      "lat": -34.7664527,
+      "lon": -58.4020003,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "496",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "name": "Guten Bier",
+        "phone": "+54 11 4243-5064",
+        "smoking": "isolated"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4352795646,
+      "lat": -34.7668148,
+      "lon": -58.40227,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "526",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "name": "Olika",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4352807218,
+      "lat": -34.7613928,
+      "lon": -58.4036657,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "431",
+        "addr:postcode": "1832",
+        "addr:street": "José Ignacio Gorriti",
+        "amenity": "restaurant",
+        "name": "Lo de Mingo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4352815870,
+      "lat": -34.761419,
+      "lon": -58.3943495,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "250",
+        "addr:postcode": "1832",
+        "addr:street": "Balcarce",
+        "amenity": "restaurant",
+        "name": "La Florencia",
+        "phone": "+54 11 4245-3713",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4354102753,
+      "lat": -34.7603258,
+      "lon": -58.394941,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "199",
+        "addr:postcode": "1832",
+        "addr:street": "Julio Fonrouge",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería Don Esteban",
+        "phone": "+54 11 4244-0652",
+        "takeaway": "yes",
+        "website": "http://donestebanpizzeria.com.ar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4354979356,
+      "lat": -34.7654786,
+      "lon": -58.400382,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "200",
+        "addr:postcode": "1832",
+        "addr:street": "Bartolomé Mitre",
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "Los Cardales",
+        "phone": "4392-3334"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4354979357,
+      "lat": -34.7652879,
+      "lon": -58.4001699,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "358",
+        "addr:postcode": "1832",
+        "addr:street": "España",
+        "amenity": "restaurant",
+        "name": "Negroni"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4356151731,
+      "lat": -34.7643016,
+      "lon": -58.3998394,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "187",
+        "addr:postcode": "1832",
+        "addr:street": "José Eusebio Colombres",
+        "amenity": "restaurant",
+        "name": "Sushi Jó",
+        "phone": "+54 11 4243-0000"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4357481917,
+      "lat": -34.7589331,
+      "lon": -58.3874816,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "240",
+        "addr:postcode": "1832",
+        "addr:street": "Francisco Amero",
+        "amenity": "restaurant",
+        "name": "Masapara S.A.",
+        "phone": "+54 11 4245-7748"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4357504140,
+      "lat": -34.761706,
+      "lon": -58.3937725,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "299",
+        "addr:postcode": "1832",
+        "addr:street": "Balcarce",
+        "amenity": "restaurant",
+        "name": "La Provisión",
+        "opening_hours": "Mo-Fr 07:00-00:00; Sa-Su 09:00-16:00, 20:00-00:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4357555944,
+      "lat": -34.7669461,
+      "lon": -58.4024942,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "550",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "cuisine": "italian",
+        "name": "Pasta Rossa",
+        "opening_hours": "Tu-Fr 20:00-00:00; Sa-Su 12:00-15:30"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4373674858,
+      "lat": -35.0518221,
+      "lon": -58.7651403,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzeria El Establo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4373674861,
+      "lat": -35.0561293,
+      "lon": -58.7601265,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla La Verdulería"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4373674863,
+      "lat": -35.0554489,
+      "lon": -58.7609396,
+      "tags": {
+        "addr:city": "Cañuelas",
+        "addr:housenumber": "638",
+        "addr:postcode": "1814",
+        "addr:street": "Lara",
+        "amenity": "restaurant",
+        "contact:facebook": "https://www.facebook.com/Ara-Cocina-Al-Disco-Ca%C3%B1uelas-760273830723432/",
+        "name": "ARA Cocina al disco"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4410572092,
+      "lat": -34.7390204,
+      "lon": -58.3983566,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "sushi",
+        "name": "Sushi KYU",
+        "name:es": "Sushi KYU"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4491022862,
+      "lat": -34.7601866,
+      "lon": -58.3939031,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "278",
+        "addr:postcode": "1832",
+        "addr:street": "Julio Fonrouge",
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "Sushi Nation",
+        "opening_hours": "Tu-Su 19:00-24:00",
+        "phone": "+54 11 2085-3162",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4551165312,
+      "lat": -34.8520617,
+      "lon": -58.5219288,
+      "tags": {
+        "addr:street": "French",
+        "amenity": "restaurant",
+        "name": "El Club del Sandwich"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4551334498,
+      "lat": -34.8544879,
+      "lon": -58.5230496,
+      "tags": {
+        "addr:street": "Avenida Presidente Néstor Carlos Kirchner",
+        "amenity": "restaurant",
+        "name": "Juanito"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4551338459,
+      "lat": -34.8552766,
+      "lon": -58.5240722,
+      "tags": {
+        "addr:street": "Avenida Presidente Néstor Carlos Kirchner",
+        "amenity": "restaurant",
+        "name": "Coma Mas Pollo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4565546913,
+      "lat": -34.8912047,
+      "lon": -58.569224,
+      "tags": {
+        "addr:city": "Tristán Suárez",
+        "addr:street": "Avenida Presidente Néstor Carlos Kirchner",
+        "amenity": "restaurant",
+        "name": "Fábrica de Pizzas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4605978911,
+      "lat": -34.8885693,
+      "lon": -58.385763,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "DF Restó"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4620980931,
+      "lat": -34.8488815,
+      "lon": -58.5242664,
+      "tags": {
+        "addr:street": "French",
+        "amenity": "restaurant",
+        "name": "Brulla Pizza 3"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4621257262,
+      "lat": -34.8550145,
+      "lon": -58.5025615,
+      "tags": {
+        "addr:street": "Avenida Mariano Castex",
+        "amenity": "restaurant",
+        "cuisine": "grill",
+        "name": "La Carrocita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4625670524,
+      "lat": -34.8511802,
+      "lon": -58.5044683,
+      "tags": {
+        "addr:street": "Avenida Mariano Castex",
+        "amenity": "restaurant",
+        "name": "La Casa de los Juegos"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4626033910,
+      "lat": -34.7082605,
+      "lon": -58.4574365,
+      "tags": {
+        "addr:street": "Presidente Juan Domingo Perón",
+        "amenity": "restaurant",
+        "name": "Fábrica Pizzas",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4626214612,
+      "lat": -34.76032,
+      "lon": -58.4039338,
+      "tags": {
+        "addr:street": "Francisco Narciso de Laprida",
+        "amenity": "restaurant",
+        "name": "Pastichotti"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4626469806,
+      "lat": -34.7609633,
+      "lon": -58.4245362,
+      "tags": {
+        "addr:street": "José Eusebio Colombres",
+        "amenity": "restaurant",
+        "name": "Sandwicheria Fede"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4626678434,
+      "lat": -34.8233493,
+      "lon": -58.4629797,
+      "tags": {
+        "addr:street": "Leandro N. Alem",
+        "amenity": "restaurant",
+        "cuisine": "sushi",
+        "indoor_seating": "no",
+        "name": "Ibuki Sushi",
+        "outdoor_seating": "no",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4629465945,
+      "lat": -34.8387264,
+      "lon": -58.4513755,
+      "tags": {
+        "addr:street": "Leandro N. Alem",
+        "amenity": "restaurant",
+        "name": "Don Esterban"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4629692552,
+      "lat": -34.7819427,
+      "lon": -58.3899058,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Morres",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4630006157,
+      "lat": -34.774644,
+      "lon": -58.3934852,
+      "tags": {
+        "addr:street": "Almirante Brown",
+        "amenity": "restaurant",
+        "name": "Kiosco de Empanadas",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4632867411,
+      "lat": -34.7763518,
+      "lon": -58.3919267,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzabusa",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4632867467,
+      "lat": -34.7736005,
+      "lon": -58.3938661,
+      "tags": {
+        "addr:street": "Almirante Brown",
+        "amenity": "restaurant",
+        "name": "La Casona",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4632944539,
+      "lat": -34.7698651,
+      "lon": -58.3962896,
+      "tags": {
+        "addr:street": "Almirante Brown",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizza Roma"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4635137098,
+      "lat": -34.8004433,
+      "lon": -58.388305,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Don Gusto",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4635137137,
+      "lat": -34.7979601,
+      "lon": -58.3885558,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:postcode": "B1846",
+        "addr:street": "Avenida Espora",
+        "amenity": "restaurant",
+        "name": "Morres",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4635176540,
+      "lat": -34.7986929,
+      "lon": -58.3841629,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Rock N' Food",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4638125353,
+      "lat": -34.8044767,
+      "lon": -58.4054694,
+      "tags": {
+        "addr:housenumber": "12893",
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "name": "La Nueva Favorita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4638125356,
+      "lat": -34.8051361,
+      "lon": -58.4050207,
+      "tags": {
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "fixme": "name"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4638321603,
+      "lat": -34.8045585,
+      "lon": -58.4049801,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:postcode": "B1846",
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "name": "Dorius"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4638447077,
+      "lat": -34.7362928,
+      "lon": -58.4814613,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Mega Polo",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4638538206,
+      "lat": -34.7354229,
+      "lon": -58.4802576,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Liajuita",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4645061257,
+      "lat": -34.7182965,
+      "lon": -58.4573804,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Los Chicos Pizzeria",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4645384390,
+      "lat": -34.8348811,
+      "lon": -58.4021199,
+      "tags": {
+        "addr:street": "Camino de Cintura",
+        "amenity": "restaurant",
+        "fixme": "name"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4645621281,
+      "lat": -34.7170729,
+      "lon": -58.4346992,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Rotisería Pizzería Ricardo",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4645684677,
+      "lat": -34.8345758,
+      "lon": -58.4037449,
+      "tags": {
+        "addr:street": "Camino de Cintura",
+        "amenity": "restaurant",
+        "name": "Polirubro Zhong Hua"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4645792526,
+      "lat": -34.7116632,
+      "lon": -58.4370565,
+      "tags": {
+        "addr:city": "Villa Fiorito",
+        "addr:street": "El Plumerillo",
+        "amenity": "restaurant",
+        "name": "Pizzeria",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4648978235,
+      "lat": -34.8204008,
+      "lon": -58.3894781,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Confitería Saint Donore",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4648978277,
+      "lat": -34.8134618,
+      "lon": -58.3886102,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:postcode": "B1846",
+        "addr:street": "Presidente Juan Domingo Perón",
+        "amenity": "restaurant",
+        "name": "Tirreno",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4654621145,
+      "lat": -34.8838736,
+      "lon": -58.3902246,
+      "tags": {
+        "addr:housenumber": "20485",
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "name": "La Victoria"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4654730201,
+      "lat": -34.8926406,
+      "lon": -58.3905288,
+      "tags": {
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "name": "Pizzeria & Rotisort"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4656979593,
+      "lat": -34.8281162,
+      "lon": -58.3882901,
+      "tags": {
+        "addr:street": "Avenida Espora",
+        "amenity": "restaurant",
+        "name": "Morita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4656979623,
+      "lat": -34.8155946,
+      "lon": -58.3664503,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Tri Tri",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4657193962,
+      "lat": -34.8304103,
+      "lon": -58.3867893,
+      "tags": {
+        "addr:street": "Avenida Espora",
+        "amenity": "restaurant",
+        "cuisine": "sushi",
+        "name": "Akita",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4657193966,
+      "lat": -34.8304893,
+      "lon": -58.386754,
+      "tags": {
+        "addr:street": "Avenida Espora",
+        "amenity": "restaurant",
+        "name": "Andina",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4657955840,
+      "lat": -34.8153297,
+      "lon": -58.3660086,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "ll Bello",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4659849768,
+      "lat": -34.8592115,
+      "lon": -58.3867536,
+      "tags": {
+        "addr:street": "Avenida Doctor Chiesa",
+        "amenity": "restaurant",
+        "name": "Moderna",
+        "source": "Reconocimiento terrestre 2016 por Kaart."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4660293264,
+      "lat": -34.8988326,
+      "lon": -58.3907775,
+      "tags": {
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "name": "Casa de Comidas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4661213567,
+      "lat": -34.9152381,
+      "lon": -58.380306,
+      "tags": {
+        "addr:street": "Avenida Eva Duarte de Perón",
+        "amenity": "restaurant",
+        "name": "Faábrica Pizzas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4661213576,
+      "lat": -34.9151086,
+      "lon": -58.3800853,
+      "tags": {
+        "addr:street": "Avenida Eva Duarte de Perón",
+        "amenity": "restaurant",
+        "name": "Pizzeria al Pasa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4661214197,
+      "lat": -34.914727,
+      "lon": -58.3792862,
+      "tags": {
+        "addr:street": "Avenida Eva Duarte de Perón",
+        "amenity": "restaurant",
+        "fixme": "name"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4669818983,
+      "lat": -34.7117502,
+      "lon": -58.5945552,
+      "tags": {
+        "addr:street": "Guillermo Marconi",
+        "amenity": "restaurant",
+        "fixme": "name",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4670222347,
+      "lat": -34.9839777,
+      "lon": -58.3746142,
+      "tags": {
+        "addr:street": "Avenida Juan Domingo Perón",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Fabrica de Pizzas",
+        "source": "Reconocimiento terrestre 2016 por Kaart"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675018757,
+      "lat": -34.7917787,
+      "lon": -58.6302843,
+      "tags": {
+        "addr:street": "Avenida Brigadier General Juan Manuel de Rosas",
+        "amenity": "restaurant",
+        "fixme": "name",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675347053,
+      "lat": -34.7639586,
+      "lon": -58.6174478,
+      "tags": {
+        "addr:street": "Avenida Brigadier General Juan Manuel de Rosas",
+        "amenity": "restaurant",
+        "fixme": "name",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675369661,
+      "lat": -34.7941757,
+      "lon": -58.633011,
+      "tags": {
+        "addr:street": "Avenida Brigadier General Juan Manuel de Rosas",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "fixme": "name",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675508705,
+      "lat": -34.7330494,
+      "lon": -58.6073669,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "La Familia",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675569954,
+      "lat": -34.7328388,
+      "lon": -58.6074243,
+      "tags": {
+        "addr:street": "Avenida Luro",
+        "amenity": "restaurant",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4678927537,
+      "lat": -34.7279534,
+      "lon": -58.5287943,
+      "tags": {
+        "addr:city": "Ciudad Evita",
+        "addr:street": "Martín Miguel de Güemes",
+        "amenity": "restaurant",
+        "name": "La Pizza del 900",
+        "source": "Reconocimiento terrestre por #Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4679143727,
+      "lat": -34.7255519,
+      "lon": -58.5328648,
+      "tags": {
+        "addr:street": "Reinalda Balancini Vda. de Rodriguez",
+        "amenity": "restaurant",
+        "source": "Reconocimiento terrestre por #Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4679231264,
+      "lat": -34.7152325,
+      "lon": -58.5235796,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Palacio de la Milanesa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4683786111,
+      "lat": -34.7053385,
+      "lon": -58.5411782,
+      "tags": {
+        "addr:city": "Ciudad Evita",
+        "addr:street": "El Pingüino",
+        "amenity": "restaurant",
+        "name": "Los Tres Hermanos",
+        "source": "Reconocimiento terrestre 2016 por Kaart."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4684020892,
+      "lat": -34.705815,
+      "lon": -58.5042919,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Nicolo",
+        "source": "Reconocimiento terrestre por Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4687294323,
+      "lat": -34.7067438,
+      "lon": -58.5552151,
+      "tags": {
+        "addr:city": "San Justo",
+        "addr:street": "Ambrosetti",
+        "amenity": "restaurant",
+        "name": "El Trebal",
+        "source": "Reconocimiento terrestre por #Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4708926135,
+      "lat": -34.7002529,
+      "lon": -58.5866105,
+      "tags": {
+        "addr:street": "Avenida Francisco Segui",
+        "amenity": "restaurant",
+        "fixme": "name",
+        "source": "Reconocimiento terrestre por Kaart 2016."
+      }
+    },
+    {
+      "type": "node",
+      "id": 4710513763,
+      "lat": -34.7037806,
+      "lon": -58.5822108,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "La Nueva Montecario",
+        "source": "Reconocimiento terrestre por #Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4710607824,
+      "lat": -34.7020539,
+      "lon": -58.5955854,
+      "tags": {
+        "addr:street": "Avenida Cristianía",
+        "amenity": "restaurant",
+        "cuisine": "grill",
+        "name": "La Familia",
+        "source": "Reconocimiento terrestre por #Kaart 2016"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4796691573,
+      "lat": -34.7417512,
+      "lon": -58.4242925,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Lo de Néstor"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4805044022,
+      "lat": -34.7065465,
+      "lon": -58.3919403,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Genova"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4858736853,
+      "lat": -34.7459633,
+      "lon": -58.3967345,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Casa Mía"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4858737419,
+      "lat": -34.7486312,
+      "lon": -58.4002592,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Sabor Colonial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4893060805,
+      "lat": -34.7090991,
+      "lon": -58.5322159,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4946256782,
+      "lat": -34.7572089,
+      "lon": -58.550954,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4946256783,
+      "lat": -34.7580981,
+      "lon": -58.5481028,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4946256784,
+      "lat": -34.7708544,
+      "lon": -58.5465947,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4946256786,
+      "lat": -34.7824923,
+      "lon": -58.5328745,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla Don Pepe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4988859717,
+      "lat": -34.7663402,
+      "lon": -58.4019709,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "488",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "name": "Gardens"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4988861223,
+      "lat": -34.7654686,
+      "lon": -58.4020685,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "403",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "cuisine": "sushi",
+        "delivery": "yes",
+        "name": "Sensei (Delivery & Takeaway)",
+        "outdoor_seating": "no",
+        "phone": "+54 11 4243-5415",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4988861225,
+      "lat": -34.7649854,
+      "lon": -58.4016555,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "390",
+        "addr:postcode": "390",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "name": "Pérez-H"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4988916283,
+      "lat": -34.7883693,
+      "lon": -58.5214958,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Quincho"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5112003051,
+      "lat": -35.0617638,
+      "lon": -58.8093375,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla El Búho"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5112003052,
+      "lat": -35.0630641,
+      "lon": -58.8145492,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Restaurante El Encuentro"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5129073134,
+      "lat": -35.0305015,
+      "lon": -58.749108,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parrilla Bar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5129073434,
+      "lat": -34.9978511,
+      "lon": -58.6960405,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5160841401,
+      "lat": -35.0345212,
+      "lon": -58.7332631,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "regional;grill;pasta",
+        "name": "Parrilla Lo del Gitano"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5187499300,
+      "lat": -34.8160051,
+      "lon": -58.4704266,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "indoor_seating": "yes",
+        "name": "El Nacional",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5187688932,
+      "lat": -34.816766,
+      "lon": -58.466306,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Pizzaría Hot",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5187688933,
+      "lat": -34.816927,
+      "lon": -58.4670147,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5187688934,
+      "lat": -34.8168753,
+      "lon": -58.4659137,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Macondo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5188729523,
+      "lat": -34.8228216,
+      "lon": -58.4830946,
+      "tags": {
+        "addr:city": "Monte Grande",
+        "addr:country": "AR",
+        "addr:postcode": "1842",
+        "addr:state": "Buenos Aires",
+        "amenity": "restaurant",
+        "cuisine": "barbecue",
+        "name": "El Rodeo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5188729535,
+      "lat": -34.8114911,
+      "lon": -58.4908985,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Carlína Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5264211786,
+      "lat": -34.9282969,
+      "lon": -58.947334,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "no",
+        "name": "La Casona",
+        "outdoor_seating": "yes",
+        "payment:notes": "no",
+        "smoking": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5277908407,
+      "lat": -34.7030909,
+      "lon": -58.4168445,
+      "tags": {
+        "addr:street": "25 de Mayo",
+        "amenity": "restaurant",
+        "name": "Pizzeria El Sur"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278151722,
+      "lat": -34.7034867,
+      "lon": -58.3973565,
+      "tags": {
+        "addr:street": "Gobernador Felipe Llavallol",
+        "amenity": "restaurant",
+        "name": "Los TRes Leones"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278346905,
+      "lat": -34.7032726,
+      "lon": -58.3920871,
+      "tags": {
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278490394,
+      "lat": -34.7040877,
+      "lon": -58.3915974,
+      "tags": {
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "name": "Pastas Frescas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278490831,
+      "lat": -34.7068479,
+      "lon": -58.3919858,
+      "tags": {
+        "addr:street": "Juan Piñeiro",
+        "amenity": "restaurant",
+        "name": "Fabrica Pizzas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278490836,
+      "lat": -34.7068445,
+      "lon": -58.3926291,
+      "tags": {
+        "addr:street": "Juan Piñeiro",
+        "amenity": "restaurant",
+        "name": "Las Medialunas del Abuelo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278538265,
+      "lat": -34.7068692,
+      "lon": -58.393703,
+      "tags": {
+        "addr:street": "Juan Piñeiro",
+        "amenity": "restaurant",
+        "name": "Mura Sushi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5279851171,
+      "lat": -34.7055798,
+      "lon": -58.4168313,
+      "tags": {
+        "addr:street": "Avenida General San Martín",
+        "amenity": "restaurant",
+        "name": "Massabrosa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5279949648,
+      "lat": -34.7052863,
+      "lon": -58.4162521,
+      "tags": {
+        "addr:street": "Avenida General San Martín",
+        "amenity": "restaurant",
+        "name": "Rotary Club Pompeo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5280588506,
+      "lat": -34.7129911,
+      "lon": -58.4268836,
+      "tags": {
+        "addr:street": "Avenida General San Martín",
+        "amenity": "restaurant",
+        "name": "Fiesta Ya!"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5293941443,
+      "lat": -34.7052503,
+      "lon": -58.3860744,
+      "tags": {
+        "addr:street": "Presidente Arturo Umberto Illia",
+        "amenity": "restaurant",
+        "name": "La Pual"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5293976559,
+      "lat": -34.7128628,
+      "lon": -58.3834277,
+      "tags": {
+        "addr:street": "Avenida 9 de Julio",
+        "amenity": "restaurant",
+        "name": "Pizzerias San Facundo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5402644843,
+      "lat": -34.8739861,
+      "lon": -58.4868076,
+      "tags": {
+        "addr:street": "Los Tulipanes",
+        "amenity": "restaurant",
+        "name": "Venado 1 Restaurante"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5600667578,
+      "lat": -34.7119845,
+      "lon": -58.5944315,
+      "tags": {
+        "addr:city": "Buenos Aires",
+        "addr:housenumber": "3415",
+        "addr:postcode": "1765",
+        "addr:street": "Guillermo Marconi",
+        "amenity": "restaurant",
+        "capacity": "10",
+        "cuisine": "regional",
+        "name": "Helados El Artesano",
+        "opening_hours": "Mo-Su 09:00-22:00",
+        "outdoor_seating": "yes",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5635635613,
+      "lat": -34.7032823,
+      "lon": -58.3922347,
+      "tags": {
+        "addr:city": "Lanús Oeste",
+        "addr:country": "AR",
+        "addr:housenumber": "11",
+        "addr:postcode": "1824",
+        "addr:province": "Buenos Aires",
+        "addr:street": "Gobernador Felipe Llavallol",
+        "amenity": "restaurant",
+        "contact:facebook": "https://www.facebook.com/sushiclubargentina/",
+        "contact:instagram": "https://www.instagram.com/SushiClub_ar/",
+        "contact:twitter": "https://twitter.com/SushiClub_ar/",
+        "cuisine": "sushi",
+        "delivery": "yes",
+        "email": "contacto@sushiclub.com.ar",
+        "name": "SushiClub",
+        "opening_hours": "Tu-Su 18:00-24:00",
+        "outdoor_seating": "yes",
+        "phone:AR": "0810-222-7874",
+        "takeaway": "yes",
+        "website": "https://www.sushiclub.com.ar/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5644720175,
+      "lat": -34.7055264,
+      "lon": -58.392986,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Farola Express"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5644728649,
+      "lat": -34.7055,
+      "lon": -58.3932891,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pizzeria San Facundo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5644728650,
+      "lat": -34.7058571,
+      "lon": -58.393281,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Wine & Arts"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5644728651,
+      "lat": -34.7059299,
+      "lon": -58.393273,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Troya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5644728652,
+      "lat": -34.7057866,
+      "lon": -58.3933159,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Casona"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5646856521,
+      "lat": -34.7820327,
+      "lon": -58.8383755,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza;burger",
+        "name": "Pizzería Greek"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5646857299,
+      "lat": -34.781868,
+      "lon": -58.8382416,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "name": "Aibar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5664355821,
+      "lat": -34.8233199,
+      "lon": -58.3739736,
+      "tags": {
+        "addr:city": "Burzaco",
+        "addr:housenumber": "420",
+        "addr:postcode": "1852",
+        "addr:street": "Pedro Goyena",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "delivery": "yes",
+        "name": "El dragon Dorado"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5737807687,
+      "lat": -35.0278132,
+      "lon": -58.4203979,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Nueva Maruja"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5737807688,
+      "lat": -35.026603,
+      "lon": -58.4237266,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Del Boulevard"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5737807695,
+      "lat": -35.0232841,
+      "lon": -58.4246707,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date:opening_hours": "2024-06-09",
+        "indoor_seating": "yes",
+        "name": "El Zamorano",
+        "opening_hours:signed": "no",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5739888718,
+      "lat": -35.0223879,
+      "lon": -58.4206635,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzandrea"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5739888719,
+      "lat": -35.0220584,
+      "lon": -58.4200573,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "La Nona"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5739888720,
+      "lat": -35.0238409,
+      "lon": -58.421495,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "San Vicente Central"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5739963374,
+      "lat": -34.8335793,
+      "lon": -58.495764,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Café de los Maestros"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5739963379,
+      "lat": -34.8326646,
+      "lon": -58.4942619,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Previa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5739963401,
+      "lat": -34.8353956,
+      "lon": -58.4933218,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Negro Felix"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5768538677,
+      "lat": -34.7691565,
+      "lon": -58.3979244,
+      "tags": {
+        "addr:street": "Avenida Meeks",
+        "amenity": "restaurant",
+        "name": "La Picaza",
+        "phone": "+54 11 4392-0090",
+        "website": "http://www.lapicazaweb.com.ar/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5797562548,
+      "lat": -34.8879749,
+      "lon": -58.5977188,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Rincon Criollo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5857292214,
+      "lat": -34.8130458,
+      "lon": -58.4513775,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Mama Isa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5910144421,
+      "lat": -34.8048626,
+      "lon": -58.4052626,
+      "tags": {
+        "addr:housenumber": "12927",
+        "addr:street": "Avenida Hipólito Yrigoyen",
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "La Esquina de los Manjares"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6021031632,
+      "lat": -34.8050802,
+      "lon": -58.4593356,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pizza Full"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6097057967,
+      "lat": -34.828172,
+      "lon": -58.3900957,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Nueva Fama"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6097057972,
+      "lat": -34.8278759,
+      "lon": -58.3884434,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Estacion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6326653614,
+      "lat": -34.7987535,
+      "lon": -58.3910668,
+      "tags": {
+        "addr:housenumber": "1102",
+        "addr:street": "Esteban Adrogué",
+        "amenity": "restaurant",
+        "building:levels": "2",
+        "cuisine": "pizza",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "internet_access:ssid": "Filomena 2.4GHz",
+        "name": "Filomena",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 4294-5517"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6342069159,
+      "lat": -34.8082824,
+      "lon": -58.4448208,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Ventana"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6358991337,
+      "lat": -34.7818003,
+      "lon": -58.8368256,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Berlin"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6381030843,
+      "lat": -34.7687509,
+      "lon": -58.3983541,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Jarana"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6391403801,
+      "lat": -34.7625028,
+      "lon": -58.3966419,
+      "tags": {
+        "addr:housenumber": "99",
+        "addr:street": "Sarandi",
+        "amenity": "restaurant",
+        "name": "Sarandi 99",
+        "note": "el nombre es literalmente la dirección, no es error de mapeo",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6488579178,
+      "lat": -34.796582,
+      "lon": -58.4116119,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "italian",
+        "name": "la mamma"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6488579190,
+      "lat": -34.7992914,
+      "lon": -58.4099475,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6488579191,
+      "lat": -34.7956526,
+      "lon": -58.4092996,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6488579192,
+      "lat": -34.799836,
+      "lon": -58.4091618,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "fixme": "nombre",
+        "name": "sin nombre"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6504071447,
+      "lat": -34.7640797,
+      "lon": -58.4014907,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "298",
+        "addr:postcode": "1832",
+        "addr:street": "Italia",
+        "air_conditioning": "yes",
+        "amenity": "restaurant",
+        "bar": "yes",
+        "name": "Wanted",
+        "opening_hours": "Su-Fr 12:00-00:00; Sa 12:00-02:00",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 4292-8868"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6504099633,
+      "lat": -34.7666077,
+      "lon": -58.4020116,
+      "tags": {
+        "addr:city": "Lomas de Zamora",
+        "addr:housenumber": "292",
+        "addr:postcode": "1832",
+        "addr:street": "Sixto Fernández",
+        "amenity": "restaurant",
+        "brand": "Club Milanesa",
+        "brand:wikidata": "Q117324078",
+        "cuisine": "milanesa;picada;sandwich;argentinian",
+        "name": "Club Milanesa",
+        "phone": "+54 11 5263-9380"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6504113480,
+      "lat": -34.7744088,
+      "lon": -58.3941149,
+      "tags": {
+        "addr:city": "Temperley",
+        "addr:housenumber": "92",
+        "addr:postcode": "1834",
+        "addr:street": "14 de Julio",
+        "air_conditioning": "yes",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "La Fronterita",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 4244-2591",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6815652093,
+      "lat": -34.7997922,
+      "lon": -58.4436849,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Bonanza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6901190485,
+      "lat": -34.854085,
+      "lon": -58.3963051,
+      "tags": {
+        "addr:housenumber": "1773",
+        "addr:postcode": "1854",
+        "addr:street": "Loedel Palumbo",
+        "amenity": "restaurant",
+        "internet_access": "wlan",
+        "name": "Longchef",
+        "opening_hours": "Mo-Su 11:00-12:00, 19:00-23:00",
+        "phone": "+54 11 2071-6258"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7075319160,
+      "lat": -34.817151,
+      "lon": -58.4701563,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Casa de la Fondue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7098937724,
+      "lat": -34.8015435,
+      "lon": -58.3954085,
+      "tags": {
+        "addr:housenumber": "696",
+        "addr:street": "Samuel Miguel Spiro",
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "La Parri",
+        "outdoor_seating": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7098987800,
+      "lat": -34.8013013,
+      "lon": -58.3955399,
+      "tags": {
+        "addr:housenumber": "694",
+        "addr:street": "Almirante Cordero",
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Tirifilo El Bodegón",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7287282523,
+      "lat": -34.7322636,
+      "lon": -58.5284398,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7902223373,
+      "lat": -34.7028156,
+      "lon": -58.7763869,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8143704511,
+      "lat": -34.8596278,
+      "lon": -58.3789923,
+      "tags": {
+        "addr:city": "Longchamps",
+        "addr:housenumber": "852",
+        "addr:postcode": "1854",
+        "addr:street": "Magdalena Motti de Tieghi",
+        "amenity": "restaurant",
+        "brewery": "no",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "El Correntino",
+        "phone": "+541142338942",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8442036339,
+      "lat": -34.800725,
+      "lon": -58.3848882,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "indoor_seating": "yes",
+        "name": "Ti Amo",
+        "outdoor_seating": "yes",
+        "website": "https://tiamopizzeria.meitre.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9101828335,
+      "lat": -34.7654905,
+      "lon": -58.4017412,
+      "tags": {
+        "addr:housenumber": "428",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "contact:facebook": "https://www.facebook.com/wagonDinerLomitas/",
+        "contact:instagram": "https://www.instagram.com/wagondinerlomitas/",
+        "cuisine": "american;crepe;friture;burger;frozen_yogurt",
+        "delivery": "yes",
+        "email": "info@wagon-diner.com",
+        "microbrewery": "yes",
+        "name": "Wagon Diner",
+        "opening_hours": "Mo-Su 11:00-22:00",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 4243 6195",
+        "reservation": "yes",
+        "takeaway": "yes",
+        "website": "https://www.wagon-diner.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9184164939,
+      "lat": -34.7020077,
+      "lon": -58.4408991,
+      "tags": {
+        "addr:city": "Villa Fiorito",
+        "addr:housenumber": "2499",
+        "addr:postcode": "1828",
+        "addr:street": "Larrazábal",
+        "amenity": "restaurant",
+        "cuisine": "pizza;regional;burger;sandwich;chicken",
+        "diet:non-vegetarian": "yes",
+        "name": "La Esquina de Franco",
+        "opening_hours": "Tu-Su 19:00-23:00",
+        "phone": "+54 9 11 5765 4111",
+        "website": "https://www.facebook.com/Pizzeria-La-Esquina-de-Franco-382734201878141/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9234375937,
+      "lat": -34.7642946,
+      "lon": -58.399765,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "coffee_shop;pancake;pizza;sandwich",
+        "delivery": "yes",
+        "name": "Storybrooke",
+        "reservation": "yes",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9529871896,
+      "lat": -34.7136349,
+      "lon": -58.5360769,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Bodegón de Güemes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9550860472,
+      "lat": -34.8190618,
+      "lon": -58.4695427,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Napoli Pizzas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9550860474,
+      "lat": -34.8183616,
+      "lon": -58.4704305,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Rincón Norteño"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9550860476,
+      "lat": -34.8182085,
+      "lon": -58.4705526,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Verdad de la Milanesa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9550860477,
+      "lat": -34.8179212,
+      "lon": -58.4707913,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Montes Hoppiness"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9550860478,
+      "lat": -34.8179839,
+      "lon": -58.4707497,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Burgery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9581869121,
+      "lat": -34.9835154,
+      "lon": -58.6833242,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Las Rejas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9584052683,
+      "lat": -34.7637132,
+      "lon": -58.40639,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pin-Pun"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9584096402,
+      "lat": -34.7667418,
+      "lon": -58.4070085,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Brandi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9592040874,
+      "lat": -34.7664617,
+      "lon": -58.4064102,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "delivery": "yes",
+        "microbrewery": "yes",
+        "name": "Olika El Obrador",
+        "outdoor_seating": "yes",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9601870726,
+      "lat": -34.7897597,
+      "lon": -58.5235719,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza;regional",
+        "name": "La Olla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9710690631,
+      "lat": -34.7659344,
+      "lon": -58.4022604,
+      "tags": {
+        "amenity": "restaurant",
+        "level": "1",
+        "microbrewery": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9710690633,
+      "lat": -34.7656585,
+      "lon": -58.4023896,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "coffee_shop;crepe",
+        "delivery": "yes",
+        "level": "1",
+        "name": "La Panera Rosa",
+        "outdoor_seating": "yes",
+        "smoking": "outside",
+        "takeaway": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9777568318,
+      "lat": -34.7106277,
+      "lon": -58.4942297,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Las Chicas de las Tres"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9797569457,
+      "lat": -34.9460271,
+      "lon": -58.6582401,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:email": "parrillaelcampito@hotmail.com",
+        "contact:phone": "+54 9 2226 48 6900",
+        "cuisine": "argentinian",
+        "name": "Parrilla El Campito",
+        "outdoor_seating": "yes",
+        "reservation": "required",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9800883432,
+      "lat": -34.8873908,
+      "lon": -58.5806653,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Confitería"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9804684207,
+      "lat": -34.7369907,
+      "lon": -58.417917,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "argentinian",
+        "name": "Parrilla Los Nonos ll"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9921444521,
+      "lat": -34.8054166,
+      "lon": -58.3814171,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:housenumber": "1402",
+        "addr:street": "Avenida General San Martín",
+        "amenity": "restaurant",
+        "facebook": "https://www.facebook.com/La-Parrillita-De-Adrogu%C3%A9-105974331086299/",
+        "name": "La Parrillita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9921444522,
+      "lat": -34.8050621,
+      "lon": -58.381452,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:housenumber": "1425",
+        "addr:street": "Avenida General San Martín",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería La Europea"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9922712075,
+      "lat": -34.8092522,
+      "lon": -58.3883674,
+      "tags": {
+        "addr:city": "Adrogué",
+        "addr:housenumber": "804",
+        "addr:street": "Avenida General San Martín",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería Adrogué Sur"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9996081560,
+      "lat": -34.8131217,
+      "lon": -58.5399695,
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Outback Steakhouse",
+        "brand:wikidata": "Q1064893",
+        "check_date": "2023-12-09",
+        "cuisine": "american;steak",
+        "name": "Outback Steakhouse",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes",
+        "payment:debit_cards": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9996081566,
+      "lat": -34.8139938,
+      "lon": -58.5388896,
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Outback Steakhouse",
+        "brand:wikidata": "Q1064893",
+        "check_date": "2025-04-06",
+        "cuisine": "american;steak",
+        "level": "1",
+        "name": "Outback Steakhouse",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes",
+        "payment:debit_cards": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10117650436,
+      "lat": -34.7838688,
+      "lon": -58.4042846,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "fish_and_chips;seafood;tapas",
+        "delivery": "yes",
+        "microbrewery": "no",
+        "name": "Waikiki",
+        "smoking": "outside",
+        "takeaway": "yes",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10117650438,
+      "lat": -34.7840032,
+      "lon": -58.4038916,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "argentinian;barbecue",
+        "delivery": "yes",
+        "name": "El Parrillón",
+        "outdoor_seating": "yes",
+        "reservation": "yes",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10537844290,
+      "lat": -34.9263726,
+      "lon": -58.9473067,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Clap"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10895056067,
+      "lat": -34.7823901,
+      "lon": -58.3406437,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "barbecue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10895056085,
+      "lat": -34.7675855,
+      "lon": -58.3270347,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10932584262,
+      "lat": -34.7949559,
+      "lon": -58.3615859,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Mamá Olga"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10932584295,
+      "lat": -34.7948023,
+      "lon": -58.3596721,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10932632025,
+      "lat": -34.7933257,
+      "lon": -58.359715,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería Pepas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10932632053,
+      "lat": -34.7909478,
+      "lon": -58.3560862,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Aldorado"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10932632066,
+      "lat": -34.7904403,
+      "lon": -58.3545083,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzería"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10932632170,
+      "lat": -34.78394,
+      "lon": -58.3434158,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "barbecue",
+        "name": "Parrilla"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11248210353,
+      "lat": -34.8585325,
+      "lon": -58.3868139,
+      "tags": {
+        "addr:city": "Longchamps",
+        "addr:housenumber": "708",
+        "addr:postcode": "1854",
+        "addr:street": "Avenida Doctor Chiesa",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "diet:non-vegetarian": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Dal Masetto",
+        "opening_hours": "Tu-Su 08:00-00:00",
+        "outdoor_seating": "yes",
+        "takeaway": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11374906602,
+      "lat": -34.7092375,
+      "lon": -58.4972108,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date:currency:XBT": "2023-11-25",
+        "cuisine": "barbecue",
+        "currency:XBT": "yes",
+        "name": "Tienda el tano",
+        "payment:lightning": "yes",
+        "payment:onchain": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11374906605,
+      "lat": -34.7098209,
+      "lon": -58.4934796,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date:currency:XBT": "2023-11-25",
+        "currency:XBT": "yes",
+        "name": "Rosa de Saron",
+        "payment:lightning": "yes",
+        "payment:onchain": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11408881870,
+      "lat": -34.7513149,
+      "lon": -58.6186923,
+      "tags": {
+        "addr:housenumber": "4481",
+        "addr:postcode": "1759",
+        "addr:street": "Intendente Federico Pedro Russo",
+        "amenity": "restaurant",
+        "cuisine": "cake;chicken;coffee_shop;diner;hot_dog;ice_cream;noodles",
+        "email": "Rusticcobar2024@gmail.com",
+        "name": "Rusticco Bar",
+        "opening_hours": "Th-Sa 17:00-02:00; Mo-We 17:00-23:30; Su 00:00-00:00",
+        "phone": "+54 11 6436 3868"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11445226820,
+      "lat": -34.7736378,
+      "lon": -58.4049873,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "argentinian;barbecue;burger;chicken;coffee_shop;pasta;steak_house",
+        "name": "Sabor Colonial II",
+        "outdoor_seating": "yes",
+        "smoking": "outside",
+        "takeaway": "yes",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11499525149,
+      "lat": -34.8169281,
+      "lon": -58.472127,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Aloha Sushi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11673403497,
+      "lat": -34.7840584,
+      "lon": -58.838202,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "japanese",
+        "name": "Seiki Sushi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11740042401,
+      "lat": -34.7936922,
+      "lon": -59.0287265,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Mangrullo Plomer",
+        "opening_hours": "Fr-Su 10:30-12:20",
+        "payment:cash": "yes",
+        "reservation": "recommended",
+        "takeaway": "yes",
+        "toilets": "yes",
+        "website": "https://www.instagram.com/el_mangrullo_parrilla_plomer/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11740109186,
+      "lat": -34.791019,
+      "lon": -59.0287345,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "steak_house",
+        "name": "Parrila '' El Vasquito ''",
+        "opening_hours": "Sa-Su 12:30-16:00",
+        "phone": "+54 11 6768 5402",
+        "reservation": "recommended",
+        "takeaway": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11794169104,
+      "lat": -34.8507271,
+      "lon": -59.0542115,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "argentinian",
+        "delivery": "no",
+        "name": "Restaurante Argentino '' La Tacuara ''",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 2652 4001",
+        "reservation": "recommended",
+        "website": "https://www.instagram.com/la_tacuara.lozano"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11815388373,
+      "lat": -35.0539688,
+      "lon": -58.7628306,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Sede"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11817015109,
+      "lat": -34.7417503,
+      "lon": -58.3915937,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Che Mono"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11983737657,
+      "lat": -34.8206104,
+      "lon": -58.4651794,
+      "tags": {
+        "addr:street": "Leandro N. Alem",
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Los Chicos",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11983737660,
+      "lat": -34.8239143,
+      "lon": -58.4802078,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizza Bari"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11983737665,
+      "lat": -34.8238048,
+      "lon": -58.4740582,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "barbecue",
+        "indoor_seating": "yes",
+        "name": "Lo de Carlitos",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11983742670,
+      "lat": -34.8220014,
+      "lon": -58.4711111,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "yes",
+        "name": "Lo de Yerard",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12031745527,
+      "lat": -34.8180368,
+      "lon": -58.4872011,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Bunker"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12040199302,
+      "lat": -35.0203201,
+      "lon": -58.4169347,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor_seating": "no",
+        "name": "Nuevo Tío Pipo",
+        "outdoor_seating": "no",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12367743756,
+      "lat": -34.8180803,
+      "lon": -58.4632395,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Lo de Lito"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12413241104,
+      "lat": -34.815451,
+      "lon": -58.4708516,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Alto Morfi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12477042434,
+      "lat": -34.7996375,
+      "lon": -58.3904494,
+      "tags": {
+        "addr:housenumber": "775",
+        "addr:street": "Pellerano",
+        "air_conditioning": "yes",
+        "amenity": "restaurant",
+        "internet_access": "wlan",
+        "internet_access:ssid": "Parrilla",
+        "name": "La Delfina",
+        "outdoor_seating": "yes",
+        "phone": "+54 11 6079-3305",
+        "reservation": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12869688723,
+      "lat": -34.8180665,
+      "lon": -58.4637384,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Bahia Bonita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13240851841,
+      "lat": -34.9164179,
+      "lon": -58.9533589,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Carana by SRM"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13615591707,
+      "lat": -34.7004143,
+      "lon": -58.5884746,
+      "tags": {
+        "addr:city": "Isidro Casanova",
+        "addr:housenumber": "2695",
+        "addr:street": "República de Portugal",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizzanelli",
+        "phone": "+5491155771577"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13625332701,
+      "lat": -34.8160597,
+      "lon": -58.5412382,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Tostado"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14054076501,
+      "lat": -34.7093329,
+      "lon": -58.3854116,
+      "tags": {
+        "addr:housenumber": "1868",
+        "addr:street": "Oncativo",
+        "amenity": "restaurant",
+        "cuisine": "spanish",
+        "name": "Oncativo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14054086201,
+      "lat": -34.7096236,
+      "lon": -58.3856727,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "italian_pizza",
+        "name": "Lo+Hot"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14054098101,
+      "lat": -34.7058283,
+      "lon": -58.3950924,
+      "tags": {
+        "addr:housenumber": "226",
+        "addr:street": "Gobernador Irigoyen",
+        "amenity": "restaurant",
+        "cuisine": "italian",
+        "name": "Pasta Rosa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14077423160,
+      "lat": -34.7471476,
+      "lon": -58.3937226,
+      "tags": {
+        "addr:city": "Banfield",
+        "addr:housenumber": "902",
+        "addr:postcode": "1828",
+        "addr:street": "Avenida Alsina",
+        "amenity": "restaurant",
+        "cuisine": "pizza;empanada",
+        "diet:meat": "yes",
+        "diet:vegetarian": "yes",
+        "name": "La fama"
+      }
+    }
+  ]
+}

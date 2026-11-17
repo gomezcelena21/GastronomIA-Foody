@@ -1,0 +1,2832 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-08-23T20:29:51Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 1311246176,
+      "lat": -32.9497596,
+      "lon": -60.6379228,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1053",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Barón de Mauá",
+        "amenity": "restaurant",
+        "contact:facebook": "AntonioAvelino.RestoBar",
+        "contact:phone": "+54 341 449-0546",
+        "name": "Antonio Avelino",
+        "opening_hours": "Mo-Sa 08:00-24:00",
+        "outdoor_seating": "yes",
+        "payment:american_express": "yes",
+        "payment:cash": "yes",
+        "payment:mastercard": "yes",
+        "payment:visa": "yes",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1640587221,
+      "lat": -32.9282232,
+      "lon": -60.7386089,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Cacique"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1977420134,
+      "lat": -32.9343783,
+      "lon": -60.643486,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-03-20",
+        "cuisine": "parrilla",
+        "name": "Don Ferro"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1977420200,
+      "lat": -32.9345742,
+      "lon": -60.6426679,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-05-22",
+        "cuisine": "pizza;sandwich",
+        "name": "Flora",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1979436301,
+      "lat": -32.9298079,
+      "lon": -60.6508036,
+      "tags": {
+        "addr:street": "Avenida de la Costa Estanislao López",
+        "amenity": "restaurant",
+        "check_date": "2025-05-03",
+        "contact:website": "http://www.complejodavis.com/",
+        "name": "Restaurante Davis"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1992641974,
+      "lat": -32.9657571,
+      "lon": -60.6021195,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2007211723,
+      "lat": -32.9331075,
+      "lon": -60.6519112,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Almacén de Pizzas",
+        "outdoor_seating": "sidewalk"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2691058942,
+      "lat": -32.9490528,
+      "lon": -60.6264161,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housename": "Estación Fluvial Rosario",
+        "addr:state": "Santa Fe",
+        "amenity": "restaurant",
+        "name": "Los Tres Marinos"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2691058944,
+      "lat": -32.9493421,
+      "lon": -60.6263958,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housename": "Estación Fluvial Rosario",
+        "addr:state": "Santa Fe",
+        "amenity": "restaurant",
+        "contact:website": "http://www.salonesterrazas.com.ar/",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Terrazas del Paraná",
+        "opening_hours": "Mo-Fr 11:00-19:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2691058946,
+      "lat": -32.9448899,
+      "lon": -60.6387599,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1166",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Santa Fe",
+        "amenity": "restaurant",
+        "name": "Lo mejor del centro",
+        "outdoor_seating": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2813483969,
+      "lat": -32.9424797,
+      "lon": -60.6812363,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3225557091,
+      "lat": -32.9355524,
+      "lon": -60.6709385,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Bella Napoli"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3581090193,
+      "lat": -32.9537879,
+      "lon": -60.6256371,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "94",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida de la Libertad",
+        "amenity": "restaurant",
+        "contact:facebook": "QueensDeck",
+        "contact:phone": "+54 341 426-7191",
+        "contact:website": "http://queensbar.com.ar",
+        "name": "Queens Deck",
+        "opening_hours": "Mo-We 00:00-01:00,08:00-24:00; Fr,Sa 00:00-03:00,08:00-24:00",
+        "outdoor_seating": "yes",
+        "payment:american_express": "yes",
+        "payment:cash": "yes",
+        "payment:mastercard": "yes",
+        "payment:visa": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3597550888,
+      "lat": -32.9361872,
+      "lon": -60.6482994,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Jujuy",
+        "amenity": "restaurant",
+        "name": "Marrochino"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3597557826,
+      "lat": -32.9469204,
+      "lon": -60.6427446,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "900",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Corrientes",
+        "amenity": "restaurant",
+        "cuisine": "coffee_shop;argentinian",
+        "name": "Bon Café"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3670506710,
+      "lat": -32.9194495,
+      "lon": -60.6825206,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "699",
+        "addr:postcode": "S2013",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Alberdi",
+        "amenity": "restaurant",
+        "name": "Fulano",
+        "smoking": "outside"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3725479538,
+      "lat": -32.9583452,
+      "lon": -60.6336055,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "584",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Carlos Pellegrini",
+        "amenity": "restaurant",
+        "contact:phone": "+54 341 447-1024",
+        "cuisine": "fish_and_chips",
+        "name": "Puerto Gaboto",
+        "opening_hours": "Mo-Su 12:00-15:30,20:10-01:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3725536556,
+      "lat": -32.9578994,
+      "lon": -60.6386818,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "961",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Carlos Pellegrini",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Via Apia"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3725536557,
+      "lat": -32.9578724,
+      "lon": -60.6389151,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Carlos Pellegrini",
+        "amenity": "restaurant",
+        "cuisine": "meat",
+        "name": "Don Leo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3741622967,
+      "lat": -32.9564415,
+      "lon": -60.6446304,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "internet_access": "wlan",
+        "name": "Helga",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3818423976,
+      "lat": -33.0047416,
+      "lon": -60.676572,
+      "tags": {
+        "addr:postcode": "S2011",
+        "addr:street": "Avenida Ovidio Lagos",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "name": "Restarurante y Cafetería"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3960088357,
+      "lat": -32.9648128,
+      "lon": -60.6217637,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2012",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Manuel Belgrano",
+        "amenity": "restaurant",
+        "contact:phone": "+54 341 481-1090",
+        "contact:website": "http://www.wembleyrestaurant.com.ar",
+        "cuisine": "grill;pasta;fish;bagna_cauda",
+        "name": "Wembley Restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4001719891,
+      "lat": -32.9472536,
+      "lon": -60.6629164,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Mendoza",
+        "amenity": "restaurant",
+        "name": "Braseria Los Leños"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4093035766,
+      "lat": -32.9105019,
+      "lon": -60.6833028,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "323",
+        "addr:postcode": "S2013",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Nansen",
+        "amenity": "restaurant",
+        "indoor": "yes",
+        "level": "5"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4098368187,
+      "lat": -32.9553163,
+      "lon": -60.653225,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1731",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Mariano Moreno",
+        "amenity": "restaurant",
+        "cuisine": "grill;steak_house;pasta",
+        "name": "Fohlen",
+        "opening_hours": "Mo-Su 00:00-01:00, 12:00-15:30, 20:00-24:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4172003167,
+      "lat": -32.9266773,
+      "lon": -60.7471847,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "8496",
+        "addr:postcode": "S2008",
+        "addr:state": "Santa Fe",
+        "addr:street": "Córdoba",
+        "amenity": "restaurant",
+        "capacity": "110",
+        "contact:facebook": "losmonse",
+        "contact:phone": "+54 341 622-5632",
+        "cuisine": "pizza;pasta",
+        "name": "Los Monse",
+        "opening_hours": "Mo-Sa 00:00-00:30,19:30-24:00; Su 00:00-00:30,11:30-15:30,19:30-24:00",
+        "outdoor_seating": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4172003172,
+      "lat": -32.9412227,
+      "lon": -60.6585337,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Valquiria",
+        "old_name": "Mexicas"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4175076599,
+      "lat": -32.9387814,
+      "lon": -60.6724758,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "asian",
+        "name": "Beijing",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4175076605,
+      "lat": -32.9390752,
+      "lon": -60.6707552,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizza Piazza",
+        "outdoor_seating": "yes",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4231136192,
+      "lat": -32.9317284,
+      "lon": -60.6575323,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Justino"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4260575690,
+      "lat": -32.9356944,
+      "lon": -60.6516124,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "106",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar Nicasio Oroño",
+        "alt_name": "Rock & Feller's",
+        "amenity": "restaurant",
+        "branch": "Oroño",
+        "brand": "Rock&Feller's",
+        "contact:instagram": "rockandfellersrosario",
+        "contact:phone": "+54 341 546-7000",
+        "contact:website": "https://rockandfellers.com.ar/",
+        "cuisine": "burger;sandwich;american;regional",
+        "description": "Restaurante temático en la música. Reservar con anticipación.",
+        "drink:beer": "yes",
+        "drink:wine": "yes",
+        "internet_access": "wlan",
+        "name": "Rock&Feller's Oroño",
+        "outdoor_seating": "terrace",
+        "reservation": "recommended"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4318791904,
+      "lat": -32.9493498,
+      "lon": -60.6382673,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:postcode": "S2000CLB",
+        "addr:state": "Santa Fe",
+        "addr:street": "Barón de Mauá",
+        "amenity": "restaurant",
+        "name": "D'jembe",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4359409645,
+      "lat": -32.9391281,
+      "lon": -60.6704836,
+      "tags": {
+        "addr:housenumber": "699",
+        "addr:street": "Cafferata",
+        "amenity": "restaurant",
+        "check_date": "2025-04-02",
+        "contact:instagram": "bar.shill",
+        "internet_access": "wlan",
+        "name": "Shill",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4385395778,
+      "lat": -32.943925,
+      "lon": -60.6449149,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1601",
+        "addr:state": "Santa Fe",
+        "addr:street": "Santa Fe",
+        "amenity": "restaurant",
+        "check_date": "2025-03-19",
+        "name": "Black Sheep"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4410505871,
+      "lat": -32.9480265,
+      "lon": -60.6503199,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "San Juan",
+        "amenity": "restaurant",
+        "building:levels": "1",
+        "name": "Albaca",
+        "takeaway": "yes",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4561722023,
+      "lat": -32.9440696,
+      "lon": -60.6377303,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Portofino"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4597338716,
+      "lat": -32.9451237,
+      "lon": -60.6600012,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza;pasta",
+        "description": "Restaurante y pastas. Tienen pizza libre de miércoles a domingo, hay que reservar antes",
+        "name": "Restaurante 100% Casero",
+        "source:name": "sign; local knowledge"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4597359893,
+      "lat": -32.9564236,
+      "lon": -60.646861,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Beto's"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4597363440,
+      "lat": -32.9567032,
+      "lon": -60.6432092,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Malteria"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4802166579,
+      "lat": -32.9344249,
+      "lon": -60.6454652,
+      "tags": {
+        "addr2:street": "Avenida Guillermo Wheelwright",
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "contact:phone": "+54 341 425-5611",
+        "cuisine": "parrilla",
+        "name": "El Viejo Balcón",
+        "outdoor_seating": "yes",
+        "smoking": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4893790321,
+      "lat": -32.923031,
+      "lon": -60.6642149,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "178",
+        "addr:postcode": "S2013CTV",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Doctor Luis Cándido Carballo",
+        "amenity": "restaurant",
+        "contact:phone": "+54 341 525-2589",
+        "contact:website": "https://www.facebook.com/BENITOTRATTORIA/",
+        "cuisine": "argentinian;italian_pizza;mediterranean;italian",
+        "internet_access": "wlan",
+        "name": "Benito Trattoria",
+        "name:es": "Benito Trattoria",
+        "opening_hours": "Tu-Su 11:30-16:00,20:00-01:00; Mo 11:30-16:00",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4902971346,
+      "lat": -32.9052721,
+      "lon": -60.7279343,
+      "tags": {
+        "amenity": "restaurant",
+        "indoor": "yes",
+        "indoor_seating": "yes",
+        "level": "0",
+        "outdoor_seating": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4954931325,
+      "lat": -32.9414504,
+      "lon": -60.6652497,
+      "tags": {
+        "abandoned:name": "Chilecito",
+        "amenity": "restaurant",
+        "amenity:1976": "restaurant",
+        "description": "Anteriormente existió el Bar-Rstaurant Chilecito (1976).",
+        "name:1976": "Chilecito"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4982985301,
+      "lat": -32.9527784,
+      "lon": -60.6530034,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2017",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Zeballos",
+        "amenity": "restaurant",
+        "contact:phone": "+54 9 341 421-5226",
+        "cuisine": "pizza;empanada;sandwich",
+        "delivery": "yes",
+        "name": "La Camorra",
+        "outdoor_seating": "no",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4982985302,
+      "lat": -32.9527488,
+      "lon": -60.6531106,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2019",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Zeballos",
+        "amenity": "restaurant",
+        "contact:phone": "+54 9 341 421-0243",
+        "cuisine": "sushi;wok",
+        "delivery": "yes",
+        "name": "Sushi Premium",
+        "opening_hours": "Tu-Su 18:00-23:00",
+        "outdoor_seating": "no",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5048723122,
+      "lat": -32.9400948,
+      "lon": -60.6610387,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "598",
+        "addr:postcode": "2002",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Ovidio Lagos",
+        "amenity": "restaurant",
+        "contact:facebook": "MisturaDeSaboresFusionLatinaRestoBar",
+        "cuisine": "latin_american;peruvian;argentinian;mexican",
+        "name": "Mistura de sabores (fusión latina)",
+        "name:es": "Mistura de sabores (fusión latina)",
+        "opening_hours": "Mo-Fr 18:00-00:00; Sa,Su,PH 12:00+",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5119864786,
+      "lat": -32.9350795,
+      "lon": -60.6513521,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "70",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar Nicasio Oroño",
+        "amenity": "restaurant",
+        "contact:email": "contacto@sushiclub.com.ar",
+        "contact:facebook": "sushiclubargentina",
+        "contact:instagram": "sushiclub_rs",
+        "contact:phone": "+54 341 438-4280",
+        "contact:phone:AR": "0810 222-7874",
+        "contact:twitter": "@SushiClub_ar",
+        "contact:website": "https://sushiclubweb.com.ar/",
+        "cuisine": "sushi",
+        "delivery": "yes",
+        "name": "SushiClub",
+        "opening_hours": "Mo-Th 00:00-01:00,12:00-16:00,19:30-24:00; Fr 00:00-01:30,12:00-16:00,19:30-24:00; Sa,Su 00:00-02:00,12:00-16:00,19:30-24:00",
+        "opening_hours:delivery": "Mo-Su 20:30-24:00",
+        "outdoor_seating": "yes",
+        "payment:american_express": "yes",
+        "payment:cash": "yes",
+        "payment:mastercard": "yes",
+        "payment:visa": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5220127331,
+      "lat": -32.9326084,
+      "lon": -60.6602071,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Cervario"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5250391616,
+      "lat": -32.928981,
+      "lon": -60.733995,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "7978",
+        "addr:postcode": "S2008",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Eva Perón",
+        "amenity": "restaurant",
+        "contact:facebook": "pueblofisherton",
+        "contact:phone": "+54 341 451-2351; +54 341 452-0186",
+        "cuisine": "regional",
+        "delivery": "yes",
+        "name": "Pueblo Fisherton",
+        "outdoor_seating": "yes",
+        "payment:american_express": "yes",
+        "payment:cash": "yes",
+        "payment:mastercard": "yes",
+        "payment:visa": "yes",
+        "source": "sign"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5284726069,
+      "lat": -32.941782,
+      "lon": -60.6555028,
+      "tags": {
+        "amenity": "restaurant",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5293565924,
+      "lat": -32.9434055,
+      "lon": -60.6359939,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2026-04-11",
+        "name": "La Favrika Del Bajo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5307408223,
+      "lat": -32.9347521,
+      "lon": -60.6495213,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2093",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Almirante Brown",
+        "amenity": "restaurant",
+        "contact:phone": "+54 341 425-6765",
+        "contact:website": "http://comedorbalcarce.com.ar/",
+        "delivery": "yes",
+        "name": "Comedor Balcarce",
+        "opening_hours": "Mo-Sa 12:00-15:00,20:15-24:00",
+        "url:menu": "https://docs.google.com/spreadsheets/d/16jnF60YlArOiEA-F8xOKhzBvn7Wa_O8Ysx3VHebzPXA/edit"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5355903522,
+      "lat": -32.9388183,
+      "lon": -60.6462874,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Catamarca",
+        "amenity": "restaurant",
+        "name": "Gorostarzu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357403755,
+      "lat": -32.9543269,
+      "lon": -60.6367153,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "9 de Julio",
+        "amenity": "restaurant",
+        "name": "Manjares"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357403756,
+      "lat": -32.9542414,
+      "lon": -60.6373081,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "9 de Julio",
+        "amenity": "restaurant",
+        "name": "Panificacion Nieves"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357403762,
+      "lat": -32.9498885,
+      "lon": -60.6479108,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "España",
+        "amenity": "restaurant",
+        "check_date": "2026-04-11",
+        "name": "El Noble"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357403771,
+      "lat": -32.9489207,
+      "lon": -60.6533772,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Mendoza",
+        "amenity": "restaurant",
+        "name": "N40"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357535121,
+      "lat": -32.951383,
+      "lon": -60.6482542,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "España",
+        "amenity": "restaurant",
+        "name": "Centro"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357535124,
+      "lat": -32.9571019,
+      "lon": -60.6292507,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Zeballos",
+        "amenity": "restaurant",
+        "name": "Barroco"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5357834828,
+      "lat": -33.0040098,
+      "lon": -60.6758802,
+      "tags": {
+        "addr:street": "Avenida Manuel Arijón",
+        "amenity": "restaurant",
+        "name": "Mamma Mia!!"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5359425794,
+      "lat": -32.9916394,
+      "lon": -60.6659956,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida José Uriburu",
+        "amenity": "restaurant",
+        "name": "tento"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5361841402,
+      "lat": -33.0020476,
+      "lon": -60.6489395,
+      "tags": {
+        "addr:street": "Francisco Narciso Laprida",
+        "amenity": "restaurant",
+        "name": "Tortas del Sur"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5361841409,
+      "lat": -32.9996413,
+      "lon": -60.63614,
+      "tags": {
+        "addr:street": "Avenida Nuestra Señora del Rosario",
+        "amenity": "restaurant",
+        "name": "Martins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5371637822,
+      "lat": -32.9562233,
+      "lon": -60.6480598,
+      "tags": {
+        "alt_name": "El Club de la Milanesa",
+        "amenity": "restaurant",
+        "brand": "Club Milanesa",
+        "brand:wikidata": "Q117324078",
+        "contact:phone": "+54 341 208-3010",
+        "contact:website": "https://elclubdelamilanesa.com/",
+        "cuisine": "milanesa;picada;sandwich;argentinian",
+        "name": "Club Milanesa",
+        "opening_hours": "Mo-Su 00:00-02:00,11:00-24:00",
+        "outdoor_seating": "yes",
+        "payment:notes": "yes",
+        "stars": "4",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5371637827,
+      "lat": -32.9490441,
+      "lon": -60.6447735,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1098",
+        "addr:state": "Santa Fe",
+        "addr:street": "Paraguay",
+        "amenity": "restaurant",
+        "name": "Panadería Del Sol",
+        "opening_hours": "08:00-20:00",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5438211050,
+      "lat": -32.9328657,
+      "lon": -60.6603712,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1",
+        "addr:postcode": "2002",
+        "addr:state": "Santa Fe",
+        "addr:street": "Ricchieri",
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "Jimmy",
+        "opening_hours": "Mo-Th 08:00-01:00, Fr-Sa 08:00-02:00, Su18:00-01:00",
+        "outdoor_seating": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5591246643,
+      "lat": -32.9349466,
+      "lon": -60.6416594,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Emilio Schiffner",
+        "amenity": "restaurant",
+        "check_date": "2025-05-07",
+        "cuisine": "argentinian;regional",
+        "description": "Restaurante argentino.",
+        "name": "El Dorado",
+        "old_name": "Neón Bar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6067557705,
+      "lat": -32.9454055,
+      "lon": -60.6434102,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1470",
+        "addr:state": "Santa Fe",
+        "addr:street": "Peatonal Córdoba",
+        "amenity": "restaurant",
+        "brewery": "321 Cervecería",
+        "check_date": "2025-06-03",
+        "description": "Venta de desayunos, almuerzos, cafés, gaseosas, postres.",
+        "internet_access:ssid": "Deli Bar & Take away",
+        "name": "Deli Bar & take away",
+        "opening_hours": "Mo-Fr 08:30-20:00; Sa 09:00-16:00; Jan 01 off; May 01 off"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6067567170,
+      "lat": -32.9511094,
+      "lon": -60.6548788,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Free Dot"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6070656459,
+      "lat": -32.9066452,
+      "lon": -60.7205239,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-08-22",
+        "contact:instagram": "loinslomos",
+        "cuisine": "burger;sandwich",
+        "indoor": "room",
+        "indoor_seating": "no",
+        "level": "0",
+        "name": "Loins & Lomos",
+        "opening_hours": "Mo-Su 10:00-21:00",
+        "outdoor_seating": "yes",
+        "ref": "LG4",
+        "takeaway": "only",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6270531187,
+      "lat": -32.9256947,
+      "lon": -60.6631579,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Bodegón de Refi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6307385068,
+      "lat": -32.9468452,
+      "lon": -60.6430179,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Rioja",
+        "amenity": "restaurant",
+        "cuisine": "pastry",
+        "internet_access": "wlan",
+        "internet_access:password": "charlottecentro",
+        "internet_access:ssid": "Charlotte",
+        "name": "Charlotte Coffee & Tea",
+        "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-13:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6326534495,
+      "lat": -32.9497788,
+      "lon": -60.681586,
+      "tags": {
+        "amenity": "restaurant",
+        "description": "Parrilla & Comedor"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6333606489,
+      "lat": -32.9383095,
+      "lon": -60.6420957,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:instagram": "@vrindarosario",
+        "diet:vegan": "yes",
+        "name": "Vrinda"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6383228441,
+      "lat": -32.9330292,
+      "lon": -60.6463048,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-05-07",
+        "name": "Río Mío",
+        "toilets": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6435920663,
+      "lat": -32.9230225,
+      "lon": -60.6634729,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Cuervo Blanco",
+        "outdoor_seating": "pedestrian_zone",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6435920664,
+      "lat": -32.9230608,
+      "lon": -60.6644874,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Pizza Hot",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6435920672,
+      "lat": -32.9523398,
+      "lon": -60.6355676,
+      "tags": {
+        "amenity": "restaurant",
+        "internet_access": "wlan",
+        "internet_access:ssid": "Málaga Bar",
+        "name": "Málaga",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6435920680,
+      "lat": -32.9440455,
+      "lon": -60.6432457,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-02-10",
+        "internet_access": "wlan",
+        "name": "Il Vecchio"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6515001825,
+      "lat": -32.9420816,
+      "lon": -60.6415917,
+      "tags": {
+        "addr:housenumber": "498",
+        "addr:street": "Corrientes",
+        "amenity": "restaurant",
+        "check_date": "2025-03-19",
+        "cuisine": "argentinian;breakfast;burger;chicken;coffee_shop;diner;ice_cream",
+        "name": "Capote",
+        "opening_hours": "Mo-Sa 08:00-24:00",
+        "self_service": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6515010796,
+      "lat": -32.9469894,
+      "lon": -60.6350783,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2026-04-11",
+        "name": "Blackford"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6515012772,
+      "lat": -32.944525,
+      "lon": -60.643616,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Paraguay",
+        "amenity": "restaurant",
+        "drink:wine": "yes",
+        "name": "Abarrote"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6515015561,
+      "lat": -32.9352414,
+      "lon": -60.6537552,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "101",
+        "addr:state": "Santa Fe",
+        "addr:street": "Santiago",
+        "amenity": "restaurant",
+        "contact:instagram": "chinchibirabar",
+        "contact:website": "http://www.chinchibirabar.com",
+        "description": "Restaurante, bar y café. Desde 1999.",
+        "name": "Chinchibira",
+        "opening_hours": "Mo-Su 09:00-23:00; May 1 off \"Día del trabajador\""
+      }
+    },
+    {
+      "type": "node",
+      "id": 6515015827,
+      "lat": -32.9267884,
+      "lon": -60.6652732,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Junín",
+        "amenity": "restaurant",
+        "drink:wine": "yes",
+        "internet_access": "wlan",
+        "internet_access:password": "Junin158",
+        "internet_access:ssid": "Bow Cafe Bistro",
+        "name": "Bow"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6553552888,
+      "lat": -32.9352676,
+      "lon": -60.6522882,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2278",
+        "addr:state": "Santa Fe",
+        "addr:street": "Jujuy",
+        "alt_name": "Litos Lomitos",
+        "amenity": "restaurant",
+        "brewery": "Downhill",
+        "contact:facebook": "litoslomitos",
+        "cuisine": "sandwich;burger;sub;fast_food",
+        "description": "Venta de sándwich de lomito, choripan, hamburguesas y tostados.",
+        "internet_access": "wlan",
+        "internet_access:fee": "customers",
+        "microbrewery": "yes",
+        "name": "Lito's Lomitos",
+        "opening_hours": "Mo-Sa 12:00-15:30; Mo-Su 20:00-23:30"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6579319498,
+      "lat": -32.9347152,
+      "lon": -60.6507264,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "29",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar Nicasio Oroño",
+        "amenity": "restaurant",
+        "contact:instagram": "crepasrosario",
+        "contact:website": "http://crepas.com.uy/",
+        "cuisine": "crepe;juice;sandwich;soup;salad",
+        "name": "Crepas",
+        "opening_hours": "Mo-Th,Su 09:00-00:00; Fr,Sa 09:00-01:00; Jan 1 off \"Año nuevo\"",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6579338372,
+      "lat": -32.9338821,
+      "lon": -60.6505215,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar Nicasio Oroño",
+        "amenity": "restaurant",
+        "name": "Central Oroño",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6579340132,
+      "lat": -32.9366408,
+      "lon": -60.651169,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "199",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar Nicasio Oroño",
+        "amenity": "restaurant",
+        "contact:instagram": "anajuana.restaurante",
+        "contact:phone": "+54 341 440-5222",
+        "cuisine": "pizza",
+        "description": "Especialistas en pizza a la parrilla.",
+        "name": "Anajuana",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6579380316,
+      "lat": -32.9384231,
+      "lon": -60.6522615,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "344",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar Nicasio Oroño",
+        "amenity": "restaurant",
+        "contact:instagram": "nicasiorestobar",
+        "contact:phone": "+54 341 437-7166",
+        "name": "Nicasio Restobar",
+        "opening_hours": "Jan 1 off \"Año Nuevo\"",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6579382597,
+      "lat": -32.9531415,
+      "lon": -60.6366405,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Farola"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6668031485,
+      "lat": -32.9424496,
+      "lon": -60.6384719,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "473",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bartolomé Mitre",
+        "amenity": "restaurant",
+        "name": "Prika"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936211591,
+      "lat": -32.9454307,
+      "lon": -60.642183,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Corrientes",
+        "amenity": "restaurant",
+        "name": "El Código"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936222363,
+      "lat": -32.9467021,
+      "lon": -60.6441983,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Entre Vero"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936222519,
+      "lat": -32.9314653,
+      "lon": -60.654623,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "200 bis",
+        "addr:state": "Santa Fe",
+        "addr:street": "Pueyrredón",
+        "amenity": "restaurant",
+        "name": "El Riel",
+        "phone": "+54 341 617-1536"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936227308,
+      "lat": -32.9657597,
+      "lon": -60.6325396,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Leon"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936233426,
+      "lat": -32.9338531,
+      "lon": -60.6549232,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1",
+        "addr:state": "Santa Fe",
+        "addr:street": "Pueyrredón",
+        "amenity": "restaurant",
+        "name": "Chicharra",
+        "phone": "+54 341 435-3934"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936236691,
+      "lat": -32.946744,
+      "lon": -60.6439272,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6936238273,
+      "lat": -32.9330736,
+      "lon": -60.6525051,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2323",
+        "addr:state": "Santa Fe",
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "name": "Brooklyn"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6939719518,
+      "lat": -32.9363784,
+      "lon": -60.6612354,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "301",
+        "addr:state": "Santa Fe",
+        "amenity": "restaurant",
+        "name": "Ajoarriero",
+        "phone": "+54 341 423-422"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024153804,
+      "lat": -32.9480805,
+      "lon": -60.6485551,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1069",
+        "addr:state": "Santa Fe",
+        "addr:street": "Italia",
+        "amenity": "restaurant",
+        "cuisine": "arab",
+        "diet:vegetarian": "yes",
+        "name": "Safyta Resto",
+        "website": "https://especialmentearabe.com.ar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024162355,
+      "lat": -32.941122,
+      "lon": -60.643941,
+      "tags": {
+        "amenity": "restaurant",
+        "diet:vegetarian": "yes",
+        "name": "Mile Time Comida Vegetariana",
+        "opening_hours": "Mo-Fr 11:00-22:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024162356,
+      "lat": -32.9389732,
+      "lon": -60.6537471,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2305",
+        "addr:state": "Santa Fe",
+        "addr:street": "Tucumán",
+        "alt_name": "ML Calentitas",
+        "amenity": "restaurant",
+        "cuisine": "pastry",
+        "name": "Medialunas Calentitas",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024166123,
+      "lat": -32.9582772,
+      "lon": -60.6412578,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1798",
+        "addr:state": "Santa Fe",
+        "addr:street": "Sarmiento",
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "name": "El Leñador"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024173333,
+      "lat": -32.9231749,
+      "lon": -60.6631314,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "sushi",
+        "name": "Dashi",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024175567,
+      "lat": -32.9433038,
+      "lon": -60.646826,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1746",
+        "addr:state": "Santa Fe",
+        "addr:street": "Santa Fe",
+        "amenity": "restaurant",
+        "diet:vegetarian": "yes",
+        "name": "La Casa de Mei"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024175871,
+      "lat": -32.9587702,
+      "lon": -60.6442964,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1880",
+        "addr:state": "Santa Fe",
+        "addr:street": "Entre Ríos",
+        "amenity": "restaurant",
+        "cuisine": "indian;arab",
+        "diet:vegetarian": "yes",
+        "name": "Tan Mahal"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024176978,
+      "lat": -32.9359351,
+      "lon": -60.6530135,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "160",
+        "addr:state": "Santa Fe",
+        "addr:street": "Alvear",
+        "amenity": "restaurant",
+        "contact:phone": "+54 341 430-4641",
+        "cuisine": "burger",
+        "description": "Hamburguesa, hotdogs, sandwich.",
+        "drink:beer": "yes",
+        "name": "Orik Food & Beer",
+        "opening_hours": "Mo-Su 08:30-23:30"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024177259,
+      "lat": -32.9450547,
+      "lon": -60.639426,
+      "tags": {
+        "amenity": "restaurant",
+        "diet:vegetarian": "yes",
+        "name": "Rincón vegetariano & diet"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024178324,
+      "lat": -32.9353523,
+      "lon": -60.6609996,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "218",
+        "addr:state": "Santa Fe",
+        "addr:street": "Pablo Ricchieri",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "name": "Lemon City"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024178810,
+      "lat": -32.9519836,
+      "lon": -60.6371232,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "937",
+        "addr:state": "Santa Fe",
+        "addr:street": "Mendoza",
+        "amenity": "restaurant",
+        "check_date": "2026-04-11",
+        "contact:phone": "+54 341 447-7533",
+        "diet:vegetarian": "yes",
+        "name": "Casa de Nicolás",
+        "opening_hours": "Mo-Sa 11:00-15:00,18:30-22:00",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7024178893,
+      "lat": -32.9230273,
+      "lon": -60.6652904,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Viejo Balcón",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7124284572,
+      "lat": -32.9267124,
+      "lon": -60.7391801,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Rescoldo",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7367595201,
+      "lat": -32.945612,
+      "lon": -60.6422272,
+      "tags": {
+        "alt_name": "Augustus",
+        "amenity": "restaurant",
+        "check_date": "2025-06-03",
+        "cuisine": "sandwich;coffee_shop",
+        "name": "Avgvstvs",
+        "opening_hours": "Mo-Sa 07:00-21:00",
+        "opening_hours:covid19": "Mo-Fr 09:00-21:00",
+        "outdoor_seating": "pedestrian_zone"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7472374803,
+      "lat": -32.937168,
+      "lon": -60.6429733,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "109",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Presidente Roca",
+        "amenity": "restaurant",
+        "cuisine": "pizza;sandwich",
+        "name": "La Vendetta Express Roca",
+        "phone": "+54 341 222-8888",
+        "website": "https://www.lavendetta.com.ar/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7472421485,
+      "lat": -32.9363723,
+      "lon": -60.6421545,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1543",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Guillermo Wheelwright",
+        "amenity": "restaurant",
+        "check_date": "2025-06-25",
+        "name": "Metrópolis",
+        "panoramax": "4d8c17a8-0342-4ea4-ad74-4ab2aafffb89"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7552099820,
+      "lat": -32.9416149,
+      "lon": -60.6484178,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "553",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Manuel Dorrego",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "description": "Pizzeria estilo NYC",
+        "name": "Lemmy's Pizza",
+        "opening_hours": "Mo-Sa 11:00-15:00,20:00-24:00; Su off",
+        "phone": "+54 341 297-4001",
+        "website": "https://lemmys-pizza.negocio.site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7552147211,
+      "lat": -32.9417501,
+      "lon": -60.643649,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1574",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Justo José de Urquiza",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "Lemmy's Pizza",
+        "phone": "+54 341 297-4001",
+        "website": "https://www.lemmyspizza.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7773840949,
+      "lat": -32.9618189,
+      "lon": -60.6365136,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Bar Viejo Munich"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7773868370,
+      "lat": -32.960198,
+      "lon": -60.6373812,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pasta",
+        "name": "Nona Pepa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7773874824,
+      "lat": -32.9351949,
+      "lon": -60.6521399,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2264",
+        "addr:state": "Santa Fe",
+        "addr:street": "Jujuy",
+        "amenity": "restaurant",
+        "contact:instagram": "arepati_ar",
+        "cuisine": "venezuelan",
+        "description": "Venta de comida venezolana, arepas, tequeños, entre otros.",
+        "name": "Arepa Ti",
+        "opening_hours": "We-Sa 18:00-23:00",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7773876545,
+      "lat": -32.9354512,
+      "lon": -60.6684279,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Iriondo",
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "Crunchy Pizzas",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7863105117,
+      "lat": -32.9549527,
+      "lon": -60.6418525,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1514",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bartolomé Mitre",
+        "amenity": "restaurant",
+        "contact:instagram": "rato.oficial",
+        "contact:phone": "+54 341 297-4279",
+        "cuisine": "burger",
+        "delivery": "yes",
+        "delivery:pedidosya": "yes",
+        "name": "Rato Express"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7863109687,
+      "lat": -32.9339036,
+      "lon": -60.6434679,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-05-22",
+        "name": "Bajada España"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7863114912,
+      "lat": -32.94424,
+      "lon": -60.6418289,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Caprese"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7863120505,
+      "lat": -32.9497133,
+      "lon": -60.6344488,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Basilic"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7961327066,
+      "lat": -32.9381864,
+      "lon": -60.6563342,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "398",
+        "addr:state": "Santa Fe",
+        "amenity": "restaurant",
+        "cuisine": "pizza;burger;empanada",
+        "drink:beer": "served",
+        "name": "Cueva de Lobos",
+        "opening_hours": "Mo-Su 09:00-00:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7961357216,
+      "lat": -32.9373043,
+      "lon": -60.6614044,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2892",
+        "addr:state": "Santa Fe",
+        "addr:street": "Tucumán",
+        "amenity": "restaurant",
+        "cuisine": "japanese;ramen",
+        "delivery": "yes",
+        "description": "Restaurante de comida japonesa, preparan diferentes tipos de ramen, katsudon, yakitori, entre otros platos. Ofrecen cerveza artesanal. Se reserva para las mesas del interior, la vereda es libre por orden de llegada.",
+        "drink:beer": "yes",
+        "drink:sake": "yes",
+        "microbrewery": "yes",
+        "name": "Tora Izakaya",
+        "opening_hours": "We-Sa 19:00-23:30",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8069930479,
+      "lat": -32.9389631,
+      "lon": -60.6463152,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Fellin"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8069949086,
+      "lat": -32.9377259,
+      "lon": -60.6396639,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-05-30",
+        "cuisine": "pizza",
+        "name": "Tortugas Ninja",
+        "panoramax": "7b52850c-a306-4dba-a069-c2d6a860d15e"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8202695617,
+      "lat": -32.9578589,
+      "lon": -60.6440139,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El bodegón de Charly"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280334697,
+      "lat": -32.9510397,
+      "lon": -60.6564289,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza",
+        "name": "Los Inmortales"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280334698,
+      "lat": -32.9349562,
+      "lon": -60.6623406,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Popular"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280341375,
+      "lat": -32.9327306,
+      "lon": -60.6524894,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "italian;pizza",
+        "name": "Fillipa's",
+        "outdoor_seating": "sidewalk"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280345385,
+      "lat": -32.956428,
+      "lon": -60.6447372,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "name": "Beer Olaf"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280351508,
+      "lat": -32.9352708,
+      "lon": -60.6521055,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Industrial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280356047,
+      "lat": -32.9336246,
+      "lon": -60.6494897,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Balcarce",
+        "amenity": "restaurant",
+        "cuisine": "pastry",
+        "description": "Venta de postres.",
+        "name": "Simple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280356048,
+      "lat": -32.9350076,
+      "lon": -60.6507648,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La negra",
+        "outdoor_seating": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280356050,
+      "lat": -32.9447267,
+      "lon": -60.6552146,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "coffee",
+        "name": "Canela Fina"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280361686,
+      "lat": -32.9354517,
+      "lon": -60.6524417,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Peñón del Águila",
+        "outdoor_seating": "sidewalk"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280366794,
+      "lat": -32.9352889,
+      "lon": -60.6519927,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Hanks"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280372535,
+      "lat": -32.9353499,
+      "lon": -60.6528235,
+      "tags": {
+        "alt_name": "105 bar",
+        "amenity": "restaurant",
+        "name": "Ciento cinco bar",
+        "outdoor_seating": "sidewalk"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280373441,
+      "lat": -32.9348762,
+      "lon": -60.6512903,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Hunter",
+        "outdoor_seating": "sidewalk"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280373442,
+      "lat": -32.9377222,
+      "lon": -60.6534842,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "burger",
+        "name": "Rato"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280374885,
+      "lat": -32.9332656,
+      "lon": -60.651217,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "The Box",
+        "outdoor_seating": "sidewalk"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280375243,
+      "lat": -32.935535,
+      "lon": -60.6529492,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "El Galpón de Tacuara"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280375246,
+      "lat": -32.9351713,
+      "lon": -60.6524272,
+      "tags": {
+        "alt_name": "El Club de la Milanesa",
+        "amenity": "restaurant",
+        "brand": "Club Milanesa",
+        "brand:wikidata": "Q117324078",
+        "cuisine": "milanesa;picada;sandwich;argentinian",
+        "name": "Club Milanesa",
+        "outdoor_seating": "sidewalk;terrace"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280377078,
+      "lat": -32.9525286,
+      "lon": -60.6570964,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Alitas Chicken"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8280379618,
+      "lat": -32.9323036,
+      "lon": -60.6621837,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:instagram": "masura_ramen",
+        "cuisine": "japanese",
+        "name": "Masura Ramen",
+        "opening_hours": "Dec 24-25 off; Jan 01 off"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8633648366,
+      "lat": -32.9465328,
+      "lon": -60.6365702,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pico Fino",
+        "outdoor_seating": "pedestrian_zone"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8828055123,
+      "lat": -32.9488385,
+      "lon": -60.6373242,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:state": "Santa Fe",
+        "addr:street": "Peatonal San Martín",
+        "amenity": "restaurant",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Marmagal",
+        "outdoor_seating": "pedestrian_zone",
+        "payment:coins": "yes",
+        "payment:notes": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9010644902,
+      "lat": -32.9403246,
+      "lon": -60.6508461,
+      "tags": {
+        "amenity": "restaurant",
+        "delivery": "yes",
+        "name": "El Gran Chopp",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9010660382,
+      "lat": -32.9440326,
+      "lon": -60.6446668,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-03-19",
+        "contact:instagram": "natocomereal",
+        "diet:gluten_free": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Nato"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9010663407,
+      "lat": -32.9392172,
+      "lon": -60.6505338,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Código 10"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9044576730,
+      "lat": -32.94621,
+      "lon": -60.6344785,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "8558",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Santa Fe",
+        "amenity": "restaurant",
+        "cuisine": "italian;pastry",
+        "drink:beer": "yes",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Liverpool",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9049422842,
+      "lat": -32.9387615,
+      "lon": -60.6479201,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1901",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Catamarca",
+        "amenity": "restaurant",
+        "name": "Churrasqueria",
+        "outdoor_seating": "yes",
+        "website": "http://www.churrasqueria.com.ar",
+        "website:menu": "http://churrasqueria.com.ar/menu.pdf"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9239160792,
+      "lat": -32.9425388,
+      "lon": -60.6460428,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Tienda Naturales",
+        "outdoor_seating": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10179147524,
+      "lat": -32.9502871,
+      "lon": -60.6458675,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Entre 2 Panes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10200473115,
+      "lat": -32.9569914,
+      "lon": -60.6767009,
+      "tags": {
+        "amenity": "restaurant",
+        "leisure": "dance",
+        "name": "La Cautiva"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10795337344,
+      "lat": -32.9305467,
+      "lon": -60.7275389,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "7701",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Eva Perón",
+        "amenity": "restaurant",
+        "contact:phone": "0800 800 7874",
+        "contact:website": "http://www.sushimaniaresto.com/",
+        "delivery": "yes",
+        "name": "Sushimanía",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10924025906,
+      "lat": -32.9517749,
+      "lon": -60.6724686,
+      "tags": {
+        "amenity": "restaurant",
+        "drink:beer": "yes",
+        "microbrewery": "yes",
+        "name": "John Tomato"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11557167428,
+      "lat": -32.9469747,
+      "lon": -60.6427516,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:website": "https://www.huerteca.com/",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Huerteca"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11731372269,
+      "lat": -32.9470743,
+      "lon": -60.6373155,
+      "tags": {
+        "amenity": "restaurant",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Chica café cocina y cócteles"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11740042697,
+      "lat": -32.969284,
+      "lon": -60.6330272,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "370",
+        "addr:postcode": "2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Bulevar 27 de Febrero",
+        "amenity": "restaurant",
+        "indoor": "yes",
+        "name": "La Cantina",
+        "operator": "Club de Empleados del Banco de Santa Fe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11873060746,
+      "lat": -32.9388599,
+      "lon": -60.6392419,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "argentinian;empanada",
+        "name": "D Nolas",
+        "opening_hours": "May 1 off \"Día del Trabajador\""
+      }
+    },
+    {
+      "type": "node",
+      "id": 11873060747,
+      "lat": -32.9393999,
+      "lon": -60.6394158,
+      "tags": {
+        "addr:street": "Entre Ríos",
+        "amenity": "restaurant",
+        "name": "Cholos"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11999567027,
+      "lat": -32.9445828,
+      "lon": -60.6363566,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:housenumber": "1022",
+        "addr:postcode": "2000",
+        "addr:street": "San Lorenzo",
+        "alt_name": "Rock & Feller's",
+        "amenity": "restaurant",
+        "branch": "Savoy",
+        "brand": "Rock&Feller's",
+        "check_date": "2026-04-11",
+        "contact:instagram": "rockandfellersrosario",
+        "contact:phone": "+54 341 546-7000",
+        "contact:website": "https://rockandfellers.com.ar/",
+        "cuisine": "burger;sandwich;american;regional",
+        "description": "Restaurante temático en la música. Reservar con anticipación.",
+        "drink:beer": "yes",
+        "drink:wine": "yes",
+        "internet_access": "wlan",
+        "name": "Rock&Feller's Savoy",
+        "reservation": "recommended"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12088025171,
+      "lat": -32.9731831,
+      "lon": -60.7213551,
+      "tags": {
+        "addr:housenumber": "7655",
+        "addr:street": "Avenida Presidente Perón",
+        "amenity": "restaurant",
+        "cuisine": "argentinian;barbecue",
+        "delivery": "yes",
+        "outdoor_seating": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12136903204,
+      "lat": -32.9439848,
+      "lon": -60.6403599,
+      "tags": {
+        "addr:street": "Entre Ríos",
+        "amenity": "restaurant",
+        "check_date": "2025-03-19",
+        "cuisine": "chinese",
+        "description": "Comida por peso.",
+        "diet:vegetarian": "yes",
+        "name": "Woki",
+        "opening_hours": "Su off; Jan 1 off \"Nuevo Año\""
+      }
+    },
+    {
+      "type": "node",
+      "id": 12349172024,
+      "lat": -32.9375191,
+      "lon": -60.6547512,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2024-11-17",
+        "name": "La Zorrita"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12369737783,
+      "lat": -32.9041397,
+      "lon": -60.6898183,
+      "tags": {
+        "addr:housenumber": "1087",
+        "addr:street": "Bulevar General José Rondeau",
+        "amenity": "restaurant",
+        "contact:email": "grupoinboxargentina@gmail.com",
+        "contact:phone": "+54 341 227-8282",
+        "contact:website": "https://www.japoninbox.com/",
+        "cuisine": "japanese",
+        "name": "Japón in Box"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12569802361,
+      "lat": -32.950679,
+      "lon": -60.6336071,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-10-18",
+        "cuisine": "pizza;burger;regional",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Hevalê",
+        "opening_hours": "Mo-Fr 11:00-14:30,20:00-23:00; Sa-Su 20:00-23:00",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes",
+        "payment:debit_cards": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12591369817,
+      "lat": -32.9535905,
+      "lon": -60.6251028,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-02-15",
+        "cuisine": "pizza",
+        "name": "Lemmys Pizza"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12602246904,
+      "lat": -32.9491759,
+      "lon": -60.6302489,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-12-21",
+        "cuisine": "fish",
+        "name": "La Marina",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12633386729,
+      "lat": -32.9103352,
+      "lon": -60.683071,
+      "tags": {
+        "addr:housenumber": "323",
+        "addr:street": "Nansen",
+        "addr:unit": "2137",
+        "amenity": "restaurant",
+        "brand": "Burger King",
+        "check_date": "2025-03-02",
+        "cuisine": "pasta",
+        "level": "2",
+        "name": "Cittá",
+        "note:location": "Ubicación aproximada según observación in situ.",
+        "takeaway": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12668756667,
+      "lat": -32.9484634,
+      "lon": -60.6328827,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-03-15",
+        "cuisine": "sushi",
+        "name": "Koi Sushi"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12709931064,
+      "lat": -32.9511318,
+      "lon": -60.6409006,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2026-04-11",
+        "name": "Las Gardenias"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12724554649,
+      "lat": -32.9556222,
+      "lon": -60.6585297,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "2351",
+        "addr:postcode": "S2000",
+        "addr:state": "Santa Fe",
+        "addr:street": "Avenida Intendente Morcillo",
+        "amenity": "restaurant",
+        "contact:instagram": "granlago",
+        "contact:phone": "+54 341 447-3305",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Gran Lago Restobar",
+        "old_name": "El Lago",
+        "outdoor_seating": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12749170469,
+      "lat": -32.9516088,
+      "lon": -60.6407884,
+      "tags": {
+        "addr:housenumber": "1229",
+        "addr:street": "Bartolomé Mitre",
+        "amenity": "restaurant",
+        "contact:instagram": "elpatiodemitre",
+        "contact:phone": "+54 341 655-4202",
+        "cuisine": "coffee_shop;sandwich;burger;breakfast;cake;friture;juice",
+        "delivery": "yes",
+        "delivery:partner": "Pedidos Ya;Rappi",
+        "delivery:pedidosya": "yes",
+        "delivery:rappi": "yes",
+        "name": "El Patio de Mitre",
+        "opening_hours": "Mo-Sa 07:30-24:00; Su off"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12757501887,
+      "lat": -32.944528,
+      "lon": -60.6495215,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:housenumber": "1917",
+        "addr:postcode": "2000",
+        "addr:street": "Córdoba",
+        "amenity": "restaurant",
+        "building": "yes",
+        "building:levels": "2",
+        "contact:facebook": "comedores.universitarios",
+        "contact:website": "https://comedores.unr.edu.ar/",
+        "name": "Comedor Universitario UNR",
+        "opening_hours": "Mo-Fr 07:45-21:00",
+        "operator": "Universidad Nacional de Rosario"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12761048534,
+      "lat": -32.9564056,
+      "lon": -60.6622337,
+      "tags": {
+        "addr:street": "Avenida Daniel Infante",
+        "amenity": "restaurant",
+        "contact:instagram": "laviserarestobar",
+        "full_name": "Restobar La Visera",
+        "level": "0",
+        "name": "La Visera",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12812340872,
+      "lat": -32.9454079,
+      "lon": -60.6324206,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-05-05",
+        "name": "El Pericón"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12840143782,
+      "lat": -32.9367827,
+      "lon": -60.6588366,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-05-15",
+        "cuisine": "peruvian",
+        "name": "Jama Y Jarana"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12889520308,
+      "lat": -32.9639432,
+      "lon": -60.6515333,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-06-05",
+        "name": "Molto Buono"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12947411895,
+      "lat": -32.943398,
+      "lon": -60.6466454,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-06-23",
+        "cuisine": "kebab",
+        "name": "The Kebab Club"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13002769861,
+      "lat": -32.9702264,
+      "lon": -60.6020075,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Parador Sudestada",
+        "outdoor_seating": "yes",
+        "short_name": "Sudestada"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13014595640,
+      "lat": -32.9067328,
+      "lon": -60.7204203,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2025-08-22",
+        "contact:phone": "+54 341 679-0169",
+        "cuisine": "pizza",
+        "indoor": "room",
+        "indoor_seating": "no",
+        "level": "0",
+        "name": "La Vendetta",
+        "opening_hours": "Mo-Su 10:00-21:00",
+        "outdoor_seating": "no",
+        "ref": "LG5",
+        "takeaway": "only",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13723258029,
+      "lat": -32.9498242,
+      "lon": -60.6478288,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2026-04-11",
+        "name": "El Patio"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13763844645,
+      "lat": -32.9523325,
+      "lon": -60.6480834,
+      "tags": {
+        "addr:street": "9 de Julio",
+        "amenity": "restaurant",
+        "name": "Lova"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13816187991,
+      "lat": -32.9151926,
+      "lon": -60.680529,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:instagram": "bar46rosario",
+        "cuisine": "pizza;burger",
+        "name": "Bar 46"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14082468147,
+      "lat": -32.9417082,
+      "lon": -60.643825,
+      "tags": {
+        "addr:city": "Rosario",
+        "addr:country": "AR",
+        "addr:housenumber": "1580",
+        "addr:state": "Santa Fe",
+        "addr:street": "Justo José de Urquiza",
+        "amenity": "restaurant",
+        "contact:instagram": "kika.rosarino",
+        "drink:cocktail": "yes",
+        "name": "Kika Resto Bar"
+      }
+    }
+  ]
+}
