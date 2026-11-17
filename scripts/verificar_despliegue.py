@@ -224,15 +224,15 @@ def cargar_env(ruta: Path) -> dict:
 
 
 def redactar_texto_log(texto: str) -> str:
-    if not isinstance(texto, str):
-        return texto
-    t = texto
+    t = str(texto)
     t = re.sub(
         r"(?i)\b([A-Z0-9_]*(?:SECRET|TOKEN|PASSWORD|PASS|API[_-]?KEY|PRIVATE[_-]?KEY)[A-Z0-9_]*)\s*=\s*([^\s,;]+)",
         r"\1=[REDACTED]",
         t,
     )
     t = re.sub(r"(?i)(https?://[^/\s:@]+:)([^@\s/]+)@", r"\1[REDACTED]@", t)
+    if re.search(r"(?i)\b(secret|token|password|pass|api[_-]?key|private[_-]?key)\b", t) and re.search(r"[:=]|=>", t):
+        return "[REDACTED]"
     return t
 
 
