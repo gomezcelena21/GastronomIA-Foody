@@ -1,0 +1,589 @@
+{
+ "fecha": "16/11/2026 19:54",
+ "resumen": {
+  "OK": 59,
+  "PARCIAL": 6,
+  "NO IMPLEMENTADA": 1,
+  "ADVERTENCIA": 1,
+  "NO EJECUTADO": 1,
+  "MANUAL": 4
+ },
+ "checks": [
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-01",
+   "titulo": "Base de datos: 12 entidades (+2 tablas de unión del ER)",
+   "estado": "OK",
+   "detalle": "Las 14 tablas están definidas en models.py y models_diseno.py.",
+   "evidencia": "backend/models.py, backend/models_diseno.py"
+  },
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-02",
+   "titulo": "9 endpoints del backend (sección 5.10.1)",
+   "estado": "OK",
+   "detalle": "Los 9 endpoints están declarados.",
+   "evidencia": "backend/main.py, backend/rutas_diseno.py"
+  },
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-03",
+   "titulo": "5 métodos del backend (sección 5.10.2)",
+   "estado": "OK",
+   "detalle": "OrquestadorBackend: procesar_consulta, preparar_solicitud_ia, validar_parametros, consultar_base_de_datos, validar_respuesta_ia",
+   "evidencia": "backend/orquestador.py"
+  },
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-04",
+   "titulo": "3 métodos del componente de IA (sección 5.10.2)",
+   "estado": "OK",
+   "detalle": "ComponenteIA: interpretar_consulta, generar_respuesta, extraer_valoraciones. Con Gemini, interpretar y redactar ocurren dentro del function calling; las versiones por reglas son las del modo sin IA.",
+   "evidencia": "backend/orquestador.py"
+  },
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-05",
+   "titulo": "Flujo de 8 etapas (validación y registro)",
+   "estado": "OK",
+   "detalle": "validar_parametros se aplica antes de consultar la base; la respuesta de la IA se valida antes de mostrarla (etapa 7); si la validación falla se responde solo con datos reales; la consulta se limpia antes de usarse; la conversación se registra (Conversacion/Mensaje/Recomendacion)",
+   "evidencia": "backend/orquestador.py, chat_service.py"
+  },
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-06",
+   "titulo": "La IA nunca accede a la base de datos (regla de diseño)",
+   "estado": "OK",
+   "detalle": "ComponenteIA no referencia db, Session, query ni execute.",
+   "evidencia": "backend/orquestador.py"
+  },
+  {
+   "seccion": "1. Diseño del sistema (PDF Sección 5) vs. código",
+   "id": "D-07",
+   "titulo": "Una característica alimentaria nunca se presenta como garantía",
+   "estado": "OK",
+   "detalle": "Existe la advertencia estándar, el campo nivel_informacion (declarado/inferido/no_verificado) y el validador de garantías absolutas.",
+   "evidencia": "backend/diseno.py, backend/models_diseno.py"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-01",
+   "titulo": "Búsqueda en lenguaje coloquial con IA",
+   "estado": "OK",
+   "detalle": "Pruebas: 3 de 3 pruebas automáticas pasaron.",
+   "evidencia": "POST /api/chat; GET /api/establecimientos; OrquestadorBackend.procesar_consulta(); ComponenteIA.interpretar_consulta(); ComponenteIA.generar_respuesta()"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-02",
+   "titulo": "Advertencias de seguridad alimentaria",
+   "estado": "OK",
+   "detalle": "Pruebas: 4 de 4 pruebas automáticas pasaron.",
+   "evidencia": "GET /api/establecimientos/{id}; GET /api/restricciones; diseno.advertencia_alimentaria(); «advertencia_alimentaria» en frontend/src/App.tsx; «Sin datos» en frontend/src/App.tsx"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-03",
+   "titulo": "Consultas fuera de la cobertura geográfica",
+   "estado": "OK",
+   "detalle": "Pruebas: 1 de 1 pruebas automáticas pasaron.",
+   "evidencia": "OrquestadorBackend.validar_parametros(); diseno.validar_parametros()"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-04",
+   "titulo": "Citación transparente de la fuente",
+   "estado": "OK",
+   "detalle": "Pruebas: 4 de 4 pruebas automáticas pasaron.",
+   "evidencia": "GET /api/establecimientos/{id}; OrquestadorBackend.validar_respuesta_ia(); «Fuente:» en frontend/src/App.tsx"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-05",
+   "titulo": "Contacto directo para confirmar restricciones",
+   "estado": "OK",
+   "detalle": "Pruebas: verificación manual pendiente (TC-010).",
+   "evidencia": "GET /api/establecimientos/{id}; «tel:» en frontend/src/App.tsx"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-06",
+   "titulo": "Refinamiento conversacional de resultados",
+   "estado": "PARCIAL",
+   "detalle": "El contexto de la conversación lo mantiene Gemini (sesión por usuario). En el modo sin IA no hay seguimiento de contexto. Pruebas: verificación manual pendiente (TC-009).",
+   "evidencia": "POST /api/chat; GET /api/conversaciones/{id}/mensajes; OrquestadorBackend.preparar_solicitud_ia()"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-07",
+   "titulo": "Consultas sin resultados coincidentes",
+   "estado": "OK",
+   "detalle": "Pruebas: 1 de 1 pruebas automáticas pasaron.",
+   "evidencia": "OrquestadorBackend.consultar_base_de_datos()"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-08",
+   "titulo": "Preferencias de ambiente y presupuesto",
+   "estado": "PARCIAL",
+   "detalle": "El presupuesto se filtra por nivel de precio (1 a 4); la base no tiene el dato «ambiente», por eso no se puede filtrar por romántico o tranquilo. Pruebas: sin prueba automática: verificación manual.",
+   "evidencia": "POST /api/chat; ComponenteIA.interpretar_consulta(); «precio_maximo» en backend/chat_service.py"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-09",
+   "titulo": "Búsqueda específica de restricciones",
+   "estado": "PARCIAL",
+   "detalle": "Devuelve los locales que existan en la base; hay pocos registros con oferta sin TACC, así que no se puede garantizar «al menos 3» en cada barrio. Pruebas: 2 de 2 pruebas automáticas pasaron.",
+   "evidencia": "POST /api/chat; GET /api/establecimientos; GET /api/restricciones"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-10",
+   "titulo": "Búsqueda por ubicación actual",
+   "estado": "PARCIAL",
+   "detalle": "Existe la búsqueda por cercanía (/api/restaurants/nearby y herramienta del chat), pero no está unificada en GET /api/establecimientos ni limita a 15 cuadras (radio configurable en km). Pruebas: sin prueba automática: verificación manual.",
+   "evidencia": "GET /api/restaurants/nearby; «buscar_por_cercania» en backend/gemini_service.py"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-11",
+   "titulo": "Registro de restricciones recurrentes",
+   "estado": "OK",
+   "detalle": "Pruebas: 1 de 1 pruebas automáticas pasaron.",
+   "evidencia": "POST /api/usuarios; GET /api/usuarios/{id}; PUT /api/usuarios/{id}; «getUser()?.id_usuario» en frontend/src/App.tsx"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-12",
+   "titulo": "Múltiples restricciones simultáneas",
+   "estado": "OK",
+   "detalle": "Pruebas: 1 de 1 pruebas automáticas pasaron.",
+   "evidencia": "GET /api/usuarios/{id}; PUT /api/usuarios/{id}; «requiere_sin_tacc» en backend/chat_service.py"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-13",
+   "titulo": "Reseñas en lenguaje natural",
+   "estado": "PARCIAL",
+   "detalle": "El endpoint y la extracción de aspectos funcionan; falta el formulario o la ruta desde el chat para enviar la reseña. Pruebas: 2 de 2 pruebas automáticas pasaron.",
+   "evidencia": "POST /api/resenas; ComponenteIA.extraer_valoraciones()"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-14",
+   "titulo": "Sugerencias basadas en historial",
+   "estado": "PARCIAL",
+   "detalle": "Se guardan restricciones, preferencias e historial y se pasan a la IA; todavía no se infieren gustos a partir de reseñas pasadas. Pruebas: sin prueba automática: verificación manual.",
+   "evidencia": "PUT /api/usuarios/{id}; OrquestadorBackend.preparar_solicitud_ia()"
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-15",
+   "titulo": "Solicitud proactiva de feedback",
+   "estado": "NO IMPLEMENTADA",
+   "detalle": "NO IMPLEMENTADA: requiere un planificador de mensajes automáticos y la ficha con reseñas; está prevista en el diseño pero fuera del alcance del prototipo. Pruebas: sin prueba automática: verificación manual.",
+   "evidencia": ""
+  },
+  {
+   "seccion": "2. Historias de usuario (HU-01 a HU-16): ¿está implementada y probada?",
+   "id": "HU-16",
+   "titulo": "Explicación de la recomendación",
+   "estado": "OK",
+   "detalle": "Pruebas: 1 de 1 pruebas automáticas pasaron.",
+   "evidencia": "POST /api/chat; GET /api/conversaciones/{id}/mensajes; ComponenteIA.generar_respuesta(); diseno.explicar_recomendacion(); «¿Por qué te lo recomendamos?» en frontend/src/App.tsx"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-01",
+   "titulo": "Todas las pruebas automáticas",
+   "estado": "OK",
+   "detalle": "237 pruebas: 237 pasaron, 0 salteadas, 0 fallaron en 3.09 s.",
+   "evidencia": "tests/test_*.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-api_diseno",
+   "titulo": "test_api_diseno.py",
+   "estado": "OK",
+   "detalle": "23 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_api_diseno.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-base_unificada",
+   "titulo": "test_base_unificada.py",
+   "estado": "OK",
+   "detalle": "21 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_base_unificada.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-caja_blanca",
+   "titulo": "test_caja_blanca.py",
+   "estado": "OK",
+   "detalle": "14 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_caja_blanca.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-caja_negra",
+   "titulo": "test_caja_negra.py",
+   "estado": "OK",
+   "detalle": "11 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_caja_negra.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-casos_uso_ia",
+   "titulo": "test_casos_uso_ia.py",
+   "estado": "OK",
+   "detalle": "24 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_casos_uso_ia.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-comercios",
+   "titulo": "test_comercios.py",
+   "estado": "OK",
+   "detalle": "18 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_comercios.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-cuota",
+   "titulo": "test_cuota.py",
+   "estado": "OK",
+   "detalle": "15 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_cuota.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-despliegue",
+   "titulo": "test_despliegue.py",
+   "estado": "OK",
+   "detalle": "5 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_despliegue.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-diseno",
+   "titulo": "test_diseno.py",
+   "estado": "OK",
+   "detalle": "24 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_diseno.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-evaluacion_int",
+   "titulo": "test_evaluacion_interprete.py",
+   "estado": "OK",
+   "detalle": "3 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_evaluacion_interprete.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-frontend_sesio",
+   "titulo": "test_frontend_sesion.py",
+   "estado": "OK",
+   "detalle": "5 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_frontend_sesion.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-modo_sin_ia",
+   "titulo": "test_modo_sin_ia.py",
+   "estado": "OK",
+   "detalle": "30 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_modo_sin_ia.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-privacidad",
+   "titulo": "test_privacidad.py",
+   "estado": "OK",
+   "detalle": "6 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_privacidad.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-rendimiento",
+   "titulo": "test_rendimiento.py",
+   "estado": "OK",
+   "detalle": "4 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_rendimiento.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-seguridad_codi",
+   "titulo": "test_seguridad_codigo.py",
+   "estado": "OK",
+   "detalle": "15 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_seguridad_codigo.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-sesion",
+   "titulo": "test_sesion.py",
+   "estado": "OK",
+   "detalle": "9 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_sesion.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-verificar_desp",
+   "titulo": "test_verificar_despliegue.py",
+   "estado": "OK",
+   "detalle": "10 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_verificar_despliegue.py"
+  },
+  {
+   "seccion": "4. Planilla de casos de prueba vs. pruebas reales",
+   "id": "X-01",
+   "titulo": "68 casos de prueba en la planilla",
+   "estado": "OK",
+   "detalle": "10 Manual - pendiente, 58 Pasó",
+   "evidencia": "docs/pruebas/casos_de_prueba_GastronomIA.xlsx"
+  },
+  {
+   "seccion": "4. Planilla de casos de prueba vs. pruebas reales",
+   "id": "X-02",
+   "titulo": "Lo que dice la planilla coincide con lo que pasó al correr las pruebas",
+   "estado": "OK",
+   "detalle": "Cada caso «Pasó» tiene al menos una prueba que pasó ahora; cada caso «Escrita» tiene su prueba.",
+   "evidencia": "tests/ + planilla"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-01",
+   "titulo": "Sin claves ni contraseñas escritas en el código",
+   "estado": "OK",
+   "detalle": "4 pruebas automáticas pasaron.",
+   "evidencia": "tests/test_seguridad_codigo.py"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-02",
+   "titulo": "Sin inyección SQL (consultas parametrizadas y límites acotados)",
+   "estado": "OK",
+   "detalle": "2 pruebas automáticas pasaron.",
+   "evidencia": "tests/test_seguridad_codigo.py"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-03",
+   "titulo": "Descargas confinadas a analytics/ (path traversal)",
+   "estado": "OK",
+   "detalle": "4 pruebas automáticas pasaron.",
+   "evidencia": "tests/test_seguridad_codigo.py"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-04",
+   "titulo": "CORS, errores sin detalles, rate limit, servidor local, frontend sin HTML crudo",
+   "estado": "OK",
+   "detalle": "5 pruebas automáticas pasaron.",
+   "evidencia": "tests/test_seguridad_codigo.py"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-05",
+   "titulo": ".env fuera de Git",
+   "estado": "OK",
+   "detalle": ".gitignore incluye .env",
+   "evidencia": ".gitignore"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-06",
+   "titulo": "Clave de Gemini en backend/.env",
+   "estado": "ADVERTENCIA",
+   "detalle": "Hay una clave cargada en backend/.env: correcto para uso local, pero NO compartas este archivo ni el zip.",
+   "evidencia": "backend/.env (no se muestra el valor)"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-07",
+   "titulo": "Starlette sin las vulnerabilidades CVE-2026-48710 / 48818",
+   "estado": "OK",
+   "detalle": "requirements.txt pide starlette>=1.0.1",
+   "evidencia": "backend/requirements.txt"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-08",
+   "titulo": "Vite actualizado (CVE-2026-112945, corregida en 8.2.4)",
+   "estado": "OK",
+   "detalle": "Vite 8.3.8",
+   "evidencia": "frontend/package-lock.json"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-09",
+   "titulo": "package-lock.json coherente con package.json (npm ci reproducible)",
+   "estado": "OK",
+   "detalle": "13 dependencias directas, 165 paquetes en el lock.",
+   "evidencia": "frontend/package*.json"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-10",
+   "titulo": "pip-audit (vulnerabilidades en paquetes de Python)",
+   "estado": "NO EJECUTADO",
+   "detalle": "No está instalado. Correr: pip install pip-audit  (setup.bat lo hace).",
+   "evidencia": "pip-audit"
+  },
+  {
+   "seccion": "5. Ciberseguridad",
+   "id": "S-11",
+   "titulo": "npm audit (vulnerabilidades en paquetes de Node)",
+   "estado": "OK",
+   "detalle": "total 0: críticas 0, altas 0, moderadas 0, bajas 0",
+   "evidencia": "npm audit"
+  },
+  {
+   "seccion": "6. Documentación vs. código real",
+   "id": "O-01",
+   "titulo": "Los documentos vigentes solo mencionan archivos que existen",
+   "estado": "OK",
+   "detalle": "23 documentos revisados.",
+   "evidencia": "README.md, docs/*.md"
+  },
+  {
+   "seccion": "6. Documentación vs. código real",
+   "id": "O-02",
+   "titulo": "Sin rastros de la versión anterior (Node/Express/SQLite) en la documentación vigente",
+   "estado": "OK",
+   "detalle": "Ningún documento menciona el stack anterior.",
+   "evidencia": "README.md, docs/*.md"
+  },
+  {
+   "seccion": "6. Documentación vs. código real",
+   "id": "O-03",
+   "titulo": "Sin copias viejas del código o de los documentos dentro del proyecto",
+   "estado": "OK",
+   "detalle": "El proyecto contiene solo la versión vigente.",
+   "evidencia": ""
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-01",
+   "titulo": "Historias de usuario (mínimo 8) con criterios de aceptación, incluida una de IA",
+   "estado": "OK",
+   "detalle": "16 historias y 22 criterios de aceptación; HU-01 es la de IA (búsqueda en lenguaje natural).",
+   "evidencia": "docs/historias-usuario/historias_de_usuario.md"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-02",
+   "titulo": "Metodología ágil elegida y explicada",
+   "estado": "OK",
+   "detalle": "Kanban, WIP 3.",
+   "evidencia": "docs/metodologia/kanban.md"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-03",
+   "titulo": "Diagrama ER y de clases + wireframes + diagrama de integración de la IA",
+   "estado": "OK",
+   "detalle": "Están en el PDF de diseño (secciones 5.1 a 5.9). La correspondencia con el código está en docs/diseno_sistema_seccion5.md.",
+   "evidencia": "docs/GastronomIA_Diseno_del_sistema_con_diagramas_UML.pdf"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-04",
+   "titulo": "Pantallas / mockups",
+   "estado": "OK",
+   "detalle": "Carpeta «Pantallas movil y web».",
+   "evidencia": "Pantallas movil y web/"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-05",
+   "titulo": "Plan y resultados de pruebas, con casos específicos de IA",
+   "estado": "OK",
+   "detalle": "Planilla de 39 casos + pruebas_automatizadas.md; los resultados salen de la sección 3 de este reporte.",
+   "evidencia": "docs/pruebas/"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-06",
+   "titulo": "Tabla de herramientas de IA con las 5 etapas y análisis crítico escrito",
+   "estado": "OK",
+   "detalle": "Completa.",
+   "evidencia": "docs/uso_ia.md"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-06b",
+   "titulo": "Registro de bugs encontrados y cómo se corrigieron (sección 7 de la consigna)",
+   "estado": "OK",
+   "detalle": "46 bugs registrados.",
+   "evidencia": "docs/pruebas/registro_de_bugs.md"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-06c",
+   "titulo": "Casos de prueba de la IA con la respuesta REAL obtenida y si fue adecuada (5 a 10 entradas, con un caso adversario)",
+   "estado": "OK",
+   "detalle": "Último registro: resultados_ia_20261116_1917.md",
+   "evidencia": "scripts/probar_ia.py"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-06d",
+   "titulo": "Tablero con las columnas mínimas (Backlog, Pendiente, En proceso, Finalizado) y tareas de IA identificables",
+   "estado": "OK",
+   "detalle": "Columnas: Backlog, Pendiente, En proceso, Finalizado",
+   "evidencia": "docs/metodologia/kanban.md"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-07",
+   "titulo": "Capturas del tablero en 3 momentos distintos",
+   "estado": "MANUAL",
+   "detalle": "No se puede verificar desde el código: subir las capturas de Trello.",
+   "evidencia": "Trello"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-08",
+   "titulo": "README con instrucciones para ejecutar, incluida la configuración de la IA",
+   "estado": "OK",
+   "detalle": "Pasos de instalación, variable GEMINI_API_KEY y cómo arrancar.",
+   "evidencia": "README.md"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-09",
+   "titulo": "Al menos 4 funcionalidades implementadas y trazables a historias de usuario, una de ellas la IA operativa",
+   "estado": "OK",
+   "detalle": "15 historias implementadas (total o parcialmente); la de IA es HU-01. «Operativa con datos reales» se demuestra en vivo con Gemini.",
+   "evidencia": "sección 2 de este reporte"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-10",
+   "titulo": "Commits organizados e incrementales",
+   "estado": "MANUAL",
+   "detalle": "No hay carpeta .git en esta copia (copiá la tuya al proyecto) para contar los commits.",
+   "evidencia": "git"
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-11",
+   "titulo": "Enlace al repositorio (GitHub/GitLab/Bitbucket)",
+   "estado": "MANUAL",
+   "detalle": "No se puede verificar desde el código.",
+   "evidencia": ""
+  },
+  {
+   "seccion": "7. Checklist de entrega (consignas del proyecto)",
+   "id": "C-12",
+   "titulo": "Exposición oral: demostración en vivo, metodología, herramientas de IA, todos participan",
+   "estado": "MANUAL",
+   "detalle": "Se prepara con este reporte y la demostración (restart.bat).",
+   "evidencia": ""
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+restaurant_id,dish_name,category,description,price,currency,ingredients,gluten_free,vegetarian,vegan,lactose_free,contains_gluten,contains_lactose,contains_egg,contains_nuts,carbohydrates,sugars,fiber,proteins,fats,portion_size,confidence_level,data_date

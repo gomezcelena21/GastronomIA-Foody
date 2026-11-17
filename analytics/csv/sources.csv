@@ -1,0 +1,4 @@
+source_id,name,url,source_type,license,update_frequency,last_updated,reliability,notes,fetched_date,created_at
+1,BA Data - Oferta Gastronomica,https://data.buenosaires.gob.ar/dataset/oferta-establecimientos-gastronomicos,government,CC-BY-2.5-AR,Historico,2019-08-05,official,Datos del Ente de Turismo de CABA. CSV con coordenadas.,2026-08-22,2026-08-23 18:07:26.217864
+2,OpenStreetMap - Overpass API,https://overpass-api.de/api/interpreter,osm,ODbL,Continua,,public_source,Datos de la comunidad OpenStreetMap. Tags de cuisine y diet.,2026-08-22,2026-08-23 18:07:26.217864
+3,Datos Abiertos Mendoza - Gastronomia,https://datosabiertos.mendoza.gov.ar/dataset/gastronomia-en-mendoza,government,CC-BY-4.0,Semestral,2019-07-01,official,Locales gastronomicos de Mendoza. Sin coordenadas.,2026-08-22,2026-08-23 18:07:26.217864
