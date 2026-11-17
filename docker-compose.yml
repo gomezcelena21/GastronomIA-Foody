@@ -1,0 +1,117 @@
+# GastronomIA - backend + PostgreSQL/PostGIS + HTTPS
+#
+# Uso en el servidor:
+#   cp .env.produccion.example .env.produccion
+#   # editar .env.produccion
+#   docker compose --env-file .env.produccion up -d --build
+#
+# Si usás una base administrada (Neon, Supabase, etc.), poné DATABASE_URL en
+# .env.produccion y ejecutá con --env-file; el servicio `db` puede quedar apagado
+# con: docker compose stop db
+#
+# Rotación de logs: Docker guarda como máximo 10 MB x 5 archivos por servicio.
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-gastro_ia}
+      POSTGRES_USER: ${POSTGRES_USER:-gastro}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Definí POSTGRES_PASSWORD en .env.produccion}
+    volumes:
+      - datos_db:/var/lib/postgresql/data
+      # Solo se ejecuta la primera vez que se crea el volumen.
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-gastro} -d ${POSTGRES_DB:-gastro_ia}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    expose:
+      - "5432"
+
+  backend:
+    build: .
+    restart: unless-stopped
+    logging: *default-logging
+    env_file:
+      - .env.produccion
+    environment:
+      # Si DATABASE_URL viene en .env.produccion (Neon/Supabase) se usa esa;
+      # si no, se arma la conexión al PostGIS local del compose.
+      DATABASE_URL: ${DATABASE_URL:-postgresql://${POSTGRES_USER:-gastro}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-gastro_ia}}
+      PORT: "8000"
+    # El puerto 8000 NO se publica al exterior: solo Caddy (80/443) lo alcanza,
+    # por la red interna de Docker. Así nadie puede llamar al backend directo ni
+    # falsear su IP para saltarse los cupos de invitados.
+    # Para probar en el propio servidor o en tu PC: docker-compose.override.yml
+    # lo publica solo en 127.0.0.1.
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    logging: *default-logging
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      # Dominio real para HTTPS automático. Sin dominio, usá:
+      #   DOMINIO=TU_IP.nip.io   (HTTPS gratis con Let's Encrypt)
+      # (Sin HTTPS, Vercel no puede llamar al backend: no uses http://IP.)
+      DOMINIO: ${DOMINIO:-localhost}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - datos_caddy:/data
+      - config_caddy:/config
+
+  # Backups automáticos. No arranca por defecto: se activa con
+  #   docker compose --env-file .env.produccion --profile backups up -d backup
+  # Guarda un .sql.gz por día en ./backups y conserva los últimos 14 días.
+  backup:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    logging: *default-logging
+    profiles: ["backups"]
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env.produccion
+    environment:
+      PGHOST: ${PGHOST:-db}
+      PGPORT: "5432"
+      PGUSER: ${POSTGRES_USER:-gastro}
+      # Con DATABASE_URL (Neon/Supabase) no hace falta POSTGRES_PASSWORD.
+      PGPASSWORD: ${POSTGRES_PASSWORD:-}
+      PGDATABASE: ${POSTGRES_DB:-gastro_ia}
+      # Si DATABASE_URL está definida, backup.sh la usa y esto se ignora.
+      DATABASE_URL: ${DATABASE_URL:-}
+      BACKUP_DIR: /backups
+      BACKUP_RETENER_DIAS: ${BACKUP_RETENER_DIAS:-14}
+      BACKUP_INTERVALO: ${BACKUP_INTERVALO:-86400}
+    volumes:
+      - ./backups:/backups
+      - ./deploy/backup.sh:/backup.sh:ro
+    entrypoint: ["/bin/sh", "/backup.sh", "--loop"]
+
+volumes:
+  datos_db:
+  datos_caddy:
+  config_caddy:

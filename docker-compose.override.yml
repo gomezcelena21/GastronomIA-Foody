@@ -1,0 +1,8 @@
+# docker compose lo carga automáticamente junto con docker-compose.yml.
+# Publica el backend SOLO en 127.0.0.1 (esta misma máquina): sirve para
+#   curl http://127.0.0.1:8000/health
+# y para probar en local. Desde internet el puerto 8000 sigue cerrado.
+services:
+  backend:
+    ports:
+      - "127.0.0.1:8000:8000"
