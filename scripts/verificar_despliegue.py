@@ -255,7 +255,10 @@ def main(argv):
     print("VERIFICACIÓN PREVIA AL DESPLIEGUE\n" + "=" * 36)
     for estado, nombre, detalle in resultados:
         nombre_seguro = redactar_texto_log(nombre)
-        detalle_seguro = redactar_texto_log(detalle)
+        if re.search(r"(?i)secret|secreto", str(nombre)):
+            detalle_seguro = "[REDACTED]"
+        else:
+            detalle_seguro = redactar_texto_log(detalle)
         print("%s %-26s %s" % (simbolo[estado], nombre_seguro, detalle_seguro))
     faltas = sum(1 for r in resultados if r[0] == "FALTA")
     avisos = sum(1 for r in resultados if r[0] == "AVISO")
