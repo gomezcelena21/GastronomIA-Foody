@@ -16,12 +16,17 @@
 #   BACKUP_INTERVALO   segundos entre backups en modo --loop (por defecto 86400)
 set -eu
 
+# Los backups contienen datos personales (usuarios, sesiones, reseñas): el
+# archivo se crea solo para su dueño y la carpeta queda cerrada al resto.
+umask 077
+
 DIR="${BACKUP_DIR:-/backups}"
 RETENER="${BACKUP_RETENER_DIAS:-14}"
 INTERVALO="${BACKUP_INTERVALO:-86400}"
 PREFIJO="${BACKUP_PREFIJO:-gastro_ia}"
 
 mkdir -p "$DIR"
+chmod 700 "$DIR" 2>/dev/null || true
 
 hacer_backup() {
   STAMP=$(date +%Y-%m-%d_%H%M%S)

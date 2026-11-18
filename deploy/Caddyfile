@@ -1,6 +1,21 @@
 # Caddy obtiene certificado HTTPS automático si DOMINIO es un dominio real
 # (o algo como TU_IP.nip.io). Para localhost sirve HTTP.
 {$DOMINIO} {
-    encode gzip zstd
-    reverse_proxy backend:8000
+	encode gzip zstd
+
+	# La API solo recibe JSON chico: un cuerpo gigante no puede tumbar el backend.
+	request_body {
+		max_size 1MB
+	}
+
+	header {
+		# HTTPS obligatorio durante un año (los navegadores ignoran esto en HTTP).
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		# No anunciar qué servidor somos.
+		-Server
+	}
+
+	reverse_proxy backend:8000
 }

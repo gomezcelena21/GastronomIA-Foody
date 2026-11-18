@@ -16,11 +16,20 @@ x-logging: &default-logging
     max-size: "10m"
     max-file: "5"
 
+# Endurecimiento común a todos los servicios: un proceso comprometido no puede
+# ganar privilegios nuevos (setuid, capabilities, etc.).
+x-seguridad: &seguridad
+  security_opt:
+    - no-new-privileges:true
+
 services:
   db:
     image: postgis/postgis:16-3.4
     restart: unless-stopped
     logging: *default-logging
+    <<: *seguridad
+    # Cierre ordenado de PostgreSQL para no corromper el volumen.
+    stop_grace_period: 30s
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-gastro_ia}
       POSTGRES_USER: ${POSTGRES_USER:-gastro}
@@ -41,6 +50,17 @@ services:
     build: .
     restart: unless-stopped
     logging: *default-logging
+    <<: *seguridad
+    # init reenvía las señales (SIGTERM) a uvicorn: el contenedor se detiene limpio.
+    init: true
+    # El sistema de archivos de la imagen es de solo lectura: la app no escribe
+    # archivos (todo va a PostgreSQL) y así un fallo no puede dejar código nuevo.
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Python y curl no necesitan ninguna capability del kernel.
+    cap_drop:
+      - ALL
     env_file:
       - .env.produccion
     environment:
@@ -66,6 +86,12 @@ services:
     image: caddy:2-alpine
     restart: unless-stopped
     logging: *default-logging
+    <<: *seguridad
+    # Caddy solo necesita el privilegio de abrir los puertos 80/443.
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
     depends_on:
       - backend
     ports:
@@ -88,6 +114,9 @@ services:
     image: postgres:16-alpine
     restart: unless-stopped
     logging: *default-logging
+    <<: *seguridad
+    cap_drop:
+      - ALL
     profiles: ["backups"]
     depends_on:
       db:

@@ -1,0 +1,17 @@
+.git
+.gitignore
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+frontend/node_modules
+frontend/dist
+frontend/test-results
+frontend/playwright-report
+backups
+data/cache_geocodificacion.json
+data/cache_google_places.json
+data/reporte_sin_tacc.csv
+.env
+.env.produccion
+**/.env
+*.log

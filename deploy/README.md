@@ -388,6 +388,23 @@ cd /home/ubuntu/gastronomia
 docker compose --env-file .env.produccion up -d --build
 ```
 
+## Endurecimiento ya incluido en el compose
+
+No hay que activar nada: son valores por defecto del proyecto.
+
+| Medida | Por qué |
+|---|---|
+| `no-new-privileges` en los cuatro servicios | Un proceso comprometido no puede escalar por setuid/capabilities |
+| `cap_drop: ALL` en backend y backup | Python y `pg_dump` no necesitan ninguna capability del kernel |
+| `cap_drop: ALL` + `NET_BIND_SERVICE` en Caddy | Solo el privilegio de abrir 80/443 |
+| Backend con sistema de archivos de solo lectura y `/tmp` en memoria | La app no escribe archivos (todo va a PostgreSQL): un fallo no puede dejar código nuevo |
+| `init: true` en el backend | `SIGTERM` llega a uvicorn y el contenedor se detiene limpio |
+| Caddy limita el cuerpo a 1 MB | Un pedido gigante no puede agotar memoria/CPU |
+| Caddy envía HSTS, `nosniff`, `no-referrer` y oculta `Server` | Cabeceras estándar de un sitio HTTPS |
+| `umask 077` en los backups | Los volcados tienen datos personales: quedan legibles solo por su dueño |
+
+Además, `.dockerignore` impide que `backend/.env` entre en la imagen, y `.gitignore` bloquea `.env`, `backups/`, volcados `*.sql.gz` y los reportes de usuarios.
+
 ## Verificación final
 
 1. `https://api.tudominio.com/health` → `healthy`.

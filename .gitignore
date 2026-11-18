@@ -1,0 +1,30 @@
+node_modules/
+dist/
+.env
+**/.env
+.env.produccion
+.env.*.local
+__pycache__/
+*.pyc
+*.log
+*.db-shm
+*.db-wal
+.pytest_cache/
+backups/
+data/cache_geocodificacion.json
+data/cache_google_places.json
+data/reporte_sin_tacc.csv
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+
+# Variables que se preparan para pegar en Render: nunca se suben
+render.env
+*.env
+!.env.example
+!.env.produccion.example
+
+# Volcados de base y copias locales: pueden tener datos personales
+*.sql.gz
+*.dump
+*.bak
