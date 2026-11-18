@@ -1,0 +1,8 @@
+# Finales de línea: los scripts de shell y el Dockerfile TIENEN que usar LF.
+# Si se guardan con CRLF (Windows), el contenedor falla al arrancar con "exec format error" o "no such file".
+*.sh text eol=lf
+Dockerfile text eol=lf
+docker-compose*.yml text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.bat text eol=crlf
