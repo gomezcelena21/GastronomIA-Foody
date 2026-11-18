@@ -2,6 +2,11 @@ import { test, expect, type Page } from '@playwright/test'
 
 // Simula la API para que las pruebas de interfaz no dependan de PostgreSQL.
 async function apiBasica(page: Page) {
+  // Ninguna prueba debe llegar a un backend real: un 401 de un servidor local
+  // cerraría la sesión y haría fallar el test por un motivo ajeno a la interfaz.
+  // Playwright usa la ruta registrada más recientemente, así que las de cada prueba
+  // tienen prioridad sobre esta.
+  await page.route('**/api/**', route => route.fulfill({ json: {} }))
   await page.route('https://accounts.google.com/**', route => route.abort())
   await page.route('**/api/provinces', route => route.fulfill({
     json: { provinces: [{ name: 'Buenos Aires', count: 10 }] },
@@ -77,6 +82,7 @@ test.describe('Explorar', () => {
 
 test.describe('Comercios', () => {
   test('una cuenta con comercio llega al panel y puede cargar sus datos', async ({ page }) => {
+    await apiBasica(page)
     await page.route('**/api/provinces', route => route.fulfill({
       json: { provinces: [{ name: 'Buenos Aires', count: 10 }] },
     }))
@@ -129,8 +135,8 @@ test.describe('Sesión recordada', () => {
   const token = (segundos: number) =>
     Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + segundos })).toString('base64url') + '.firma'
   const guardarSesion = async (page: Page, segundos: number) => {
-    // addInitScript corre en cada carga de página: la sesión se siembra una sola vez por
-    // pestaña, así no reaparece después de cerrarla.
+    // Se siembra una sola vez: addInitScript corre en cada navegación y, si no,
+    // volvería a guardar el token justo después de cerrar sesión.
     await page.addInitScript(([t, u]) => {
       if (sessionStorage.getItem('e2e_sesion_sembrada')) return
       sessionStorage.setItem('e2e_sesion_sembrada', '1')
