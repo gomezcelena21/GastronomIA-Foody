@@ -19,6 +19,9 @@ Decisiones de calidad (todas se pueden cambiar con las opciones de arriba):
   - De los lugares que vienen de Google Places NO se guardan calificación, reseñas, horarios ni teléfono: los términos de
     la Places API limitan guardar esos datos. Ver el aviso en docs/analisis_dataset.md.
   - Coordenadas inválidas o imprecisas se descartan (el lugar queda sin ubicación en el mapa).
+  - Solo se exportan lugares de Argentina: se descarta la fila si la provincia del Excel no es una de las 24
+    jurisdicciones argentinas o si sus coordenadas válidas caen fuera del recuadro del país. Una dirección con
+    nombre extranjero («Montevideo 1480») no es motivo de descarte: la calle es de CABA.
 Requiere pandas y openpyxl (solo para esta conversión: el CSV resultante no los necesita).
 """
 import argparse

@@ -72,7 +72,12 @@ ALIAS_PROVINCIA.update({
 
 def normalizar_provincia(valor) -> Optional[str]:
     """Devuelve el nombre canónico de una provincia argentina, o None si no lo es."""
-    return ALIAS_PROVINCIA.get(norm(valor))
+    n = norm(valor)
+    n = re.sub(r"\s*,\s*argentina$", "", n)
+    n = re.sub(r"\s+argentina$", "", n)
+    if n.startswith("provincia de "):
+        n = n[len("provincia de "):]
+    return ALIAS_PROVINCIA.get(n)
 
 
 def es_provincia_argentina(valor) -> bool:

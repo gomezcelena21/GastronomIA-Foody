@@ -148,3 +148,19 @@ Cada lugar del CSV y de la tabla `restaurants` trae tres columnas, tomadas de la
 - Los 1.917 «Sin confirmar» son lugares que el Excel marca «CABA/GBA (confirmar)»: no se sabe si son de CABA o de GBA.
 - Las columnas son nuevas: `scripts/convertir_base_unificada.py` las genera, `database/schema.sql` las crea (y las agrega con `ALTER TABLE` si la tabla ya existía) y `scripts/cargar_base_unificada.py` las carga.
 - La búsqueda filtra por `province`, `city` y `neighborhood` (ILIKE) y, desde el 16/11/2026, también por `region`, `district` y `zone` (zona macro). El chat sigue usando provincia y ciudad; el frontend usa provincia y barrio/localidad.
+
+## Solo Argentina: descarte y auditoría (16/11/2026)
+La base no contiene lugares de otros países. La regla se aplica en tres barreras, todas offline:
+
+1. **Conversión** (`scripts/convertir_base_unificada.py`): antes de mapear una fila se descarta si la provincia del Excel no es argentina o si sus coordenadas válidas caen fuera del recuadro del país (`-55,5..-21` de latitud, `-74..-53` de longitud). Los valores de relleno (`-350/-580`) se siguen descartando por calidad, no por país. Una calle con nombre extranjero («Montevideo 1480» en CABA) **no** es motivo de descarte.
+2. **Carga** (`scripts/cargar_base_unificada.py`): segunda barrera; no inserta filas sin provincia argentina ni con coordenadas fuera del recuadro, y normaliza la provincia al nombre canónico.
+3. **Validación** (`scripts/validar_base_argentina.py`): revisa el CSV y la tabla `restaurants`, informa provincia, región y coordenadas, y con `--limpiar-csv` / `--desactivar` corrige sin borrar comercios registrados.
+
+Las 24 jurisdicciones, los alias y los lugares del exterior viven en `backend/geografia.py`, que comparten el backend, la conversión, la carga y la auditoría. La validación del chat es estricta con la provincia y con lugares del exterior inequívocos; no rechaza localidades argentinas que comparten nombre con ciudades extranjeras (`Concepción del Uruguay`, `La Paz`, `Lima`, `Asunción`).
+
+### Resultados (16/11/2026)
+- **CSV y base:** 71.343 filas, 0 provincias no argentinas, 0 coordenadas fuera de Argentina, 0 coordenadas incompletas. Reporte: `docs/pruebas/validacion_argentina_2026-11-16.md`.
+- **Muestra de auditoría:** 200 casos estratificados por fuente (semilla fija `20261116`): 100 % rastreable al Excel, 100 % de provincia/ciudad coherente, 100 % de coincidencia con el archivo crudo cuando existe, 2,5 % de duplicados exactos y 3 % de provincias dudosas (las 1.917 filas «Sin confirmar»). Reporte: `docs/pruebas/auditoria_muestra_2026-11-16.md`.
+- **Duplicados:** 653 grupos con clave estricta (nombre + dirección + provincia; sin dirección, coordenadas a ~10 m). La clave gruesa nombre + provincia + ciudad da 1.960 grupos y sobrecuenta sucursales; no se usa para borrar.
+- **Límite conocido:** el recuadro de coordenadas es generoso y por sí solo no distingue un punto de Chile o Uruguay cercano a la frontera; esos casos los rechaza la provincia. No se consulta cada localidad en internet.
+

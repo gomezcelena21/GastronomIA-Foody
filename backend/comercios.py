@@ -25,6 +25,7 @@ from sqlalchemy.orm import Session
 
 import diseno
 from database import get_db
+from geografia import PROVINCIAS
 from models import Restaurant, RestaurantFeature, Source
 from models_diseno import Comercio, Usuario
 from seguridad import usuario_actual
@@ -39,12 +40,8 @@ _INSTAGRAM = re.compile(r"^@?[A-Za-z0-9._]{1,30}$")
 
 # Zonas que puede declarar un comercio: todo el país (CABA y las 23 provincias). Se mantienen los nombres
 # que ya usaba el formulario para no invalidar los comercios registrados.
-ZONAS_COMERCIO = (
-    "CABA",
-    "Provincia de Buenos Aires",
-    "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy",
-    "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan",
-    "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán",
+ZONAS_COMERCIO = ("CABA", "Provincia de Buenos Aires") + tuple(
+    p for p in PROVINCIAS if p not in ("CABA", "Buenos Aires")
 )
 _PROVINCIA_POR_ZONA = {"CABA": "CABA", "Provincia de Buenos Aires": "Buenos Aires"}
 

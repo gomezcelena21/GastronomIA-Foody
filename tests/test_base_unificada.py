@@ -17,6 +17,7 @@ import convertir_base_unificada as cv  # noqa: E402
 import cargar_base_unificada as cg  # noqa: E402
 
 CSV_UNIFICADO = RAIZ / "data" / "dataset_unificado_CABA_GBA.csv"
+CSV_NACIONAL = RAIZ / "data" / "dataset_unificado_ARGENTINA.csv"
 
 
 def fila(**kw):
@@ -57,6 +58,18 @@ class Mapeo(unittest.TestCase):
         self.assertEqual(cv.coordenadas("-34.5", "-58.4", "imprecisa (error de 1 km o más)"), ("", ""))
         self.assertEqual(cv.coordenadas("40.4", "-3.7", "correcta"), ("", ""))          # fuera de Argentina
         self.assertEqual(cv.coordenadas(None, None, "sin coordenada"), ("", ""))
+
+    def test_tc066_se_descarta_todo_lo_que_no_es_de_argentina(self):
+        self.assertEqual(cv.motivo_fuera_de_argentina(fila(**{"Provincia": "Uruguay"})), "provincia fuera de Argentina")
+        self.assertEqual(cv.motivo_fuera_de_argentina(fila(**{"Provincia": "Madrid"})), "provincia fuera de Argentina")
+        self.assertEqual(cv.motivo_fuera_de_argentina(fila(**{"Latitud": "40.4", "Longitud": "-3.7"})),
+                         "coordenadas fuera de Argentina")
+        self.assertIsNone(cv.motivo_fuera_de_argentina(fila(**{"Provincia": "Buenos Aires / CABA (confirmar)"})))
+        self.assertIsNone(cv.motivo_fuera_de_argentina(fila(**{"Provincia": "Tierra del Fuego"})))
+        # Una dirección con nombre extranjero no alcanza para descartar: «Montevideo 1480» es una calle de CABA.
+        self.assertIsNone(cv.motivo_fuera_de_argentina(fila(**{"Dirección": "Montevideo 1480"})))
+        self.assertIsNone(cv.fila_a_registro(fila(**{"Provincia": "Uruguay"})))
+        self.assertIsNone(cv.fila_a_registro(fila(**{"Latitud": "40.4", "Longitud": "-3.7"})))
 
     def test_tc066_fila_normal_se_convierte(self):
         r = cv.fila_a_registro(fila())
@@ -130,6 +143,26 @@ class CsvGenerado(unittest.TestCase):
         self.assertNotIn("CABA", zonas_dataset.ZONAS)
 
 
+class CsvNacional(unittest.TestCase):
+    """El CSV que se carga en la base solo contiene las 24 jurisdicciones argentinas."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(CSV_NACIONAL, encoding="utf-8", newline="") as f:
+            cls.filas = list(csv.DictReader(f))
+
+    def test_tc067_todo_el_pais_y_solo_argentina(self):
+        from geografia import PROVINCIAS, normalizar_provincia
+        self.assertGreater(len(self.filas), 70000)
+        provincias = {normalizar_provincia(r["provincia"]) for r in self.filas}
+        self.assertEqual(provincias, set(PROVINCIAS))
+        for r in self.filas:
+            self.assertTrue(normalizar_provincia(r["provincia"]), r["id_origen"])
+            if r["latitud"]:
+                self.assertTrue(-55.5 <= float(r["latitud"]) <= -21 and -74 <= float(r["longitud"]) <= -53,
+                                r["id_origen"])
+
+
 class Cargador(unittest.TestCase):
     R = {"nombre": "X", "provincia": "CABA", "ciudad": "Palermo", "barrio": "Palermo", "direccion": "Calle 1", "latitud": "-34.5",
          "longitud": "-58.4", "cocina": "pizzeria;pizza", "categoria": "restaurant", "telefono": "", "website": "", "sin_tacc": "t",
@@ -160,6 +193,13 @@ class Cargador(unittest.TestCase):
         self.assertIn("--forzar", fuente)
         self.assertIn("source_type IS DISTINCT FROM 'registro_comercio'", fuente)
         self.assertIn("execute_values", fuente)                       # en bloques, no un INSERT por fila
+
+    def test_cargador_filtra_filas_no_argentinas(self):
+        self.assertTrue(cg.fila_argentina(self.R))
+        self.assertFalse(cg.fila_argentina({**self.R, "provincia": "Uruguay"}))
+        self.assertFalse(cg.fila_argentina({**self.R, "latitud": "40.4", "longitud": "-3.7"}))
+        self.assertFalse(cg.fila_argentina({**self.R, "latitud": "-34.5", "longitud": ""}))
+        self.assertTrue(cg.fila_argentina({**self.R, "latitud": "", "longitud": ""}))
 
     def test_cargar_base_nube_usa_la_base_unificada_si_existe(self):
         fuente = (RAIZ / "scripts" / "cargar_base_nube.py").read_text(encoding="utf-8")

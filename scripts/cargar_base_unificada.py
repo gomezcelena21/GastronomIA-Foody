@@ -11,6 +11,7 @@ para una base en la nube como Neon: decenas de miles de filas en pocos minutos, 
 SEGURIDAD: si la base ya tiene restaurantes, se detiene (los comercios aprobados viven en esa tabla). Con --forzar borra SOLO los
 que vienen de la base unificada y de las fuentes abiertas; los comercios registrados (source_type = registro_comercio) se conservan.
 Antes tiene que existir el esquema (database/schema.sql): scripts/cargar_base_nube.py lo aplica y llama a este script.
+Además se saltean las filas sin provincia argentina o con coordenadas fuera de Argentina (segunda barrera después de la conversión).
 """
 import csv
 import os
@@ -19,6 +20,9 @@ from datetime import date
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ / "backend"))
+from geografia import coordenadas_en_argentina, normalizar_provincia  # noqa: E402
+
 CSV_POR_DEFECTO = RAIZ / "data" / "dataset_unificado_ARGENTINA.csv"
 LOTE = 1000
 
@@ -47,6 +51,19 @@ def _numero(v):
         return float(v) if (v or "").strip() else None
     except ValueError:
         return None
+
+
+def fila_argentina(r: dict) -> bool:
+    """True si la fila del CSV tiene una provincia argentina y coordenadas dentro del país.
+
+    Es una segunda barrera: el CSV ya sale filtrado de scripts/convertir_base_unificada.py.
+    """
+    if not normalizar_provincia(r.get("provincia")):
+        return False
+    la, lo = _numero(r.get("latitud")), _numero(r.get("longitud"))
+    if (la is None) != (lo is None):
+        return False
+    return la is None or coordenadas_en_argentina(la, lo)
 
 
 def valores_restaurante(r: dict, source_id: int, hoy: date):
@@ -110,7 +127,11 @@ def main(argv=None):
         return 1
     with open(ruta, encoding="utf-8", newline="") as f:
         filas = list(csv.DictReader(f))
+    antes = len(filas)
+    filas = [dict(r, provincia=normalizar_provincia(r["provincia"])) for r in filas if fila_argentina(r)]
     print("CSV: %d filas (%s)" % (len(filas), ruta.name))
+    if len(filas) != antes:
+        print("Descartadas %d filas sin provincia argentina o con coordenadas fuera del país." % (antes - len(filas)))
 
     conn = conectar()
     cur = conn.cursor()

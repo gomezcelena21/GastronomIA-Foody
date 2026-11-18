@@ -1,0 +1,161 @@
+# Integración continua de GastronomIA.
+#
+# Tres trabajos independientes:
+#   backend  -> pruebas unitarias + pruebas de API contra PostgreSQL/PostGIS real
+#   frontend -> build de producción y E2E con Playwright (API simulada)
+#   docker   -> que la imagen se pueda construir (sin credenciales reales)
+#
+# No se necesitan secretos: Gemini, Google y Sentry quedan sin configurar y el
+# código los trata como opcionales.
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend (Python + PostGIS)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      db:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: gastro_ia
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d gastro_ia"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/gastro_ia
+      PGPASSWORD: postgres
+      GEMINI_API_KEY: ""
+      SESSION_SECRET: ci-session-secret-de-al-menos-32-caracteres-123456
+      ENTORNO: desarrollo
+      FRONTEND_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+      CONSULTAS_POR_DIA: "10"
+      ANONIMOS_POR_DIA: "5"
+      ANONIMOS_POR_DIA_GLOBAL: "300"
+      COMERCIOS_AUTOAPROBADOS: "1"
+      # Activa la clase ApiConBaseDeDatos de tests/test_api_diseno.py.
+      PRUEBAS_CON_BD: "1"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.lock
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f backend/requirements.lock ]; then
+            pip install -r backend/requirements.lock
+          else
+            pip install -r backend/requirements.txt
+          fi
+
+      - name: Esperar PostgreSQL y aplicar el esquema
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h localhost -p 5432 -U postgres && break
+            sleep 2
+          done
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f database/schema.sql
+
+      - name: Importar el dataset de prueba
+        run: python scripts/import_actual_to_postgres.py
+
+      - name: Pruebas backend
+        run: python -m unittest discover -s tests -v
+
+      - name: Verificar que las tablas de persistencia se crean
+        run: |
+          python - <<'PY'
+          import os, sys
+          sys.path.insert(0, "backend")
+          from database import engine
+          import persistencia
+          almacen = persistencia.AlmacenCuotas(engine)
+          assert almacen._preparar(), "No se pudieron crear las tablas de persistencia"
+          print("Persistencia OK")
+          PY
+
+  frontend:
+    name: Frontend (build + Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Build de producción
+        run: npm run build
+
+      - name: Instalar Chromium de Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Pruebas E2E
+        run: npx playwright test
+        env:
+          CI: "true"
+
+      - name: Guardar reporte de Playwright si falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: frontend/playwright-report
+          retention-days: 7
+
+  docker:
+    name: Imagen Docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Construir la imagen
+        run: docker build -t gastronomia:ci .
+
+      - name: Verificar que las dependencias del backend están completas
+        run: |
+          docker run --rm --entrypoint python gastronomia:ci -c "
+          import fastapi, sqlalchemy, geoalchemy2, psycopg2;
+          import google.genai;
+          print('Dependencias del backend OK')
+          "
