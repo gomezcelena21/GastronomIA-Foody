@@ -10,7 +10,7 @@ geoalchemy2>=0.15
 psycopg2-binary>=2.9
 python-dotenv>=1.0
 pydantic>=2.6
-requests>=2.32
+requests>=2.34.2
 google-auth>=2.30       # login con Google (verifica el ID token)
 httpx>=0.27              # solo para las pruebas de la API (TestClient)
 
