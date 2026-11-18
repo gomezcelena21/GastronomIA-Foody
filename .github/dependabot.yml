@@ -1,6 +1,9 @@
 # Mantiene las dependencias al día: abre un PR por semana si aparece una versión
 # nueva o una corrección de seguridad. Los avisos de seguridad de GitHub ya están
 # activos y no necesitan este archivo.
+#
+# Las versiones menores y los parches se agrupan en un solo PR por ecosistema;
+# las versiones mayores llegan por separado para revisarlas de a una.
 version: 2
 
 updates:
@@ -9,21 +12,40 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      backend-menores:
+        update-types: ["minor", "patch"]
 
   - package-ecosystem: "npm"
     directory: "/frontend"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      frontend-menores:
+        update-types: ["minor", "patch"]
+    ignore:
+      # Los tipos de Node siguen a la versión que usa el CI (Node 22).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns: ["*"]
 
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    ignore:
+      # La imagen queda en Python 3.12 (soporte hasta 2028): una versión nueva de
+      # Python se prueba a mano, porque no todas las dependencias tienen wheels el
+      # primer día.
+      - dependency-name: "python"
+        update-types: ["version-update:semver-minor"]

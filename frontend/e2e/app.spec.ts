@@ -129,7 +129,11 @@ test.describe('Sesión recordada', () => {
   const token = (segundos: number) =>
     Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + segundos })).toString('base64url') + '.firma'
   const guardarSesion = async (page: Page, segundos: number) => {
+    // addInitScript corre en cada carga de página: la sesión se siembra una sola vez por
+    // pestaña, así no reaparece después de cerrarla.
     await page.addInitScript(([t, u]) => {
+      if (sessionStorage.getItem('e2e_sesion_sembrada')) return
+      sessionStorage.setItem('e2e_sesion_sembrada', '1')
       localStorage.setItem('foody_token', t)
       localStorage.setItem('foody_user', u)
     }, [token(segundos), JSON.stringify({ id_usuario: 42, nombre: 'Ana', email: 'ana@example.com', comercio: false, admin: false })])
