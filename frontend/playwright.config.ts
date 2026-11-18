@@ -24,5 +24,8 @@ export default defineConfig({
     url: 'http://127.0.0.1:5173',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    // Client ID ficticio: el script de Google se simula en las pruebas, pero la app
+    // necesita uno configurado para dibujar el botón de inicio de sesión.
+    env: { VITE_GOOGLE_CLIENT_ID: 'e2e-client-id.apps.googleusercontent.com' },
   },
 })

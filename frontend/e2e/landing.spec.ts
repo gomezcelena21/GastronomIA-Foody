@@ -5,8 +5,8 @@ test.describe('Landing y páginas legales', () => {
     await page.goto('/')
 
     await expect(page.getByRole('heading', { level: 1 })).toContainText('gastronomía')
-    await expect(page.getByText('27.064').first()).toBeVisible()
-    await expect(page.getByText('CABA + GBA').first()).toBeVisible()
+    await expect(page.getByText('71.343').first()).toBeVisible()
+    await expect(page.getByText('Todo el país').first()).toBeVisible()
     await expect(page.getByText(/© OpenStreetMap contributors/)).toBeVisible()
     await expect(page.getByText(/CC-BY-2.5-AR/)).toBeVisible()
     await expect(page.getByText(/CDLA-Permissive-2.0/)).toBeVisible()
