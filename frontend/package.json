@@ -13,19 +13,19 @@
   },
   "dependencies": {
     "chart.js": "^4.5.1",
-    "react": "^19.2.8",
+    "react": "^19.3.1",
     "react-chartjs-2": "^5.3.1",
-    "react-dom": "^19.2.8",
+    "react-dom": "^19.3.1",
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.65.0",
+    "@playwright/test": "^1.65.1",
     "@types/node": "^24.13.3",
-    "@types/react": "^19.2.17",
+    "@types/react": "^19.3.0",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
-    "oxlint": "^1.75.0",
-    "typescript": "~6.0.2",
+    "oxlint": "^1.94.0",
+    "typescript": "~7.0.2",
     "vite": "^8.2.0"
   }
 }
