@@ -421,6 +421,33 @@ def _vers(v):
     return tuple(int(x) for x in re.findall(r"\d+", v)[:3]) + (0,) * (3 - len(re.findall(r"\d+", v)[:3]))
 
 
+def clasificar_auditoria_npm(datos, datos_produccion=None):
+    """(estado, detalle) de `npm audit`.
+
+    FALLA solo si hay vulnerabilidades altas o críticas en dependencias de
+    PRODUCCIÓN (las que se publican). Un aviso que solo afecta a herramientas
+    de desarrollo/build queda como advertencia declarada: no se puede bajar
+    Vite a la versión sin el aviso sin romper el requisito S-08, y cuando el
+    paquete afectado todavía no tiene parche publicado no hay otra salida.
+    """
+    def resumen(d):
+        v = ((d or {}).get("metadata") or {}).get("vulnerabilities") or {}
+        return v.get("high", 0) + v.get("critical", 0), v.get("total", 0)
+
+    prod, _ = resumen(datos_produccion)
+    altas, total = resumen(datos)
+    if prod:
+        return FALLA, "Hay %d vulnerabilidades altas/críticas en dependencias de producción." % prod
+    if altas:
+        nombres = sorted(n for n, v in ((datos or {}).get("vulnerabilities") or {}).items()
+                         if v.get("severity") in ("high", "critical"))
+        return ADV, ("0 altas/críticas en producción; %d solo en dependencias de desarrollo: %s. "
+                     "No hay versión corregida publicada todavía." % (altas, ", ".join(nombres)))
+    if total:
+        return ADV, "Sin altas/críticas, pero %d vulnerabilidades de severidad menor." % total
+    return OK, "Sin vulnerabilidades conocidas (producción y desarrollo)."
+
+
 def auditar_seguridad(estados_det):
     S = "5. Ciberseguridad"
     out = []
@@ -484,15 +511,18 @@ def auditar_seguridad(estados_det):
     npm = shutil.which("npm")
     if npm and (FRONT / "node_modules").exists():
         try:
-            r = subprocess.run([npm, "audit", "--json"], cwd=str(FRONT), capture_output=True, text=True, timeout=90)
-            datos = json.loads(r.stdout or "{}")
-            v = datos.get("metadata", {}).get("vulnerabilities")
-            if v is None:
+            def _npm_audit(extra=()):
+                r = subprocess.run([npm, "audit", "--json", *extra], cwd=str(FRONT),
+                                   capture_output=True, text=True, timeout=90)
+                return json.loads(r.stdout or "{}")
+
+            datos = _npm_audit()
+            if not ((datos.get("metadata") or {}).get("vulnerabilities")):
                 out.append(Check(S, "S-11", "npm audit", NOEJEC, "Sin respuesta (¿sin internet?)."))
             else:
-                altas = v.get("high", 0) + v.get("critical", 0)
-                out.append(Check(S, "S-11", "npm audit (vulnerabilidades en paquetes de Node)", FALLA if altas else (ADV if v.get("total") else OK),
-                                 f"total {v.get('total', 0)}: críticas {v.get('critical', 0)}, altas {v.get('high', 0)}, moderadas {v.get('moderate', 0)}, bajas {v.get('low', 0)}", "npm audit"))
+                estado, detalle = clasificar_auditoria_npm(datos, _npm_audit(("--omit=dev",)))
+                out.append(Check(S, "S-11", "npm audit (vulnerabilidades en paquetes de Node)",
+                                 estado, detalle, "npm audit"))
         except (subprocess.SubprocessError, OSError, ValueError):
             out.append(Check(S, "S-11", "npm audit", NOEJEC, "No se pudo ejecutar (¿sin internet?)."))
     else:

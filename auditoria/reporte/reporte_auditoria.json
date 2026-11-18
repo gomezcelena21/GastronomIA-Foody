@@ -1,10 +1,10 @@
 {
- "fecha": "16/11/2026 19:54",
+ "fecha": "17/11/2026 21:53",
  "resumen": {
-  "OK": 59,
+  "OK": 60,
   "PARCIAL": 6,
   "NO IMPLEMENTADA": 1,
-  "ADVERTENCIA": 1,
+  "ADVERTENCIA": 2,
   "NO EJECUTADO": 1,
   "MANUAL": 4
  },
@@ -198,7 +198,7 @@
    "id": "P-01",
    "titulo": "Todas las pruebas automáticas",
    "estado": "OK",
-   "detalle": "237 pruebas: 237 pasaron, 0 salteadas, 0 fallaron en 3.09 s.",
+   "detalle": "258 pruebas: 258 pasaron, 0 salteadas, 0 fallaron en 3.41 s.",
    "evidencia": "tests/test_*.py"
   },
   {
@@ -214,7 +214,7 @@
    "id": "P-base_unificada",
    "titulo": "test_base_unificada.py",
    "estado": "OK",
-   "detalle": "21 pasaron, 0 salteadas, 0 fallaron.",
+   "detalle": "24 pasaron, 0 salteadas, 0 fallaron.",
    "evidencia": "tests/test_base_unificada.py"
   },
   {
@@ -240,6 +240,14 @@
    "estado": "OK",
    "detalle": "24 pasaron, 0 salteadas, 0 fallaron.",
    "evidencia": "tests/test_casos_uso_ia.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-chat_garantias",
+   "titulo": "test_chat_garantias.py",
+   "estado": "OK",
+   "detalle": "6 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_chat_garantias.py"
   },
   {
    "seccion": "3. Pruebas automatizadas",
@@ -288,6 +296,14 @@
    "estado": "OK",
    "detalle": "5 pasaron, 0 salteadas, 0 fallaron.",
    "evidencia": "tests/test_frontend_sesion.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-geografia",
+   "titulo": "test_geografia.py",
+   "estado": "OK",
+   "detalle": "12 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_geografia.py"
   },
   {
    "seccion": "3. Pruebas automatizadas",
@@ -437,8 +453,8 @@
    "seccion": "5. Ciberseguridad",
    "id": "S-11",
    "titulo": "npm audit (vulnerabilidades en paquetes de Node)",
-   "estado": "OK",
-   "detalle": "total 0: críticas 0, altas 0, moderadas 0, bajas 0",
+   "estado": "ADVERTENCIA",
+   "detalle": "0 altas/críticas en producción; 5 solo en dependencias de desarrollo: @vitejs/plugin-react, fdir, picomatch, tinyglobby, vite. No hay versión corregida publicada todavía.",
    "evidencia": "npm audit"
   },
   {
@@ -446,7 +462,7 @@
    "id": "O-01",
    "titulo": "Los documentos vigentes solo mencionan archivos que existen",
    "estado": "OK",
-   "detalle": "23 documentos revisados.",
+   "detalle": "27 documentos revisados.",
    "evidencia": "README.md, docs/*.md"
   },
   {
@@ -526,7 +542,7 @@
    "id": "C-06c",
    "titulo": "Casos de prueba de la IA con la respuesta REAL obtenida y si fue adecuada (5 a 10 entradas, con un caso adversario)",
    "estado": "OK",
-   "detalle": "Último registro: resultados_ia_20261116_1917.md",
+   "detalle": "Último registro: resultados_ia_20261116_1924.md",
    "evidencia": "scripts/probar_ia.py"
   },
   {

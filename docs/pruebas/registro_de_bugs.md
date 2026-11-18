@@ -1,6 +1,6 @@
 # Registro de bugs encontrados y corregidos
 
-Los bugs 1 a 14 se detectaron el 5/11/2026 al auditar el código (`AUDITORIA.bat`) o al revisar el comportamiento del chat; los bugs 15 a 23 entre el 9 y el 14/11/2026 al revisar la seguridad, el despliegue y el modo sin IA. «Prueba» indica el caso de `docs/pruebas/casos_de_prueba_GastronomIA.xlsx` o la prueba que impide que reaparezca.
+Los bugs 1 a 14 se detectaron el 5/11/2026 al auditar el código (`AUDITORIA.bat`) o al revisar el comportamiento del chat; los bugs 15 a 24 entre el 9 y el 17/11/2026 al revisar la seguridad, el despliegue, el modo sin IA y las garantías alimentarias. «Prueba» indica el caso de `docs/pruebas/casos_de_prueba_GastronomIA.xlsx` o la prueba que impide que reaparezca.
 
 | ID | Bug | Cómo se detectó | Gravedad | Corrección | Prueba |
 |---|---|---|---|---|---|
@@ -27,6 +27,7 @@ Los bugs 1 a 14 se detectaron el 5/11/2026 al auditar el código (`AUDITORIA.bat
 | BUG-21 | Quien ya había iniciado sesión con Google tenía que volver a pasar por el inicio y por la pantalla «¿usuario o comercio?» en cada visita, y repetir datos | Observación de la persona usuaria (12/11/2026) | Media | La sesión se recuerda hasta que vence el token (12 h) y se abre el chat directo; el comercio se maneja desde Perfil → Mi comercio; si el servidor rechaza el token se vuelve al inicio | TC-063, TC-064 |
 | BUG-22 | El importador original hacía un INSERT y un commit por cada fila: contra una base en la nube tardaría horas con decenas de miles de lugares | Revisión del despliegue (14/11/2026) | Media | Nuevo cargador en bloques (`cargar_base_unificada.py`, `execute_values`) y `cargar_base_nube.py` lo usa | TC-068 |
 | BUG-23 | Los tipos de cocina de la base no coincidían con los que pide el buscador (`pizza` frente a `pizzeria`): «pizzería en Palermo» no encontraba la mayoría de las pizzerías | Revisión de la base nueva (14/11/2026) | Media | La conversión guarda ambos términos y los equivalentes de hamburguesa, café, parrilla, sushi, etc. | TC-066 |
+| BUG-24 | Las preguntas por garantías («¿es 100 % seguro?», «¿me lo garantizás?», «¿es totalmente seguro?») se enviaban a Gemini: gastaban cuota y el modelo podía prometer seguridad alimentaria | Revisión del flujo del chat (17/11/2026) | Media | Regla al inicio de `send_message`: responde el texto fijo de HU-02 sin llamar a Gemini; `validar_respuesta_ia` acepta ese texto como advertencia y sigue bloqueando las garantías que escriba la IA | `test_chat_garantias` |
 
 ## Reporte detallado (formato del apunte 4.7)
 
@@ -58,5 +59,6 @@ Los pasos de los bugs 1 a 14 se reconstruyeron a partir de la descripción regis
 | BUG-21 | Iniciar sesión con Google, cerrar la pestaña y volver a abrir la aplicación | Se abre el chat directo con la cuenta ya iniciada | Aparecía el inicio de sesión y, después de entrar, la pantalla «¿usuario o comercio?» |
 | BUG-22 | Cargar el dataset en una base de Neon con `import_actual_to_postgres.py` | Carga en pocos minutos | Una confirmación por fila: muchísimos minutos u horas |
 | BUG-23 | Pedir «pizzería en Palermo» y comparar con los locales de tipo pizzería | Aparecen las pizzerías de la zona | Solo aparecían las que tenían la palabra exacta `pizzeria` |
+| BUG-24 | Preguntar «¿Es 100 % seguro para celíacos?» en el chat | Texto fijo que aclara que no se puede garantizar y que hay que confirmar con el local, sin gastar cuota | La consulta se enviaba a Gemini y el modelo podía afirmar una garantía |
 
 **Gravedad:** Crítica = expone secretos; Alta = permite acceso indebido o corta el servicio; Media = respuestas incorrectas o riesgo acotado; Baja = diferencia con el diseño.

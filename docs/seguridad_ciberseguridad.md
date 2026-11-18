@@ -27,6 +27,7 @@ Otras correcciones: `/api/restaurants/nearby` era inalcanzable (la ruta `{id}` l
 | Componente | Aviso | Estado |
 |---|---|---|
 | Vite 8.2.2 | CVE-2026-112945 (baja, corregida en 8.2.4) y otros avisos moderados de octubre del servidor de desarrollo | `setup.bat` ejecuta `npm update vite`. Solo aplica si se expone el servidor a la red (`--host`); no es el caso |
+| picomatch 4.0.7 (dentro de Vite, solo build) | CVE-2026-112366 / GHSA-fc5q-39xc-vjpf (alta 8.7: ReDoS al compilar patrones glob; publicado el 19/10/2026) | **Sin parche publicado al 17/11/2026.** Afecta solo a dependencias de desarrollo: `npm audit --omit=dev` da 0 y el sitio publicado no incluye Vite ni picomatch. La auditoría S-11 lo declara como advertencia; no se baja Vite a 6.x porque reintroduce CVE-2026-112945 |
 | Starlette (FastAPI) | CVE-2026-48710 (Host malformado, corregido en 1.0.1); CVE-2026-48818 (StaticFiles en Windows, corregido en 1.1.0) | `requirements.txt` pide `starlette>=1.0.1`. El proyecto no usa StaticFiles |
 | `google-genai` | Reemplaza al obsoleto `google-generativeai` | Migrado: el backend usa el SDK oficial y `requirements.lock` fija la versión |
 

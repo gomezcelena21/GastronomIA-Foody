@@ -169,6 +169,29 @@ ADVERTENCIA_ALIMENTARIA = (
     "Confirmá con el local antes de ir."
 )
 
+# Respuesta fija para preguntas por garantías absolutas (HU-02). No se delega a la IA:
+# la base no está verificada con el local y puede haber contaminación cruzada.
+RESPUESTA_GARANTIA = (
+    "No puedo asegurar que ningún local sea 100 % seguro para personas celíacas: "
+    "los datos no están verificados con el local y puede haber contaminación cruzada. "
+    "Contactá directamente al local antes de ir para confirmarlo."
+)
+_RE_PREGUNTA_GARANTIA = re.compile(
+    r"\b100\s*(?:%|por\s+ciento)"
+    r"|\bcien\s+por\s+ciento\b"
+    r"|\bgarantiz\w*"
+    r"|\bgarant[ií]as?\b"
+    r"|\b(?:totalmente|completamente|absolutamente)\s+segur\w*"
+    r"|\bsin\s+(?:ning[uú]n\s+)?riesgo\b"
+    r"|\bes\s+segur[oa]\s+para\s+(?:cel[ií]ac|al[eé]rgic|vegan)\w*",
+    re.IGNORECASE,
+)
+
+
+def es_pregunta_garantia(texto: Any) -> bool:
+    """True si el mensaje pide una garantía absoluta de seguridad alimentaria."""
+    return isinstance(texto, str) and _RE_PREGUNTA_GARANTIA.search(texto) is not None
+
 
 ADVERTENCIA_INFERIDA = "Información inferida. Confirmar con el local. " + ADVERTENCIA_ALIMENTARIA
 SIN_DATOS_ALIMENTARIOS = "Sin datos"
@@ -243,6 +266,10 @@ def validar_respuesta_ia(texto: Any, resultados: Optional[list]) -> Tuple[bool, 
     resultados = resultados or []
     if not isinstance(texto, str) or not texto.strip():
         return False, ["respuesta vacía"]
+    # La respuesta fija de HU-02 ya es una advertencia: contiene «100 % seguro»
+    # dentro de un «No puedo asegurar…», así que no se marca como garantía.
+    if normalizar(texto).strip() == normalizar(RESPUESTA_GARANTIA).strip():
+        return True, []
     norm = normalizar(texto)
 
     # 1) garantías absolutas (una negación cercana la vuelve una advertencia válida)

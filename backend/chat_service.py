@@ -567,6 +567,14 @@ class ChatService:
 
         self.last_restaurants = []
 
+        # HU-02: si pregunta por una garantía absoluta («100 %», «garantizado»,
+        # «totalmente seguro»), se responde con el texto fijo y no se llama a
+        # Gemini: no se gasta cuota y el modelo no puede prometer de más.
+        if diseno.es_pregunta_garantia(message):
+            with self._lock_sesion(session_id):
+                self._guardar_turno(session_id, message, diseno.RESPUESTA_GARANTIA)
+            return diseno.RESPUESTA_GARANTIA
+
         # Sin clave no hay a quién pedirle nada: búsqueda local directa.
         if not self.gemini.api_key:
             return self._sin_ia(message, False, session_id)

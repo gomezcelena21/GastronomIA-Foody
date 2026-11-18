@@ -44,5 +44,28 @@ class Auditoria(unittest.TestCase):
         self.assertGreaterEqual(len(filas), 40)
 
 
+class ClasificacionNpm(unittest.TestCase):
+    """npm audit: FALLA solo si lo vulnerable se publica; el build queda como advertencia."""
+
+    def _datos(self, *nombres, severidad="high", total=None):
+        return {"vulnerabilities": {n: {"severity": severidad} for n in nombres},
+                "metadata": {"vulnerabilities": {"high": len(nombres), "critical": 0,
+                                                 "total": len(nombres) if total is None else total}}}
+
+    def test_falla_con_vulnerabilidades_de_produccion(self):
+        estado, _ = auditar.clasificar_auditoria_npm(self._datos("vite"), self._datos("vite"))
+        self.assertEqual(estado, auditar.FALLA)
+
+    def test_solo_desarrollo_queda_como_advertencia(self):
+        estado, detalle = auditar.clasificar_auditoria_npm(self._datos("vite", "picomatch"), self._datos())
+        self.assertEqual(estado, auditar.ADV)
+        self.assertIn("desarrollo", detalle)
+        self.assertIn("picomatch", detalle)
+
+    def test_sin_vulnerabilidades(self):
+        vacio = {"vulnerabilities": {}, "metadata": {"vulnerabilities": {"total": 0}}}
+        self.assertEqual(auditar.clasificar_auditoria_npm(vacio, vacio)[0], auditar.OK)
+
+
 if __name__ == "__main__":
     unittest.main()

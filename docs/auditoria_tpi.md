@@ -1,12 +1,12 @@
 # Auditoría automática — GastronomIA
 
-Generada el 16/11/2026 19:54 con `python auditoria/auditar.py` (Python 3.14.6, Windows). Este archivo se reescribe en cada corrida.
+Generada el 17/11/2026 21:53 con `python auditoria/auditar.py` (Python 3.14.6, Windows). Este archivo se reescribe en cada corrida.
 
 **Veredicto:** SIN FALLAS. Hay límites conocidos y advertencias declarados abajo (nada oculto).
 
 | ✔ OK | ◐ PARCIAL | ⚠ ADVERTENCIA | ○ NO IMPLEMENTADA | ✋ MANUAL | … NO EJECUTADO | ✘ FALLA |
 |---|---|---|---|---|---|---|
-| 59 | 6 | 1 | 1 | 4 | 1 | 0 |
+| 60 | 6 | 2 | 1 | 4 | 1 | 0 |
 
 
 ## 1. Diseño del sistema (PDF Sección 5) vs. código
@@ -46,18 +46,20 @@ Generada el 16/11/2026 19:54 con `python auditoria/auditar.py` (Python 3.14.6, W
 
 | ID | Verificación | Estado | Detalle |
 |---|---|---|---|
-| P-01 | Todas las pruebas automáticas | ✔ OK | 237 pruebas: 237 pasaron, 0 salteadas, 0 fallaron en 3.09 s. |
+| P-01 | Todas las pruebas automáticas | ✔ OK | 258 pruebas: 258 pasaron, 0 salteadas, 0 fallaron en 3.41 s. |
 | P-api_diseno | test_api_diseno.py | ✔ OK | 23 pasaron, 0 salteadas, 0 fallaron. |
-| P-base_unificada | test_base_unificada.py | ✔ OK | 21 pasaron, 0 salteadas, 0 fallaron. |
+| P-base_unificada | test_base_unificada.py | ✔ OK | 24 pasaron, 0 salteadas, 0 fallaron. |
 | P-caja_blanca | test_caja_blanca.py | ✔ OK | 14 pasaron, 0 salteadas, 0 fallaron. |
 | P-caja_negra | test_caja_negra.py | ✔ OK | 11 pasaron, 0 salteadas, 0 fallaron. |
 | P-casos_uso_ia | test_casos_uso_ia.py | ✔ OK | 24 pasaron, 0 salteadas, 0 fallaron. |
+| P-chat_garantias | test_chat_garantias.py | ✔ OK | 6 pasaron, 0 salteadas, 0 fallaron. |
 | P-comercios | test_comercios.py | ✔ OK | 18 pasaron, 0 salteadas, 0 fallaron. |
 | P-cuota | test_cuota.py | ✔ OK | 15 pasaron, 0 salteadas, 0 fallaron. |
 | P-despliegue | test_despliegue.py | ✔ OK | 5 pasaron, 0 salteadas, 0 fallaron. |
 | P-diseno | test_diseno.py | ✔ OK | 24 pasaron, 0 salteadas, 0 fallaron. |
 | P-evaluacion_int | test_evaluacion_interprete.py | ✔ OK | 3 pasaron, 0 salteadas, 0 fallaron. |
 | P-frontend_sesio | test_frontend_sesion.py | ✔ OK | 5 pasaron, 0 salteadas, 0 fallaron. |
+| P-geografia | test_geografia.py | ✔ OK | 12 pasaron, 0 salteadas, 0 fallaron. |
 | P-modo_sin_ia | test_modo_sin_ia.py | ✔ OK | 30 pasaron, 0 salteadas, 0 fallaron. |
 | P-privacidad | test_privacidad.py | ✔ OK | 6 pasaron, 0 salteadas, 0 fallaron. |
 | P-rendimiento | test_rendimiento.py | ✔ OK | 4 pasaron, 0 salteadas, 0 fallaron. |
@@ -86,13 +88,13 @@ Generada el 16/11/2026 19:54 con `python auditoria/auditar.py` (Python 3.14.6, W
 | S-08 | Vite actualizado (CVE-2026-112945, corregida en 8.2.4) | ✔ OK | Vite 8.3.8 |
 | S-09 | package-lock.json coherente con package.json (npm ci reproducible) | ✔ OK | 13 dependencias directas, 165 paquetes en el lock. |
 | S-10 | pip-audit (vulnerabilidades en paquetes de Python) | … NO EJECUTADO | No está instalado. Correr: pip install pip-audit  (setup.bat lo hace). |
-| S-11 | npm audit (vulnerabilidades en paquetes de Node) | ✔ OK | total 0: críticas 0, altas 0, moderadas 0, bajas 0 |
+| S-11 | npm audit (vulnerabilidades en paquetes de Node) | ⚠ ADVERTENCIA | 0 altas/críticas en producción; 5 solo en dependencias de desarrollo: @vitejs/plugin-react, fdir, picomatch, tinyglobby, vite. No hay versión corregida publicada todavía. |
 
 ## 6. Documentación vs. código real
 
 | ID | Verificación | Estado | Detalle |
 |---|---|---|---|
-| O-01 | Los documentos vigentes solo mencionan archivos que existen | ✔ OK | 23 documentos revisados. |
+| O-01 | Los documentos vigentes solo mencionan archivos que existen | ✔ OK | 27 documentos revisados. |
 | O-02 | Sin rastros de la versión anterior (Node/Express/SQLite) en la documentación vigente | ✔ OK | Ningún documento menciona el stack anterior. |
 | O-03 | Sin copias viejas del código o de los documentos dentro del proyecto | ✔ OK | El proyecto contiene solo la versión vigente. |
 
@@ -107,7 +109,7 @@ Generada el 16/11/2026 19:54 con `python auditoria/auditar.py` (Python 3.14.6, W
 | C-05 | Plan y resultados de pruebas, con casos específicos de IA | ✔ OK | Planilla de 39 casos + pruebas_automatizadas.md; los resultados salen de la sección 3 de este reporte. |
 | C-06 | Tabla de herramientas de IA con las 5 etapas y análisis crítico escrito | ✔ OK | Completa. |
 | C-06b | Registro de bugs encontrados y cómo se corrigieron (sección 7 de la consigna) | ✔ OK | 46 bugs registrados. |
-| C-06c | Casos de prueba de la IA con la respuesta REAL obtenida y si fue adecuada (5 a 10 entradas, con un caso adversario) | ✔ OK | Último registro: resultados_ia_20261116_1917.md |
+| C-06c | Casos de prueba de la IA con la respuesta REAL obtenida y si fue adecuada (5 a 10 entradas, con un caso adversario) | ✔ OK | Último registro: resultados_ia_20261116_1924.md |
 | C-06d | Tablero con las columnas mínimas (Backlog, Pendiente, En proceso, Finalizado) y tareas de IA identificables | ✔ OK | Columnas: Backlog, Pendiente, En proceso, Finalizado |
 | C-07 | Capturas del tablero en 3 momentos distintos | ✋ MANUAL | No se puede verificar desde el código: subir las capturas de Trello. |
 | C-08 | README con instrucciones para ejecutar, incluida la configuración de la IA | ✔ OK | Pasos de instalación, variable GEMINI_API_KEY y cómo arrancar. |
