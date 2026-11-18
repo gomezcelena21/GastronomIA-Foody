@@ -70,5 +70,52 @@ class TopeDiario(unittest.TestCase):
         self.assertTrue(c.consumir("a"))
 
 
+class UsuarioActual(unittest.TestCase):
+    """usuario_actual rechaza tokens incompletos con 401 (nunca un 500)."""
+
+    def setUp(self):
+        os.environ["SESSION_SECRET"] = SECRETO
+        import seguridad
+
+        self.seg = seguridad
+
+    def tearDown(self):
+        os.environ.pop("SESSION_SECRET", None)
+
+    def _token(self, datos: dict) -> str:
+        return "Bearer " + sesion.firmar_sesion(datos, SECRETO)
+
+    def test_token_valido_devuelve_identidad(self):
+        datos = dict(USUARIO, uid=7)
+        self.assertEqual(self.seg.usuario_actual(self._token(datos))["uid"], 7)
+
+    def test_uid_invalido_es_401(self):
+        from fastapi import HTTPException
+
+        for uid in (0, -1, "7", None):
+            datos = dict(USUARIO, uid=uid)
+            with self.assertRaises(HTTPException) as ctx:
+                self.seg.usuario_actual(self._token(datos))
+            self.assertEqual(ctx.exception.status_code, 401, uid)
+
+    def test_sin_sub_o_email_es_401(self):
+        from fastapi import HTTPException
+
+        for datos in ({"uid": 1, "email": "ana@example.com"},
+                      {"uid": 1, "sub": "123"},
+                      {"uid": 1, "sub": "  ", "email": "ana@example.com"}):
+            with self.assertRaises(HTTPException) as ctx:
+                self.seg.usuario_actual(self._token(datos))
+            self.assertEqual(ctx.exception.status_code, 401, datos)
+
+    def test_sin_cabecera_o_con_basura_es_401(self):
+        from fastapi import HTTPException
+
+        for cabecera in (None, "", "Basic abc", "Bearer", "Bearer a.b"):
+            with self.assertRaises(HTTPException) as ctx:
+                self.seg.usuario_actual(cabecera)
+            self.assertEqual(ctx.exception.status_code, 401, cabecera)
+
+
 if __name__ == "__main__":
     unittest.main()

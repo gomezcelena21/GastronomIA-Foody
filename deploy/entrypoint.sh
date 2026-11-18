@@ -27,7 +27,7 @@ if url:
 PY
 
 # FORWARDED_ALLOW_IPS: de qué IPs se acepta la cabecera X-Forwarded-For (la IP real del visitante).
-# "*" (por defecto) solo es seguro si el puerto 8000 NO es público, como en el docker-compose.yml
-# de este proyecto, donde únicamente Caddy llega al backend. Si algún día exponés el backend
-# directo a internet, poné acá la IP del proxy (no "*"): los límites por IP dependen de esto.
+# Con "*" uvicorn toma el PRIMER valor de la cabecera, que lo elige el cliente: sirve en Render
+# (donde el proxy es la única entrada) pero permite inventar la IP. En docker-compose.yml se fija
+# la subred 172.28.0.0/16 y solo se confía en Caddy, que está adentro de esa red.
 exec uvicorn main:app --host 0.0.0.0 --port "${PORT:-8000}" --proxy-headers --forwarded-allow-ips "${FORWARDED_ALLOW_IPS:-*}"

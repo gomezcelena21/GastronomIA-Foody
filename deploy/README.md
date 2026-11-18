@@ -402,8 +402,11 @@ No hay que activar nada: son valores por defecto del proyecto.
 | Caddy limita el cuerpo a 1 MB | Un pedido gigante no puede agotar memoria/CPU |
 | Caddy envía HSTS, `nosniff`, `no-referrer` y oculta `Server` | Cabeceras estándar de un sitio HTTPS |
 | `umask 077` en los backups | Los volcados tienen datos personales: quedan legibles solo por su dueño |
+| `FORWARDED_ALLOW_IPS` limitado a la subred fija `172.28.0.0/16` | Solo Caddy puede declarar la IP real; nadie inventa una IP para saltarse los cupos |
 
 Además, `.dockerignore` impide que `backend/.env` entre en la imagen, y `.gitignore` bloquea `.env`, `backups/`, volcados `*.sql.gz` y los reportes de usuarios.
+
+El frontend en Vercel lleva sus propias cabeceras en `frontend/vercel.json`: HSTS, `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` y una **Content-Security-Policy** que solo permite scripts de Google Sign-In. Eso reduce el riesgo de que un XSS robe el token de sesión guardado en el navegador.
 
 ## Verificación final
 

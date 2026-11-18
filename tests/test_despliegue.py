@@ -39,6 +39,12 @@ class Despliegue(unittest.TestCase):
         self.assertIn("${PORT:-8000}", docker)
         self.assertIn("/ping", docker)
 
+    def test_el_backend_solo_confia_en_el_proxy_interno(self):
+        compose = leer("docker-compose.yml")
+        self.assertIn("FORWARDED_ALLOW_IPS", compose)
+        self.assertIn("subnet: 172.28.0.0/16", compose)
+        self.assertNotIn('FORWARDED_ALLOW_IPS: "*"', compose)
+
     def test_carga_a_la_nube_pide_confirmacion_y_protege_los_datos(self):
         s = leer("scripts/cargar_base_nube.py")
         self.assertIn("Escribí SI", s)

@@ -10,7 +10,7 @@ Opcional (API, necesita `pip install -r backend/requirements.txt`): `python -m u
 Con PostgreSQL: `set PRUEBAS_CON_BD=1` y el mismo comando.
 
 ## Resultado de la última ejecución (17/11/2026, con PostgreSQL 16 + PostGIS y la base unificada nacional de 71.343 lugares)
-- Todo `tests/` con `PRUEBAS_CON_BD=1`: **273 pruebas: 273 OK, 0 salteadas, 0 fallas** (incluye las 23 de la API, las del formulario de comercios, las de geografía y auditoría de muestra, y las nuevas de garantías del chat y de `npm audit`). Salida completa en `docs/pruebas/resultados_ejecucion_2026-11-17.txt`. Sin base de datos, 8 de ellas se saltean.
+- Todo `tests/` con `PRUEBAS_CON_BD=1`: **280 pruebas: 280 OK, 0 salteadas, 0 fallas** (incluye las 23 de la API, las del formulario de comercios, las de geografía y auditoría de muestra, las de garantías del chat, las de `npm audit` y las nuevas de sesión incompleta, proxy interno, `.dockerignore` y CSP del frontend). Salida completa en `docs/pruebas/resultados_ejecucion_2026-11-17.txt`. Sin base de datos, 8 de ellas se saltean.
 - **Preguntas por garantías:** `test_chat_garantias` comprueba que «100 %», «garantizado» y «totalmente seguro» se respondan con el texto fijo de HU-02, sin llamar a Gemini, y que una garantía escrita por la IA siga bloqueada.
 - **Romper a propósito:** 12 de 12 errores introducidos a propósito fueron detectados por las pruebas (`romper_a_proposito.md`).
 - **Evaluación del intérprete del modo sin IA:** 40 de 42 ejemplos acertados, 95 % (`evaluacion_interprete.md`).
@@ -36,10 +36,10 @@ Con PostgreSQL: `set PRUEBAS_CON_BD=1` y el mismo comando.
 | `test_diseno.Advertencia` | Funcional | HU-02 | advertencia alimentaria nunca como garantía |
 | `test_diseno.Limitador` | Seguridad | SEG-06 | ventana de 20 mensajes por minuto |
 | `test_diseno.Valoraciones` | Funcional | HU-13 | aspecto y sentimiento de una reseña; filtra la salida de la IA |
-| `test_seguridad_codigo.SecretosEnElCodigo` | Seguridad (estática) | SEG-01, 04, 10 | sin contraseñas ni claves de API en el código; `.env` ignorado |
+| `test_seguridad_codigo.SecretosEnElCodigo` | Seguridad (estática) | SEG-01, 04, 10 | sin contraseñas ni claves de API en el código; `.env` ignorado por git y por Docker |
 | `test_seguridad_codigo.InyeccionSQL` | Seguridad (estática) | SEG-03 | ninguna consulta arma SQL con f-strings |
 | `test_seguridad_codigo.DescargasSeguras` | Seguridad | SEG-02 | 8 rutas de ataque (`../.env`, `/etc/passwd`, `C:\Windows\...`, byte nulo) bloqueadas |
-| `test_seguridad_codigo.ConfiguracionSegura` | Seguridad (estática) | SEG-05, 06, 07 | CORS sin comodines, errores sin detalles, rate limit presente, servidor no expuesto a la red, frontend sin HTML crudo |
+| `test_seguridad_codigo.ConfiguracionSegura` | Seguridad (estática) | SEG-05, 06, 07 | CORS sin comodines, errores sin detalles, rate limit presente, servidor no expuesto a la red, frontend sin HTML crudo, CSP y HSTS en Vercel |
 | `test_casos_uso_ia` | Casos de uso de la IA | HU-01 a HU-08, NF-01 | parámetros que se interpretan, escenarios A-E de respuesta, validación de respuestas de la IA, valores límite, seis consultas seguidas (TC-xxx) |
 | `test_cuota` | No funcional | NF-01 | ventana por minuto, error 429 (minuto y día), reintento, espera máxima |
 | `test_api_diseno.ApiSinBaseDeDatos` | API | SEG-02, 06, 07; HU-01, 11, 13 | descargas, CORS, rate limit (429), validaciones 422 |
@@ -66,7 +66,7 @@ Problema de cuota de Gemini: ver `docs/cuota_gemini.md`.
 | `test_rendimiento` | Rendimiento y resistencia (locales) | TC-055, TC-056 | 2.000 respuestas del modo sin IA, validación de una respuesta larga, 16 hilos sobre el limitador |
 | `test_modo_sin_ia` | Funcional / IA | HU-06, HU-07, TC-040 a TC-042, TC-047 | charla, seguimientos, aviso corto, sin resultados sin aflojar restricciones, cobertura nacional y partidos de GBA sin datos |
 | `test_comercios` (nuevas) | Seguridad / IA | SEG-07, TC-043, TC-044 | el formulario rechaza órdenes para la IA; lo que ve la IA se limpia; no se bloquean nombres normales; la zona acepta CABA y las 23 provincias y rechaza otros países |
-| `test_despliegue` | Seguridad / sistema | TC-045, TC-046 | el backend no publica el puerto 8000; `/ping` no usa la base; healthcheck con `PORT` |
+| `test_despliegue` | Seguridad / sistema | TC-045, TC-046 | el backend no publica el puerto 8000; `/ping` no usa la base; healthcheck con `PORT`; solo confía en la subred del proxy |
 | `test_verificar_despliegue` | Sistema / despliegue | TC-061, TC-062 | el verificador previo al despliegue detecta variables mal cargadas, finales de línea de Windows, claves en el código y dependencias que faltan |
 | `test_frontend_sesion` | Funcional (UI), estático | TC-063, TC-064 | la sesión de Google se recuerda y se borra al cerrar sesión; quien ya inició sesión entra directo al chat; el comercio se maneja desde Perfil → Mi comercio |
 | `test_base_unificada` | Datos / integración | TC-066 a TC-068 | conversión del Excel (cocinas, restricciones «sin datos» ≠ «no», zonas, coordenadas, descarte de provincias/coordenadas no argentinas, Google sin teléfono ni web), el CSV generado y el cargador en bloques |

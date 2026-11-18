@@ -56,6 +56,12 @@ class SecretosEnElCodigo(unittest.TestCase):
         lineas = [l.strip() for l in leer(RAIZ / ".gitignore").splitlines()]
         self.assertIn(".env", lineas)
 
+    def test_dockerignore_protege_el_env_y_los_backups(self):
+        lineas = [l.strip() for l in leer(RAIZ / ".dockerignore").splitlines()]
+        self.assertIn(".env", lineas)
+        self.assertIn("**/.env", lineas)
+        self.assertIn("backups", lineas)
+
     def test_database_exige_variable_de_entorno(self):
         src = leer(RAIZ / "backend" / "database.py")
         self.assertIn('os.getenv("DATABASE_URL"', src)
@@ -140,6 +146,14 @@ class ConfiguracionSegura(unittest.TestCase):
             s = leer(p)
             self.assertNotIn("dangerouslySetInnerHTML", s, p.name)
             self.assertNotIn("rehype-raw", s, p.name)
+
+    def test_frontend_con_csp_y_hsts(self):
+        """Si un XSS llegara a ejecutarse, la CSP limita a donde puede mandar el token."""
+        v = leer(RAIZ / "frontend" / "vercel.json")
+        self.assertIn("Content-Security-Policy", v)
+        self.assertIn("Strict-Transport-Security", v)
+        self.assertIn("frame-ancestors 'none'", v)
+        self.assertNotIn("'unsafe-eval'", v)
 
 
 if __name__ == "__main__":

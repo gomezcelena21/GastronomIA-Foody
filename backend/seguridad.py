@@ -23,7 +23,13 @@ def usuario_actual(authorization: Optional[str] = Header(default=None)) -> dict:
         datos = sesion.verificar_sesion(authorization[7:].strip(), secreto())
     except sesion.SesionInvalida:
         raise HTTPException(status_code=401, detail="Tu sesión no es válida o venció. Volvé a iniciar sesión.")
-    if not isinstance(datos.get("uid"), int) or not datos.get("email"):
+    # Defensa en profundidad: un token válido siempre trae un uid positivo y el sub de Google.
+    # Si faltara alguno (versión vieja o firma manipulada), se rechaza en vez de fallar con un 500.
+    if not isinstance(datos.get("uid"), int) or datos["uid"] <= 0:
+        raise HTTPException(status_code=401, detail="Sesión incompleta. Volvé a iniciar sesión.")
+    if not isinstance(datos.get("email"), str) or not datos["email"].strip():
+        raise HTTPException(status_code=401, detail="Sesión incompleta. Volvé a iniciar sesión.")
+    if not isinstance(datos.get("sub"), str) or not datos["sub"].strip():
         raise HTTPException(status_code=401, detail="Sesión incompleta. Volvé a iniciar sesión.")
     return datos
 

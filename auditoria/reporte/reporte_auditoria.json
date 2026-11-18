@@ -1,12 +1,12 @@
 {
- "fecha": "17/11/2026 21:53",
+ "fecha": "17/11/2026 22:39",
  "resumen": {
-  "OK": 60,
+  "OK": 61,
   "PARCIAL": 6,
   "NO IMPLEMENTADA": 1,
-  "ADVERTENCIA": 2,
-  "NO EJECUTADO": 1,
-  "MANUAL": 4
+  "NO EJECUTADO": 2,
+  "ADVERTENCIA": 1,
+  "MANUAL": 3
  },
  "checks": [
   {
@@ -198,7 +198,7 @@
    "id": "P-01",
    "titulo": "Todas las pruebas automáticas",
    "estado": "OK",
-   "detalle": "258 pruebas: 258 pasaron, 0 salteadas, 0 fallaron en 3.41 s.",
+   "detalle": "265 pruebas: 264 pasaron, 1 salteadas, 0 fallaron en 3.06 s.",
    "evidencia": "tests/test_*.py"
   },
   {
@@ -270,7 +270,7 @@
    "id": "P-despliegue",
    "titulo": "test_despliegue.py",
    "estado": "OK",
-   "detalle": "5 pasaron, 0 salteadas, 0 fallaron.",
+   "detalle": "5 pasaron, 1 salteadas, 0 fallaron. Las salteadas necesitan FastAPI/PostgreSQL: correrlas en la PC del proyecto.",
    "evidencia": "tests/test_despliegue.py"
   },
   {
@@ -334,7 +334,7 @@
    "id": "P-seguridad_codi",
    "titulo": "test_seguridad_codigo.py",
    "estado": "OK",
-   "detalle": "15 pasaron, 0 salteadas, 0 fallaron.",
+   "detalle": "17 pasaron, 0 salteadas, 0 fallaron.",
    "evidencia": "tests/test_seguridad_codigo.py"
   },
   {
@@ -342,7 +342,7 @@
    "id": "P-sesion",
    "titulo": "test_sesion.py",
    "estado": "OK",
-   "detalle": "9 pasaron, 0 salteadas, 0 fallaron.",
+   "detalle": "13 pasaron, 0 salteadas, 0 fallaron.",
    "evidencia": "tests/test_sesion.py"
   },
   {
@@ -374,7 +374,7 @@
    "id": "S-01",
    "titulo": "Sin claves ni contraseñas escritas en el código",
    "estado": "OK",
-   "detalle": "4 pruebas automáticas pasaron.",
+   "detalle": "5 pruebas automáticas pasaron.",
    "evidencia": "tests/test_seguridad_codigo.py"
   },
   {
@@ -398,7 +398,7 @@
    "id": "S-04",
    "titulo": "CORS, errores sin detalles, rate limit, servidor local, frontend sin HTML crudo",
    "estado": "OK",
-   "detalle": "5 pruebas automáticas pasaron.",
+   "detalle": "6 pruebas automáticas pasaron.",
    "evidencia": "tests/test_seguridad_codigo.py"
   },
   {
@@ -413,8 +413,8 @@
    "seccion": "5. Ciberseguridad",
    "id": "S-06",
    "titulo": "Clave de Gemini en backend/.env",
-   "estado": "ADVERTENCIA",
-   "detalle": "Hay una clave cargada en backend/.env: correcto para uso local, pero NO compartas este archivo ni el zip.",
+   "estado": "OK",
+   "detalle": "backend/.env no tiene clave (hay que pegar la clave nueva) o no existe.",
    "evidencia": "backend/.env (no se muestra el valor)"
   },
   {
@@ -453,8 +453,8 @@
    "seccion": "5. Ciberseguridad",
    "id": "S-11",
    "titulo": "npm audit (vulnerabilidades en paquetes de Node)",
-   "estado": "ADVERTENCIA",
-   "detalle": "0 altas/críticas en producción; 5 solo en dependencias de desarrollo: @vitejs/plugin-react, fdir, picomatch, tinyglobby, vite. No hay versión corregida publicada todavía.",
+   "estado": "NO EJECUTADO",
+   "detalle": "Necesita npm y node_modules instalados (setup.bat).",
    "evidencia": "npm audit"
   },
   {
@@ -509,8 +509,8 @@
    "seccion": "7. Checklist de entrega (consignas del proyecto)",
    "id": "C-04",
    "titulo": "Pantallas / mockups",
-   "estado": "OK",
-   "detalle": "Carpeta «Pantallas movil y web».",
+   "estado": "ADVERTENCIA",
+   "detalle": "No está la carpeta de pantallas junto al proyecto (no afecta si están en el PDF).",
    "evidencia": "Pantallas movil y web/"
   },
   {
@@ -534,7 +534,7 @@
    "id": "C-06b",
    "titulo": "Registro de bugs encontrados y cómo se corrigieron (sección 7 de la consigna)",
    "estado": "OK",
-   "detalle": "46 bugs registrados.",
+   "detalle": "48 bugs registrados.",
    "evidencia": "docs/pruebas/registro_de_bugs.md"
   },
   {
@@ -542,7 +542,7 @@
    "id": "C-06c",
    "titulo": "Casos de prueba de la IA con la respuesta REAL obtenida y si fue adecuada (5 a 10 entradas, con un caso adversario)",
    "estado": "OK",
-   "detalle": "Último registro: resultados_ia_20261116_1924.md",
+   "detalle": "Último registro: resultados_ia_20261116_2235.md",
    "evidencia": "scripts/probar_ia.py"
   },
   {
@@ -581,8 +581,8 @@
    "seccion": "7. Checklist de entrega (consignas del proyecto)",
    "id": "C-10",
    "titulo": "Commits organizados e incrementales",
-   "estado": "MANUAL",
-   "detalle": "No hay carpeta .git en esta copia (copiá la tuya al proyecto) para contar los commits.",
+   "estado": "OK",
+   "detalle": "22 commits en el repositorio.",
    "evidencia": "git"
   },
   {
