@@ -1,11 +1,10 @@
 {
- "fecha": "17/11/2026 22:39",
+ "fecha": "18/11/2026 01:36",
  "resumen": {
-  "OK": 61,
+  "OK": 62,
   "PARCIAL": 6,
   "NO IMPLEMENTADA": 1,
-  "NO EJECUTADO": 2,
-  "ADVERTENCIA": 1,
+  "ADVERTENCIA": 2,
   "MANUAL": 3
  },
  "checks": [
@@ -198,7 +197,7 @@
    "id": "P-01",
    "titulo": "Todas las pruebas automáticas",
    "estado": "OK",
-   "detalle": "265 pruebas: 264 pasaron, 1 salteadas, 0 fallaron en 3.06 s.",
+   "detalle": "265 pruebas: 264 pasaron, 1 salteadas, 0 fallaron en 3.56 s.",
    "evidencia": "tests/test_*.py"
   },
   {
@@ -438,23 +437,23 @@
    "id": "S-09",
    "titulo": "package-lock.json coherente con package.json (npm ci reproducible)",
    "estado": "OK",
-   "detalle": "13 dependencias directas, 165 paquetes en el lock.",
+   "detalle": "13 dependencias directas, 185 paquetes en el lock.",
    "evidencia": "frontend/package*.json"
   },
   {
    "seccion": "5. Ciberseguridad",
    "id": "S-10",
    "titulo": "pip-audit (vulnerabilidades en paquetes de Python)",
-   "estado": "NO EJECUTADO",
-   "detalle": "No está instalado. Correr: pip install pip-audit  (setup.bat lo hace).",
+   "estado": "OK",
+   "detalle": "No known vulnerabilities found",
    "evidencia": "pip-audit"
   },
   {
    "seccion": "5. Ciberseguridad",
    "id": "S-11",
    "titulo": "npm audit (vulnerabilidades en paquetes de Node)",
-   "estado": "NO EJECUTADO",
-   "detalle": "Necesita npm y node_modules instalados (setup.bat).",
+   "estado": "ADVERTENCIA",
+   "detalle": "0 altas/críticas en producción; 5 solo en dependencias de desarrollo: @vitejs/plugin-react, fdir, picomatch, tinyglobby, vite. No hay versión corregida publicada todavía.",
    "evidencia": "npm audit"
   },
   {
@@ -582,7 +581,7 @@
    "id": "C-10",
    "titulo": "Commits organizados e incrementales",
    "estado": "OK",
-   "detalle": "22 commits en el repositorio.",
+   "detalle": "36 commits en el repositorio.",
    "evidencia": "git"
   },
   {

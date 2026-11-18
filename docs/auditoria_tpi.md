@@ -1,12 +1,12 @@
 # Auditoría automática — GastronomIA
 
-Generada el 17/11/2026 22:39 con `python auditoria/auditar.py` (Python 3.14.6, Windows). Este archivo se reescribe en cada corrida.
+Generada el 18/11/2026 01:36 con `python auditoria/auditar.py` (Python 3.14.6, Windows). Este archivo se reescribe en cada corrida.
 
 **Veredicto:** SIN FALLAS. Hay límites conocidos y advertencias declarados abajo (nada oculto).
 
 | ✔ OK | ◐ PARCIAL | ⚠ ADVERTENCIA | ○ NO IMPLEMENTADA | ✋ MANUAL | … NO EJECUTADO | ✘ FALLA |
 |---|---|---|---|---|---|---|
-| 61 | 6 | 1 | 1 | 3 | 2 | 0 |
+| 62 | 6 | 2 | 1 | 3 | 0 | 0 |
 
 
 ## 1. Diseño del sistema (PDF Sección 5) vs. código
@@ -46,7 +46,7 @@ Generada el 17/11/2026 22:39 con `python auditoria/auditar.py` (Python 3.14.6, W
 
 | ID | Verificación | Estado | Detalle |
 |---|---|---|---|
-| P-01 | Todas las pruebas automáticas | ✔ OK | 265 pruebas: 264 pasaron, 1 salteadas, 0 fallaron en 3.06 s. |
+| P-01 | Todas las pruebas automáticas | ✔ OK | 265 pruebas: 264 pasaron, 1 salteadas, 0 fallaron en 3.56 s. |
 | P-api_diseno | test_api_diseno.py | ✔ OK | 23 pasaron, 0 salteadas, 0 fallaron. |
 | P-base_unificada | test_base_unificada.py | ✔ OK | 24 pasaron, 0 salteadas, 0 fallaron. |
 | P-caja_blanca | test_caja_blanca.py | ✔ OK | 14 pasaron, 0 salteadas, 0 fallaron. |
@@ -86,9 +86,9 @@ Generada el 17/11/2026 22:39 con `python auditoria/auditar.py` (Python 3.14.6, W
 | S-06 | Clave de Gemini en backend/.env | ✔ OK | backend/.env no tiene clave (hay que pegar la clave nueva) o no existe. |
 | S-07 | Starlette sin las vulnerabilidades CVE-2026-48710 / 48818 | ✔ OK | requirements.txt pide starlette>=1.0.1 |
 | S-08 | Vite actualizado (CVE-2026-112945, corregida en 8.2.4) | ✔ OK | Vite 8.3.8 |
-| S-09 | package-lock.json coherente con package.json (npm ci reproducible) | ✔ OK | 13 dependencias directas, 165 paquetes en el lock. |
-| S-10 | pip-audit (vulnerabilidades en paquetes de Python) | … NO EJECUTADO | No está instalado. Correr: pip install pip-audit  (setup.bat lo hace). |
-| S-11 | npm audit (vulnerabilidades en paquetes de Node) | … NO EJECUTADO | Necesita npm y node_modules instalados (setup.bat). |
+| S-09 | package-lock.json coherente con package.json (npm ci reproducible) | ✔ OK | 13 dependencias directas, 185 paquetes en el lock. |
+| S-10 | pip-audit (vulnerabilidades en paquetes de Python) | ✔ OK | No known vulnerabilities found |
+| S-11 | npm audit (vulnerabilidades en paquetes de Node) | ⚠ ADVERTENCIA | 0 altas/críticas en producción; 5 solo en dependencias de desarrollo: @vitejs/plugin-react, fdir, picomatch, tinyglobby, vite. No hay versión corregida publicada todavía. |
 
 ## 6. Documentación vs. código real
 
@@ -114,6 +114,6 @@ Generada el 17/11/2026 22:39 con `python auditoria/auditar.py` (Python 3.14.6, W
 | C-07 | Capturas del tablero en 3 momentos distintos | ✋ MANUAL | No se puede verificar desde el código: subir las capturas de Trello. |
 | C-08 | README con instrucciones para ejecutar, incluida la configuración de la IA | ✔ OK | Pasos de instalación, variable GEMINI_API_KEY y cómo arrancar. |
 | C-09 | Al menos 4 funcionalidades implementadas y trazables a historias de usuario, una de ellas la IA operativa | ✔ OK | 15 historias implementadas (total o parcialmente); la de IA es HU-01. «Operativa con datos reales» se demuestra en vivo con Gemini. |
-| C-10 | Commits organizados e incrementales | ✔ OK | 22 commits en el repositorio. |
+| C-10 | Commits organizados e incrementales | ✔ OK | 36 commits en el repositorio. |
 | C-11 | Enlace al repositorio (GitHub/GitLab/Bitbucket) | ✋ MANUAL | No se puede verificar desde el código. |
 | C-12 | Exposición oral: demostración en vivo, metodología, herramientas de IA, todos participan | ✋ MANUAL | Se prepara con este reporte y la demostración (restart.bat). |
