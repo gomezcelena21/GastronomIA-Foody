@@ -3,7 +3,7 @@
 # Auditar:   pip install pip-audit  &&  pip-audit -r backend/requirements.txt
 
 fastapi>=0.115
-starlette>=1.0.1          # corrige CVE-2026-48710 (Host malformado). Para StaticFiles en Windows: >=1.1.0
+starlette>=1.10.0          # corrige CVE-2026-48710 (Host malformado). Para StaticFiles en Windows: >=1.1.0
 uvicorn>=0.54.0
 sqlalchemy>=2.1.8
 geoalchemy2>=0.15
