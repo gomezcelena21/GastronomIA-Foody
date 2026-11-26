@@ -158,3 +158,20 @@ body { background: #fff; color-scheme: light; }
   .lp-pie-in { justify-content: center; text-align: center; }
   .lp-raya { display: none; }
 }
+
+/* ---------- Celulares chicos (Android e iPhone) ---------- */
+@media (max-width: 600px) {
+  .lp-nav { margin: 10px 10px 0; top: 8px; padding: 8px 8px 6px 14px; gap: 8px; border-radius: 22px; }
+  .lp-logo { gap: 6px; min-width: 0; }
+  .lp-logo svg { width: 34px; height: 34px; }
+  .lp-marca { font-size: 20px; }
+  .lp-nav-cta { padding: 9px 14px; font-size: .85rem; }
+  .lp-links { scrollbar-width: none; gap: 2px; }
+  .lp-links::-webkit-scrollbar { display: none; }
+  .lp-links a { padding: 8px 12px; font-size: 14px; }
+  .lp-links a.lp-on::after { left: 12px; right: 12px; }
+}
+@media (max-width: 360px) {
+  .lp-marca { font-size: 18px; }
+  .lp-nav-cta { padding: 8px 11px; font-size: .8rem; }
+}
