@@ -19,7 +19,7 @@ from typing import List, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field, field_validator
-from sqlalchemy import func
+from sqlalchemy import func, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -130,13 +130,27 @@ def _texto(valor: str, maximo: int, campo: str) -> str:
     return limpio
 
 
+# Clave fija del bloqueo que serializa la creación de IDs del catálogo (cualquier número sirve, mientras sea único).
+_BLOQUEO_CATALOGO = 20261126
+
+
+def _bloquear_catalogo(db: Session) -> None:
+    """Toma un bloqueo de PostgreSQL que dura hasta el commit/rollback de esta transacción.
+    Sin él, dos aprobaciones al mismo tiempo calculaban el mismo MAX+1 y una fallaba por ID repetido."""
+    if db.get_bind().dialect.name == "postgresql":
+        db.execute(text("SELECT pg_advisory_xact_lock(:k)"), {"k": _BLOQUEO_CATALOGO})
+
+
 def _proximo_id(db: Session, columna) -> int:
-    return (db.query(func.max(columna)).scalar() or 0) + 1      # no depende de que la secuencia esté al día
+    # MAX+1 y no la secuencia: el ETL carga IDs explícitos y la secuencia puede quedar atrasada.
+    # Es seguro porque publicar_en_catalogo() toma antes _bloquear_catalogo().
+    return (db.query(func.max(columna)).scalar() or 0) + 1
 
 
 def publicar_en_catalogo(db: Session, c: Comercio) -> None:
     """Crea o actualiza la fila del comercio en `restaurants` (lo que consulta Foody)."""
     hoy = date.today()
+    _bloquear_catalogo(db)
     fuente = db.query(Source).filter(Source.name == FUENTE).first()
     if fuente is None:
         fuente = Source(source_id=_proximo_id(db, Source.source_id), name=FUENTE, source_type="registro_comercio",

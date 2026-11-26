@@ -40,6 +40,12 @@ class ApiSinBaseDeDatos(unittest.TestCase):
     def setUp(self):
         main._limitador_chat = diseno.LimitadorTasa(20, 60)
 
+    # --- parámetros de búsqueda que antes daban error 500
+    def test_busqueda_rechaza_limit_y_offset_invalidos(self):
+        for q in ("limit=0", "limit=-5", "offset=-1", "limit=101"):
+            with self.subTest(q=q):
+                self.assertEqual(self.c.get("/api/restaurants?" + q).status_code, 422)
+
     # --- login (sin sesión no hay chat)
     def test_chat_con_token_falso_es_401_y_el_historial_exige_cuenta(self):
         r = self.c.post("/api/chat", json={"message": "hola", "session_id": "ok"}, headers={"Authorization": "Bearer falso.token"})

@@ -45,6 +45,12 @@ class Despliegue(unittest.TestCase):
         self.assertIn("subnet: 172.28.0.0/16", compose)
         self.assertNotIn('FORWARDED_ALLOW_IPS: "*"', compose)
 
+    def test_el_entrypoint_no_confia_en_cualquier_proxy_por_defecto(self):
+        """Con '*' cualquiera inventa su IP en X-Forwarded-For y se saltea el cupo de invitados."""
+        entrada = leer("deploy/entrypoint.sh")
+        self.assertNotIn("FORWARDED_ALLOW_IPS:-*", entrada)
+        self.assertIn("10.0.0.0/8", entrada)
+
     def test_carga_a_la_nube_pide_confirmacion_y_protege_los_datos(self):
         s = leer("scripts/cargar_base_nube.py")
         self.assertIn("Escribí SI", s)

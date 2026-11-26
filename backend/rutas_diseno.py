@@ -11,9 +11,8 @@ GastronomIA - Endpoints del diseño (Sección 5, tabla "Endpoints del backend").
   GET  /api/conversaciones/{id}/mensajes  -> acá       (HU-06, 16)
   POST /api/resenas                       -> acá       (HU-13)
 
-OJO: el diseño no incluye autenticación. Con este backend escuchando solo en
-127.0.0.1 alcanza; si algún día se publica, hay que agregar login antes de
-exponer /api/usuarios (devuelve el email).
+Autenticación: todo lo que toca datos de una persona exige el token de sesión
+(seguridad.usuario_actual) y cada cuenta solo ve y modifica lo suyo (_propio).
 """
 
 import json

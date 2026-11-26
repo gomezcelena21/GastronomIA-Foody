@@ -229,8 +229,9 @@ def search_restaurants(
     vegetarian: Optional[bool] = None,
     vegan: Optional[bool] = None,
     search: Optional[str] = None,
-    limit: int = Query(default=20, le=100),
-    offset: int = 0,
+    # ge=1 evita la división por cero de `offset // limit`; offset negativo rompía la consulta (500)
+    limit: int = Query(default=20, ge=1, le=100),
+    offset: int = Query(default=0, ge=0, le=100000),
     db: Session = Depends(get_db)
 ):
     """Search restaurants with various filters."""
@@ -278,6 +279,8 @@ def search_restaurants(
     # Geospatial filter using PostGIS: primero descarta por radio (índice GiST)
     # y recién después ordena por cercanía con el operador KNN (<->).
     if lat is not None and lon is not None:
+        # Mismo tope que /api/restaurants/nearby: un radio enorme recorría toda la tabla.
+        radius_km = max(0.0, min(float(radius_km), 20.0))
         punto = func.ST_SetSRID(func.ST_MakePoint(lon, lat), 4326)
         radio_deg = max(0.0, radius_km) / (111.32 * max(0.2, math.cos(math.radians(lat)))) * 1.1
         query = query.filter(
