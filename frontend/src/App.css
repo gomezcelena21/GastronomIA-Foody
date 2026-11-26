@@ -152,3 +152,58 @@ header img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:
 button.btn{background:#fff;cursor:pointer;font-family:inherit}
 
 .gwrap{min-height:44px;display:flex;justify-content:center}
+
+/* ---------- Celulares (Android e iPhone) ---------- */
+/* La columna principal nunca puede ser más ancha que la pantalla. */
+.shell{grid-template-columns:minmax(0,1fr)}
+@media(min-width:901px){.shell{grid-template-columns:230px minmax(0,1fr)}}
+@media(max-width:900px){aside{min-width:0}}
+@media(max-width:640px){
+  /* Las pestañas pasan a una barra fija abajo, como en las apps. */
+  .shell{grid-template-rows:minmax(0,1fr) auto}
+  aside{order:2;position:static;flex-direction:row;justify-content:space-around;gap:0;overflow:hidden;
+    padding:6px 4px calc(6px + env(safe-area-inset-bottom));border-top:1px solid var(--linea);border-bottom:0;
+    box-shadow:0 -4px 20px rgba(26,34,56,.06)}
+  aside .logo{display:none}
+  aside button{flex:1 1 0;min-width:0;flex-direction:column;gap:2px;padding:6px 2px;border-radius:12px;
+    font-size:10.5px;line-height:1.15;text-align:center;justify-content:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  aside button span{width:auto;font-size:19px;line-height:1}
+  main{order:1;padding:10px 12px 12px}
+  header{gap:10px;margin-bottom:10px}
+  header input{height:42px;padding:0 16px;min-width:0}
+  header img{width:40px;height:40px}
+  /* 16px evita que el iPhone haga zoom al tocar un campo. */
+  header input,.inp input,.filters input,.filters select,.panel select,.hero.prof input,.chatsel{font-size:16px}
+  .hero{gap:12px;padding:12px 14px;border-radius:18px}
+  .hero img{width:60px;height:60px}
+  .hero h2{font-size:19px}
+  .hero p{font-size:14px}
+  .hero.prof{flex-wrap:wrap}
+  .hero.prof > div{min-width:0;flex:1 1 160px;overflow-wrap:anywhere}
+  .edit{padding:8px 14px}
+  .chat{border-radius:18px}
+  .msgs{padding:14px 12px;gap:12px}
+  .av{width:34px;height:34px}
+  .row{gap:8px}
+  .bub{padding:9px 13px;font-size:15px;overflow-wrap:anywhere}
+  .sug{margin-left:0}
+  .strip .card{flex:0 0 min(240px,78vw)}
+  .card{min-width:0}
+  .inp{padding:10px;gap:8px}
+  .inp input{min-width:0;height:44px}
+  .send{flex:none;height:44px}
+  .chatbar{padding:8px 10px}
+  .filters{gap:8px}
+  .filters select,.filters input{flex:1 1 140px;min-width:0}
+  .pills{gap:8px;margin:6px 0 12px}
+  .pills button{padding:8px 12px;font-size:13px}
+  .sep{display:none}
+  .split{gap:12px}
+  .list{min-height:0}
+  .map{height:300px;min-height:0}
+  .th{width:64px;height:64px;font-size:30px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .panel{padding:16px;border-radius:18px}
+  .modal{padding:10px;align-items:flex-end}
+  .ficha{max-height:88dvh;border-radius:22px;padding:18px}
+}
