@@ -156,52 +156,103 @@ function Hero({ t, s }: { t: string; s: string }) {
   return <div className="hero"><img src={bot} alt="" /><div><h2>{t}</h2><p>{s}</p></div></div>
 }
 
+interface ChatResumen { chat_id: string; titulo: string; fecha?: string | null; mensajes?: number }
+
 function Chat({ cp, prof, on }: { cp: CP; prof: Prof; on: boolean }) {
   const first: Msg = { role: 'bot', text: '¡Hola! Soy **Foody**, tu asistente gastronómico. Puedo ayudarte a encontrar lugares en toda la Argentina, con opciones sin TACC, vegetarianas o veganas.' }
+  const cuenta = !!getToken()
+  const uid = getUser()?.id_usuario
+  // Cada cuenta recuerda en qué conversación estaba; el invitado empieza una nueva en cada pestaña.
+  const claveChat = `foody_chat_${uid ?? 0}`
   const [msgs, setMsgs] = useState<Msg[]>([first])
   const [txt, setTxt] = useState(consultaInicial)
   useEffect(() => { try { sessionStorage.removeItem('foody_q') } catch { /* sin storage */ } }, [])
   const [busy, setBusy] = useState(false)
-  const sid = useRef('session_' + Date.now())
+  const [chats, setChats] = useState<ChatResumen[]>([])
+  const [chatId, setChatId] = useState<string>(() => {
+    if (!cuenta) return 'session_' + Date.now()
+    try { return localStorage.getItem(claveChat) || 'principal' } catch { return 'principal' }
+  })
+  // Descarta la respuesta de un historial que ya no es el que se está mirando.
+  const pedido = useRef(0)
   const bandeja = useRef<HTMLDivElement>(null)
   // Solo se desplaza la lista de mensajes, nunca la página completa.
   useEffect(() => {
     const caja = bandeja.current
     if (caja) caja.scrollTo({ top: caja.scrollHeight, behavior: 'smooth' })
   }, [msgs, busy])
-  // Al entrar, se retoma la conversación guardada en el servidor para esta cuenta de Google.
+  const recordar = (id: string) => { if (cuenta) { try { localStorage.setItem(claveChat, id) } catch { /* sin storage */ } } }
+  const cargarChats = () => {
+    if (!cuenta) return
+    fetch(`${API}/api/chat/conversaciones`, { headers: authHeaders() })
+      .then(r => { if (r.status === 401) { cerrarSesion(); window.location.reload() } return r.ok ? r.json() : { conversaciones: [] } })
+      .then(d => setChats(d.conversaciones || []))
+      .catch(() => { /* sin servidor */ })
+  }
+  // Abre una conversación: si es de la cuenta, trae sus mensajes del servidor.
+  const abrir = async (id: string) => {
+    const mio = ++pedido.current
+    setChatId(id); recordar(id); setMsgs([first])
+    if (!cuenta) return
+    try {
+      const r = await fetch(`${API}/api/chat/historial?chat_id=${encodeURIComponent(id)}`, { headers: authHeaders() })
+      if (r.status === 401) { cerrarSesion(); window.location.reload(); return }
+      if (!r.ok) return
+      const d = await r.json()
+      if (mio !== pedido.current) return
+      if (d.mensajes?.length) setMsgs([first, ...d.mensajes.map((m: { rol: string; contenido: string }) => ({ role: m.rol === 'usuario' ? 'user' : 'bot', text: m.contenido }) as Msg)])
+    } catch { /* sin servidor */ }
+  }
+  // Al entrar, se retoma la última conversación de la cuenta (o la que se estaba mirando).
   useEffect(() => {
-    if (!getToken()) return          // el invitado no tiene historial guardado
+    if (!cuenta) return          // el invitado no tiene historial guardado
     let vivo = true
-    fetch(`${API}/api/chat/historial`, { headers: authHeaders() })
-      .then(r => { if (r.status === 401) { cerrarSesion(); window.location.reload() } return r.ok ? r.json() : { mensajes: [] } })
+    fetch(`${API}/api/chat/conversaciones`, { headers: authHeaders() })
+      .then(r => { if (r.status === 401) { cerrarSesion(); window.location.reload() } return r.ok ? r.json() : { conversaciones: [] } })
       .then(d => {
-        if (vivo && d.mensajes?.length) setMsgs([first, ...d.mensajes.map((m: { rol: string; contenido: string }) => ({ role: m.rol === 'usuario' ? 'user' : 'bot', text: m.contenido }) as Msg)])
+        if (!vivo) return
+        const lista: ChatResumen[] = d.conversaciones || []
+        setChats(lista)
+        const elegido = lista.some(c => c.chat_id === chatId) ? chatId : (lista[0]?.chat_id || 'principal')
+        abrir(elegido)
       })
       .catch(() => { /* sin servidor */ })
     return () => { vivo = false }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  function nuevoChat() {
+    const id = (cuenta ? 'chat_' : 'session_') + Date.now()
+    pedido.current++            // ignora cualquier historial que estuviera cargando
+    setChatId(id); recordar(id); setMsgs([first]); setBusy(false)
+  }
   async function send(t: string) {
     const m = t.trim()
     if (!m || busy) return
     setTxt(''); setBusy(true); setMsgs(x => [...x, { role: 'user', text: m }])
     const f = [prof.tacc && 'Requiere opciones sin TACC (celiaquía)', prof.veg && 'Busca opciones vegetarianas', prof.vegan && 'Busca opciones veganas'].filter(Boolean)
     try {
-      const r = await fetch(`${API}/api/chat`, { method: 'POST', headers: authHeaders(), body: JSON.stringify({ message: f.length ? `${m}\n\n[Filtros activos: ${f.join(', ')}]` : m, session_id: sid.current }) })
+      const r = await fetch(`${API}/api/chat`, { method: 'POST', headers: authHeaders(), body: JSON.stringify({ message: f.length ? `${m}\n\n[Filtros activos: ${f.join(', ')}]` : m, session_id: chatId, chat_id: cuenta ? chatId : '' }) })
       if (r.status === 401) { cerrarSesion(); window.location.reload(); return }
       const d = await r.json()
       const aviso = r.status === 429 ? (d.detail || 'Estás escribiendo muy rápido. Esperá un minuto y probá de nuevo.') : 'No pude procesar tu mensaje. Probá de nuevo.'
       setMsgs(x => [...x, { role: 'bot', text: r.ok ? d.response : aviso, places: r.ok ? (d.restaurants || []).map(norm) : [] }])
+      if (r.ok) cargarChats()     // el primer mensaje pasa a ser el título de la conversación
     } catch {
       setMsgs(x => [...x, { role: 'bot', text: 'Disculpá, no pude conectar con el servidor. Verificá que el backend esté corriendo.' }])
     } finally { setBusy(false) }
   }
-  async function reset() {
-    try { await fetch(`${API}/api/chat/reset`, { method: 'POST', headers: authHeaders(), body: JSON.stringify({ session_id: sid.current }) }) } catch { /* sin servidor */ }
-    setMsgs([first])
-  }
   return (
     <section className={'chat' + (on ? '' : ' off')}>
+      <div className="chatbar">
+        <button className="nuevo" onClick={nuevoChat} title="Empezar una conversación nueva">＋ Nuevo chat</button>
+        {cuenta && chats.length > 0 && (
+          <select className="chatsel" value={chatId} onChange={e => abrir(e.target.value)}
+            aria-label="Conversaciones anteriores" title="Conversaciones anteriores">
+            {!chats.some(c => c.chat_id === chatId) && <option value={chatId}>Chat nuevo</option>}
+            {chats.map(c => <option key={c.chat_id} value={c.chat_id}>{c.titulo}</option>)}
+          </select>
+        )}
+      </div>
       <div className="msgs" ref={bandeja}>
         {msgs.map((m, i) => (
           <div key={i} className={'row ' + m.role}>
@@ -218,7 +269,6 @@ function Chat({ cp, prof, on }: { cp: CP; prof: Prof; on: boolean }) {
       <div className="inp">
         <input value={txt} placeholder="Escribí tu mensaje…" onChange={e => setTxt(e.target.value)} onKeyDown={e => e.key === 'Enter' && send(txt)} />
         <button className="send" onClick={() => send(txt)} disabled={busy}>➤</button>
-        <button className="rst" title="Nueva conversación" onClick={reset}>↺</button>
       </div>
     </section>
   )

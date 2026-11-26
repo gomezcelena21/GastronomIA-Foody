@@ -16,7 +16,7 @@ Al **aprobarse**, el comercio se publica en el catálogo `restaurants` (fuente �
 1. El navegador muestra el botón oficial de Google y obtiene un token de identidad.
 2. `POST /api/auth/google`: el backend (`sesion.py`) lo valida con la librería oficial (firma, vigencia, que sea para **este** `GOOGLE_CLIENT_ID` y correo verificado).
 3. Devuelve un token de sesión propio, firmado con `SESSION_SECRET`, que vence a las 12 horas.
-4. El usuario es la cuenta de Google: se crea en el primer ingreso y después se reutiliza. La conversación queda guardada en la base asociada a esa cuenta, y al volver a ingresar se retoma con `/api/chat/historial`.
+4. El usuario es la cuenta de Google: se crea en el primer ingreso y después se reutiliza. Cada conversación queda guardada en la base asociada a esa cuenta; con «Nuevo chat» se empieza otra y la lista permite volver a cualquiera de ellas (`/api/chat/conversaciones` y `/api/chat/historial?chat_id=…`).
 
 **No se guardan contraseñas.** La identidad sale siempre del token firmado, nunca de lo que mande el navegador.
 
@@ -54,4 +54,5 @@ Guía completa y comparación de opciones: **`deploy/README.md`**.
 - Menú del comercio y su límite en el plan gratuito: sin definir.
 - Reseñas con moderación y reporte de información incorrecta.
 - El historial restaura el texto de la conversación, no las tarjetas de los lugares.
+- Las conversaciones no se pueden borrar desde la interfaz: «Nuevo chat» abre una nueva y las anteriores quedan disponibles en la lista. El contexto de Gemini de cada hilo se descarta a los 30 días sin actividad.
 - Los cupos diarios y las sesiones se guardan en PostgreSQL (`cuotas_diarias` y `sesiones_gemini`). Si la base falla, el backend vuelve al contador en memoria; el chat sigue funcionando.

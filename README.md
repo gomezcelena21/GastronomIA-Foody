@@ -76,7 +76,7 @@ Doble clic en **`AUDITORIA.bat`** (o `python auditoria/auditar.py`): comprueba q
 
 ## Seguridad
 Hallazgos, correcciones y pendientes: `docs/seguridad_ciberseguridad.md`. En resumen: SQL parametrizado, validación de parámetros de la IA, rate limit en el chat, descargas confinadas a `analytics/`, CORS acotado, errores sin detalles internos, sin contraseñas en el código y `.env` fuera de Git. Además: el backend no se publica directo a internet, y los textos que cargan los comercios se tratan como datos (no como órdenes para la IA).
-**Uso sin registro y login opcional con Google** (`sesion.py`, `seguridad.py`, `docs/despliegue_y_login.md`): el usuario gratuito puede usar Foody sin registrarse (cupo diario menor, sin historial); con Google el cupo es mayor y se guarda el historial, sin contraseñas guardadas y con sesión firmada que vence a las 12 horas. El chat solo habla de gastronomía y bloquea datos personales. Revisión completa en `docs/revision_seguridad.md`.
+**Uso sin registro y login opcional con Google** (`sesion.py`, `seguridad.py`, `docs/despliegue_y_login.md`): el usuario gratuito puede usar Foody sin registrarse (cupo diario menor, sin historial); con Google el cupo es mayor y se guarda el historial, sin contraseñas guardadas y con sesión firmada que vence a las 12 horas. Con cuenta se pueden tener **varias conversaciones** («Nuevo chat»): cada una conserva su propio contexto y se puede volver a abrir desde la lista, siempre dentro de la misma cuenta. El chat solo habla de gastronomía y bloquea datos personales. Revisión completa en `docs/revision_seguridad.md`.
 
 ## Estructura
 ```

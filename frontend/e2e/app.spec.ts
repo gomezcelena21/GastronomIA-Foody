@@ -19,6 +19,21 @@ async function entrarComoInvitado(page: Page) {
   await expect(page.locator('.shell')).toBeVisible()
 }
 
+// Token de prueba con la misma forma que el real: el primer tramo es un JSON en base64 con el vencimiento (exp).
+const tokenPrueba = (segundos: number) =>
+  Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + segundos })).toString('base64url') + '.firma'
+
+// Siembra una cuenta ya autenticada. Se siembra una sola vez: addInitScript corre en
+// cada navegación y, si no, volvería a guardar el token justo después de cerrar sesión.
+const guardarSesion = async (page: Page, segundos: number) => {
+  await page.addInitScript(([t, u]) => {
+    if (sessionStorage.getItem('e2e_sesion_sembrada')) return
+    sessionStorage.setItem('e2e_sesion_sembrada', '1')
+    localStorage.setItem('foody_token', t)
+    localStorage.setItem('foody_user', u)
+  }, [tokenPrueba(segundos), JSON.stringify({ id_usuario: 42, nombre: 'Ana', email: 'ana@example.com', comercio: false, admin: false })])
+}
+
 test.describe('Acceso y chat', () => {
   test('el login muestra Google y el acceso sin registro', async ({ page }) => {
     await apiBasica(page)
@@ -131,20 +146,6 @@ test.describe('Comercios', () => {
 })
 
 test.describe('Sesión recordada', () => {
-  // Token de prueba con la misma forma que el real: el primer tramo es un JSON en base64 con el vencimiento (exp).
-  const token = (segundos: number) =>
-    Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + segundos })).toString('base64url') + '.firma'
-  const guardarSesion = async (page: Page, segundos: number) => {
-    // Se siembra una sola vez: addInitScript corre en cada navegación y, si no,
-    // volvería a guardar el token justo después de cerrar sesión.
-    await page.addInitScript(([t, u]) => {
-      if (sessionStorage.getItem('e2e_sesion_sembrada')) return
-      sessionStorage.setItem('e2e_sesion_sembrada', '1')
-      localStorage.setItem('foody_token', t)
-      localStorage.setItem('foody_user', u)
-    }, [token(segundos), JSON.stringify({ id_usuario: 42, nombre: 'Ana', email: 'ana@example.com', comercio: false, admin: false })])
-  }
-
   test('quien ya inició sesión entra directo al chat, sin login ni elegir usuario o comercio', async ({ page }) => {
     await apiBasica(page)
     await page.route('**/api/auth/me', route => route.fulfill({ json: { email: 'ana@example.com', nombre: 'Ana', consultas_restantes: 10 } }))
@@ -178,5 +179,41 @@ test.describe('Sesión recordada', () => {
     await page.getByRole('button', { name: 'Cerrar sesión' }).click()
     await page.waitForURL('**/')
     expect(await page.evaluate(() => localStorage.getItem('foody_token'))).toBeNull()
+  })
+})
+
+test.describe('Conversaciones', () => {
+  test('se puede empezar un chat nuevo y volver a una conversación anterior', async ({ page }) => {
+    await apiBasica(page)
+    await page.route('**/api/auth/me', route => route.fulfill({ json: { email: 'ana@example.com', nombre: 'Ana', consultas_restantes: 10 } }))
+    await page.route('**/api/chat/conversaciones', route => route.fulfill({
+      json: {
+        conversaciones: [
+          { chat_id: 'principal', titulo: 'Parrillas en Recoleta', mensajes: 2 },
+          { chat_id: 'chat_1', titulo: 'Opciones sin TACC', mensajes: 2 },
+        ],
+      },
+    }))
+    await page.route('**/api/chat/historial**', route => {
+      const id = new URL(route.request().url()).searchParams.get('chat_id')
+      const mensajes = id === 'chat_1'
+        ? [{ rol: 'usuario', contenido: '¿Opciones sin TACC?' }, { rol: 'asistente', contenido: 'Sí, en Palermo hay varias.' }]
+        : [{ rol: 'usuario', contenido: 'Parrillas en Recoleta' }, { rol: 'asistente', contenido: 'Te recomiendo La Cabrera.' }]
+      route.fulfill({ json: { mensajes, chat_id: id, titulo: '' } })
+    })
+
+    await guardarSesion(page, 3600)
+    await page.goto('/chat')
+
+    // Al entrar se retoma la conversación más reciente y la lista permite abrir otra anterior.
+    await expect(page.getByText('Te recomiendo La Cabrera.')).toBeVisible({ timeout: 20_000 })
+    await page.getByLabel('Conversaciones anteriores').selectOption('chat_1')
+    await expect(page.getByText('Sí, en Palermo hay varias.')).toBeVisible()
+    await expect(page.getByText('Te recomiendo La Cabrera.')).toHaveCount(0)
+
+    // «Nuevo chat» deja el hilo limpio, con el saludo y las sugerencias.
+    await page.getByRole('button', { name: /Nuevo chat/ }).click()
+    await expect(page.getByText('Sí, en Palermo hay varias.')).toHaveCount(0)
+    await expect(page.getByRole('button', { name: 'Restaurantes en Palermo' })).toBeVisible()
   })
 })

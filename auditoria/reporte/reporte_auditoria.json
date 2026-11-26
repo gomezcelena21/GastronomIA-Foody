@@ -1,10 +1,10 @@
 {
- "fecha": "18/11/2026 01:36",
+ "fecha": "26/11/2026 18:25",
  "resumen": {
-  "OK": 62,
+  "OK": 64,
   "PARCIAL": 6,
   "NO IMPLEMENTADA": 1,
-  "ADVERTENCIA": 2,
+  "ADVERTENCIA": 1,
   "MANUAL": 3
  },
  "checks": [
@@ -197,7 +197,7 @@
    "id": "P-01",
    "titulo": "Todas las pruebas automáticas",
    "estado": "OK",
-   "detalle": "265 pruebas: 264 pasaron, 1 salteadas, 0 fallaron en 3.56 s.",
+   "detalle": "271 pruebas: 270 pasaron, 1 salteadas, 0 fallaron en 4.35 s.",
    "evidencia": "tests/test_*.py"
   },
   {
@@ -239,6 +239,14 @@
    "estado": "OK",
    "detalle": "24 pasaron, 0 salteadas, 0 fallaron.",
    "evidencia": "tests/test_casos_uso_ia.py"
+  },
+  {
+   "seccion": "3. Pruebas automatizadas",
+   "id": "P-chat_conversac",
+   "titulo": "test_chat_conversaciones.py",
+   "estado": "OK",
+   "detalle": "6 pasaron, 0 salteadas, 0 fallaron.",
+   "evidencia": "tests/test_chat_conversaciones.py"
   },
   {
    "seccion": "3. Pruebas automatizadas",
@@ -421,7 +429,7 @@
    "id": "S-07",
    "titulo": "Starlette sin las vulnerabilidades CVE-2026-48710 / 48818",
    "estado": "OK",
-   "detalle": "requirements.txt pide starlette>=1.0.1",
+   "detalle": "requirements.txt pide starlette>=1.10.0",
    "evidencia": "backend/requirements.txt"
   },
   {
@@ -452,8 +460,8 @@
    "seccion": "5. Ciberseguridad",
    "id": "S-11",
    "titulo": "npm audit (vulnerabilidades en paquetes de Node)",
-   "estado": "ADVERTENCIA",
-   "detalle": "0 altas/críticas en producción; 5 solo en dependencias de desarrollo: @vitejs/plugin-react, fdir, picomatch, tinyglobby, vite. No hay versión corregida publicada todavía.",
+   "estado": "OK",
+   "detalle": "Sin vulnerabilidades conocidas (producción y desarrollo).",
    "evidencia": "npm audit"
   },
   {
@@ -581,7 +589,7 @@
    "id": "C-10",
    "titulo": "Commits organizados e incrementales",
    "estado": "OK",
-   "detalle": "36 commits en el repositorio.",
+   "detalle": "45 commits en el repositorio.",
    "evidencia": "git"
   },
   {

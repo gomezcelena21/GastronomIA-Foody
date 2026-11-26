@@ -123,8 +123,11 @@ header img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:
 .inp input:focus{outline:0;border-color:var(--g-azul);box-shadow:0 8px 22px rgba(66,133,244,.12)}
 .send{width:44px;border:0;border-radius:50%;color:#fff;background:var(--g-azul);box-shadow:0 8px 18px rgba(66,133,244,.32)}
 .send:disabled{opacity:.6;box-shadow:none}
-.rst{width:44px;border:1px solid var(--linea);border-radius:50%;background:#fff;color:var(--suave)}
-.rst:hover{background:#f4f7fe}
+/* Barra de conversaciones: empezar un chat nuevo o volver a uno anterior. */
+.chatbar{display:flex;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--linea);background:#fff}
+.nuevo{height:38px;padding:0 16px;border:1px solid var(--linea);border-radius:999px;background:#fff;color:var(--tinta);font-weight:600;white-space:nowrap}
+.nuevo:hover{background:#f4f7fe}
+.chatsel{flex:1;min-width:0;height:38px;border:1px solid var(--linea);border-radius:999px;padding:0 12px;background:#fff;color:var(--tinta)}
 
 /* perfil */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}

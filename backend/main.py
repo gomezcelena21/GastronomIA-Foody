@@ -546,17 +546,52 @@ def get_chat_service(db: Session) -> ChatService:
 class ChatMessage(BaseModel):
     message: str = Field(min_length=1, max_length=1500)
     session_id: str = "default"
+    # Con cuenta: qué conversación se está usando. Vacío = la de siempre ("principal").
+    chat_id: str = ""
     id_usuario: Optional[int] = None
 
 
 class ChatSessionReset(BaseModel):
     session_id: str = "default"
+    chat_id: str = ""
+
+
+# Una cuenta puede tener varias conversaciones (pestaña "Chat nuevo").
+# El chat_id lo elige el navegador, pero SIEMPRE se le antepone el uid del token:
+# así nadie puede pedir la conversación de otra persona cambiando un número.
+MAX_CHAT_ID = 40
 
 
 def _sesion_o_422(session_id: str) -> str:
     if not diseno.sesion_valida(session_id):
         raise HTTPException(status_code=422, detail="session_id inválido.")
     return session_id
+
+
+def _chat_id_valido(chat_id: str) -> bool:
+    return diseno.sesion_valida(chat_id) and len(chat_id) <= MAX_CHAT_ID
+
+
+def _clave_chat(uid: int, chat_id: str) -> str:
+    """session_key de una conversación: una por chat, todas de la misma cuenta.
+
+    "principal" es la conversación histórica (antes había una sola por cuenta y
+    se guardaba como "u<uid>"); se mantiene para no perder el historial ya guardado.
+    """
+    chat_id = chat_id or "principal"
+    return "u%d" % uid if chat_id == "principal" else "u%d_%s" % (uid, chat_id)
+
+
+def _chat_id_de(uid: int, session_key: str) -> Optional[str]:
+    """Vuelve de session_key a chat_id, o None si la clave no es de esta cuenta."""
+    base = "u%d" % uid
+    clave = session_key or ""
+    if clave == base:
+        return "principal"
+    if clave.startswith(base + "_"):
+        resto = clave[len(base) + 1:]
+        return resto if _chat_id_valido(resto) else None
+    return None
 
 
 class GoogleLogin(BaseModel):
@@ -599,11 +634,15 @@ def quien_soy(usuario: dict = Depends(usuario_actual)):
             "consultas_restantes": _contador_diario.restantes(usuario["sub"])}
 
 
-def _identidad_chat(request: Request, session_id: str, usuario: Optional[dict]):
-    """(sid, uid, clave de cupo). Con cuenta: una conversación continua por cuenta de Google.
-    Invitado: sesión atada a su IP, sin historial guardado a su nombre."""
+def _identidad_chat(request: Request, session_id: str, usuario: Optional[dict],
+                    chat_id: str = "") -> tuple:
+    """(sid, uid, clave de cupo). Con cuenta: cada conversación tiene su propio
+    historial y todas quedan atadas a la cuenta de Google. Invitado: sesión atada
+    a su IP, sin historial guardado a su nombre."""
     if usuario:
-        return "u%d" % usuario["uid"], usuario["uid"], usuario["sub"]
+        if chat_id and not _chat_id_valido(chat_id):
+            raise HTTPException(status_code=422, detail="chat_id inválido.")
+        return _clave_chat(usuario["uid"], chat_id), usuario["uid"], usuario["sub"]
     ip = request.client.host if request.client else "desconocida"
     sid = "a" + hashlib.sha256(("%s|%s" % (ip, session_id)).encode()).hexdigest()[:24]
     return sid, None, "ip:" + ip
@@ -615,7 +654,7 @@ def chat_endpoint(request: Request, payload: ChatMessage, db: Session = Depends(
     """Flujo de 8 etapas del diseño (ver orquestador.py). Se puede usar sin registrarse (con tope diario menor);
     con cuenta de Google se conserva el historial y el tope es mayor."""
     _sesion_o_422(payload.session_id)           # se valida el formato; la sesión real la fija el servidor
-    sid, uid, clave = _identidad_chat(request, payload.session_id, usuario)
+    sid, uid, clave = _identidad_chat(request, payload.session_id, usuario, payload.chat_id)
     if diseno.detectar_datos_personales(payload.message):
         return {"response": diseno.MENSAJE_DATOS_PERSONALES, "session_id": sid, "restaurants": [],
                 "id_conversacion": None, "validada": True}
@@ -633,19 +672,66 @@ def chat_endpoint(request: Request, payload: ChatMessage, db: Session = Depends(
     return OrquestadorBackend(db, service).procesar_consulta(payload.message, sid, uid)
 
 
-@app.get("/api/chat/historial", dependencies=[Depends(limitar_chat)])
-def chat_historial(limit: int = Query(default=60, ge=1, le=200), db: Session = Depends(get_db),
-                   usuario: dict = Depends(usuario_actual)):
-    """Mensajes de la conversación activa de ESTA cuenta (para retomar el chat después de volver a ingresar)."""
+def _titulo_conversacion(db: Session, id_conversacion: int) -> str:
+    """Primer mensaje de la persona, que es el mejor título para la lista de chats."""
+    primero = (db.query(Mensaje)
+               .filter(Mensaje.id_conversacion == id_conversacion, Mensaje.rol == "usuario")
+               .order_by(Mensaje.id_mensaje).first())
+    texto = (primero.contenido if primero else "").strip().replace("\n", " ")
+    return texto[:60] or "Chat sin título"
+
+
+@app.get("/api/chat/conversaciones", dependencies=[Depends(limitar_chat)])
+def chat_conversaciones(db: Session = Depends(get_db), usuario: dict = Depends(usuario_actual)):
+    """Conversaciones de ESTA cuenta, de la más reciente a la más vieja (para el historial del chat)."""
     try:
-        conv = (db.query(Conversacion)
-                .filter(Conversacion.session_key == "u%d" % usuario["uid"], Conversacion.activa.is_(True))
-                .order_by(Conversacion.id_conversacion.desc()).first())
+        filas = (db.query(Conversacion)
+                 .filter(Conversacion.id_usuario == usuario["uid"])
+                 .order_by(Conversacion.fecha_ultima_actividad.desc())
+                 .limit(120).all())
+        vistas, salida = set(), []
+        for conv in filas:
+            chat_id = _chat_id_de(usuario["uid"], conv.session_key)
+            if not chat_id or chat_id in vistas:
+                continue
+            vistas.add(chat_id)
+            salida.append({
+                "chat_id": chat_id,
+                "titulo": _titulo_conversacion(db, conv.id_conversacion),
+                "fecha": conv.fecha_ultima_actividad.isoformat() if conv.fecha_ultima_actividad else None,
+                "mensajes": int(db.query(func.count(Mensaje.id_mensaje))
+                                .filter(Mensaje.id_conversacion == conv.id_conversacion).scalar() or 0),
+                "activa": bool(conv.activa),
+            })
+            if len(salida) >= 30:
+                break
+        return {"conversaciones": salida}
+    except SQLAlchemyError:
+        db.rollback()
+        log.exception("No se pudieron listar las conversaciones")
+        raise HTTPException(status_code=503, detail="No pudimos cargar tus conversaciones ahora.")
+
+
+@app.get("/api/chat/historial", dependencies=[Depends(limitar_chat)])
+def chat_historial(chat_id: str = Query(default=""), limit: int = Query(default=60, ge=1, le=200),
+                   db: Session = Depends(get_db), usuario: dict = Depends(usuario_actual)):
+    """Mensajes de una conversación de ESTA cuenta (sin chat_id, la más reciente)."""
+    if chat_id and not _chat_id_valido(chat_id):
+        raise HTTPException(status_code=422, detail="chat_id inválido.")
+    sid = _clave_chat(usuario["uid"], chat_id) if chat_id else None
+    try:
+        consulta = (db.query(Conversacion)
+                    .filter(Conversacion.id_usuario == usuario["uid"], Conversacion.activa.is_(True)))
+        if sid:
+            consulta = consulta.filter(Conversacion.session_key == sid)
+        conv = consulta.order_by(Conversacion.id_conversacion.desc()).first()
         if conv is None:
-            return {"mensajes": []}
+            return {"mensajes": [], "chat_id": chat_id or "principal", "titulo": ""}
         filas = (db.query(Mensaje).filter(Mensaje.id_conversacion == conv.id_conversacion)
                  .order_by(Mensaje.id_mensaje.desc()).limit(limit).all())
-        return {"mensajes": [{"rol": m.rol, "contenido": m.contenido} for m in reversed(filas)]}
+        return {"mensajes": [{"rol": m.rol, "contenido": m.contenido} for m in reversed(filas)],
+                "chat_id": _chat_id_de(usuario["uid"], conv.session_key) or "principal",
+                "titulo": _titulo_conversacion(db, conv.id_conversacion)}
     except SQLAlchemyError:
         db.rollback()
         log.exception("No se pudo leer el historial")
@@ -655,9 +741,12 @@ def chat_historial(limit: int = Query(default=60, ge=1, le=200), db: Session = D
 @app.post("/api/chat/reset", dependencies=[Depends(limitar_chat)])
 def chat_reset(request: Request, payload: ChatSessionReset, db: Session = Depends(get_db),
                usuario: Optional[dict] = Depends(usuario_opcional)):
-    """Reset a chat session."""
+    """Cierra una conversación: sus mensajes quedan guardados, pero el próximo
+    mensaje empieza un hilo nuevo (sin el contexto anterior)."""
     _sesion_o_422(payload.session_id)
-    sid, _, _ = _identidad_chat(request, payload.session_id, usuario)
+    if payload.chat_id and not _chat_id_valido(payload.chat_id):
+        raise HTTPException(status_code=422, detail="chat_id inválido.")
+    sid, _, _ = _identidad_chat(request, payload.session_id, usuario, payload.chat_id)
     service = get_chat_service(db)
     service.reset_session(sid)
     OrquestadorBackend(db, service).cerrar_conversacion(sid)

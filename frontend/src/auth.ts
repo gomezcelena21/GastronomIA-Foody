@@ -28,6 +28,11 @@ export const cerrarSesion = () => {
     // también se borran las claves de versiones anteriores, que guardaban la sesión en sessionStorage
     ;[KT, KU].forEach(k => { localStorage.removeItem(k); sessionStorage.removeItem(k) })
     ;[KI, KR].forEach(k => sessionStorage.removeItem(k))
+    // y en qué conversación estaba cada cuenta (no se mezcla con la siguiente persona que use el navegador)
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i)
+      if (k && k.startsWith('foody_chat_')) localStorage.removeItem(k)
+    }
   } catch { /* sin storage */ }
 }
 

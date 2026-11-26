@@ -9,8 +9,9 @@ python -m unittest discover -s tests -v
 Opcional (API, necesita `pip install -r backend/requirements.txt`): `python -m unittest tests.test_api_diseno -v`
 Con PostgreSQL: `set PRUEBAS_CON_BD=1` y el mismo comando.
 
-## Resultado de la última ejecución (17/11/2026, con PostgreSQL 16 + PostGIS y la base unificada nacional de 71.343 lugares)
-- Todo `tests/` con `PRUEBAS_CON_BD=1`: **280 pruebas: 280 OK, 0 salteadas, 0 fallas** (incluye las 23 de la API, las del formulario de comercios, las de geografía y auditoría de muestra, las de garantías del chat, las de `npm audit` y las nuevas de sesión incompleta, proxy interno, `.dockerignore` y CSP del frontend). Salida completa en `docs/pruebas/resultados_ejecucion_2026-11-17.txt`. Sin base de datos, 8 de ellas se saltean.
+## Resultado de la última ejecución (26/11/2026, con PostgreSQL 16 + PostGIS y la base unificada nacional de 71.343 lugares)
+- Todo `tests/` con `PRUEBAS_CON_BD=1`: **286 pruebas: 286 OK, 0 salteadas, 0 fallas** (incluye las 23 de la API, las del formulario de comercios, las de geografía y auditoría de muestra, las de garantías del chat, las de `npm audit`, las nuevas de sesión incompleta, proxy interno, `.dockerignore` y CSP del frontend, y las de conversaciones del chat). Salida completa en `docs/pruebas/resultados_ejecucion_2026-11-26.txt`. Sin base de datos, 13 de ellas se saltean.
+- **Chat nuevo e historial:** `test_chat_conversaciones` comprueba que una cuenta puede tener varias conversaciones, que cada una conserva solo sus mensajes y que nadie puede abrir la conversación de otra cuenta cambiando el `chat_id`.
 - **Preguntas por garantías:** `test_chat_garantias` comprueba que «100 %», «garantizado» y «totalmente seguro» se respondan con el texto fijo de HU-02, sin llamar a Gemini, y que una garantía escrita por la IA siga bloqueada.
 - **Romper a propósito:** 12 de 12 errores introducidos a propósito fueron detectados por las pruebas (`romper_a_proposito.md`).
 - **Evaluación del intérprete del modo sin IA:** 40 de 42 ejemplos acertados, 95 % (`evaluacion_interprete.md`).
@@ -70,6 +71,7 @@ Problema de cuota de Gemini: ver `docs/cuota_gemini.md`.
 | `test_verificar_despliegue` | Sistema / despliegue | TC-061, TC-062 | el verificador previo al despliegue detecta variables mal cargadas, finales de línea de Windows, claves en el código y dependencias que faltan |
 | `test_frontend_sesion` | Funcional (UI), estático | TC-063, TC-064 | la sesión de Google se recuerda y se borra al cerrar sesión; quien ya inició sesión entra directo al chat; el comercio se maneja desde Perfil → Mi comercio |
 | `test_base_unificada` | Datos / integración | TC-066 a TC-068 | conversión del Excel (cocinas, restricciones «sin datos» ≠ «no», zonas, coordenadas, descarte de provincias/coordenadas no argentinas, Google sin teléfono ni web), el CSV generado y el cargador en bloques |
+| `test_chat_conversaciones` | Funcional / seguridad | chat nuevo e historial | cada cuenta tiene varias conversaciones con su propio contexto; el `chat_id` lleva el uid del token y no se puede abrir el chat de otra persona (401/422) |
 
 ## Pruebas que no son de Python
 - `scripts/validar_base_argentina.py`: valida offline el CSV y la base (provincia, región y coordenadas) y genera `docs/pruebas/validacion_argentina_<fecha>.md`. Con `--limpiar-csv` corrige el CSV y con `--desactivar` marca filas inválidas de `restaurants`.
