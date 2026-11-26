@@ -292,6 +292,6 @@ test_tc061_detecta_cada_error_tipico (test_verificar_despliegue.Variables.test_t
 test_tc061_variables_bien_cargadas_no_dan_faltas (test_verificar_despliegue.Variables.test_tc061_variables_bien_cargadas_no_dan_faltas) ... ok
 
 ----------------------------------------------------------------------
-Ran 286 tests in 33.181s
+Ran 286 tests in 40.629s
 
 OK (skipped=1)

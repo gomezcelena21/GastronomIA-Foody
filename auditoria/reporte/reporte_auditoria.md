@@ -1,6 +1,6 @@
 # Auditoría automática — GastronomIA
 
-Generada el 26/11/2026 18:25 con `python auditoria/auditar.py` (Python 3.14.6, Windows). Este archivo se reescribe en cada corrida.
+Generada el 26/11/2026 18:31 con `python auditoria/auditar.py` (Python 3.14.6, Windows). Este archivo se reescribe en cada corrida.
 
 **Veredicto:** SIN FALLAS. Hay límites conocidos y advertencias declarados abajo (nada oculto).
 
@@ -46,7 +46,7 @@ Generada el 26/11/2026 18:25 con `python auditoria/auditar.py` (Python 3.14.6, W
 
 | ID | Verificación | Estado | Detalle |
 |---|---|---|---|
-| P-01 | Todas las pruebas automáticas | ✔ OK | 271 pruebas: 270 pasaron, 1 salteadas, 0 fallaron en 4.35 s. |
+| P-01 | Todas las pruebas automáticas | ✔ OK | 271 pruebas: 270 pasaron, 1 salteadas, 0 fallaron en 4.73 s. |
 | P-api_diseno | test_api_diseno.py | ✔ OK | 23 pasaron, 0 salteadas, 0 fallaron. |
 | P-base_unificada | test_base_unificada.py | ✔ OK | 24 pasaron, 0 salteadas, 0 fallaron. |
 | P-caja_blanca | test_caja_blanca.py | ✔ OK | 14 pasaron, 0 salteadas, 0 fallaron. |
@@ -115,6 +115,6 @@ Generada el 26/11/2026 18:25 con `python auditoria/auditar.py` (Python 3.14.6, W
 | C-07 | Capturas del tablero en 3 momentos distintos | ✋ MANUAL | No se puede verificar desde el código: subir las capturas de Trello. |
 | C-08 | README con instrucciones para ejecutar, incluida la configuración de la IA | ✔ OK | Pasos de instalación, variable GEMINI_API_KEY y cómo arrancar. |
 | C-09 | Al menos 4 funcionalidades implementadas y trazables a historias de usuario, una de ellas la IA operativa | ✔ OK | 15 historias implementadas (total o parcialmente); la de IA es HU-01. «Operativa con datos reales» se demuestra en vivo con Gemini. |
-| C-10 | Commits organizados e incrementales | ✔ OK | 45 commits en el repositorio. |
+| C-10 | Commits organizados e incrementales | ✔ OK | 46 commits en el repositorio. |
 | C-11 | Enlace al repositorio (GitHub/GitLab/Bitbucket) | ✋ MANUAL | No se puede verificar desde el código. |
 | C-12 | Exposición oral: demostración en vivo, metodología, herramientas de IA, todos participan | ✋ MANUAL | Se prepara con este reporte y la demostración (restart.bat). |

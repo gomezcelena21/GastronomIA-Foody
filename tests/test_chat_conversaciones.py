@@ -77,7 +77,9 @@ class ConversacionesPorCuenta(unittest.TestCase):
 
     def test_01_una_cuenta_puede_tener_varias_conversaciones(self):
         a = self.c.post("/api/chat", json={"message": "Busco pizza en Palermo", "session_id": "s1", "chat_id": "chat_a"}, headers=self.h)
-        b = self.c.post("/api/chat", json={"message": "Busco vegano en Belgrano", "session_id": "s2", "chat_id": "chat_b"}, headers=self.h)
+        # El navegador agrega los filtros del perfil al final: en el título y al reabrir no deben verse.
+        b = self.c.post("/api/chat", json={"message": "Busco vegano en Belgrano\n\n[Filtros activos: Busca opciones veganas]",
+                                          "session_id": "s2", "chat_id": "chat_b"}, headers=self.h)
         self.assertEqual(a.status_code, 200, a.text)
         self.assertEqual(b.status_code, 200, b.text)
 
@@ -86,6 +88,8 @@ class ConversacionesPorCuenta(unittest.TestCase):
         self.assertIn("chat_a", ids)
         self.assertIn("chat_b", ids)
         self.assertTrue(all(x["titulo"] for x in lista), "cada chat muestra su primer mensaje como título")
+        titulo_b = next(x["titulo"] for x in lista if x["chat_id"] == "chat_b")
+        self.assertEqual(titulo_b, "Busco vegano en Belgrano")
 
         # Cada conversación tiene solo sus mensajes: el contexto no se mezcla.
         ha = self.c.get("/api/chat/historial", params={"chat_id": "chat_a"}, headers=self.h).json()
@@ -94,6 +98,8 @@ class ConversacionesPorCuenta(unittest.TestCase):
         self.assertFalse(any("vegano" in m["contenido"] for m in ha["mensajes"]))
         hb = self.c.get("/api/chat/historial", params={"chat_id": "chat_b"}, headers=self.h).json()
         self.assertTrue(any("vegano" in m["contenido"] for m in hb["mensajes"]))
+        self.assertFalse(any("Filtros activos" in m["contenido"] for m in hb["mensajes"]),
+                         "la anotación interna de filtros no se muestra al reabrir el chat")
 
     def test_02_otra_cuenta_no_ve_las_conversaciones_ajenas(self):
         h_otro = self._cabecera(self.uid + 1000000, self.sub + "_otro")

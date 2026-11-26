@@ -6,6 +6,7 @@ Main application with routes for restaurant search and recommendations.
 import hashlib
 import math
 import os
+import re
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -672,12 +673,21 @@ def chat_endpoint(request: Request, payload: ChatMessage, db: Session = Depends(
     return OrquestadorBackend(db, service).procesar_consulta(payload.message, sid, uid)
 
 
+def _texto_visible(texto: str) -> str:
+    """Mensaje tal como lo escribió la persona, sin la anotación interna de filtros.
+
+    El frontend agrega «[Filtros activos: …]» al enviar para que la IA los tenga en
+    cuenta; en la lista de chats y al reabrir una conversación eso no se muestra.
+    """
+    return re.sub(r"\s*\[Filtros activos:[^\]]*\]\s*$", "", (texto or "").strip()).strip()
+
+
 def _titulo_conversacion(db: Session, id_conversacion: int) -> str:
     """Primer mensaje de la persona, que es el mejor título para la lista de chats."""
     primero = (db.query(Mensaje)
                .filter(Mensaje.id_conversacion == id_conversacion, Mensaje.rol == "usuario")
                .order_by(Mensaje.id_mensaje).first())
-    texto = (primero.contenido if primero else "").strip().replace("\n", " ")
+    texto = _texto_visible(primero.contenido if primero else "").replace("\n", " ")
     return texto[:60] or "Chat sin título"
 
 
@@ -729,7 +739,9 @@ def chat_historial(chat_id: str = Query(default=""), limit: int = Query(default=
             return {"mensajes": [], "chat_id": chat_id or "principal", "titulo": ""}
         filas = (db.query(Mensaje).filter(Mensaje.id_conversacion == conv.id_conversacion)
                  .order_by(Mensaje.id_mensaje.desc()).limit(limit).all())
-        return {"mensajes": [{"rol": m.rol, "contenido": m.contenido} for m in reversed(filas)],
+        return {"mensajes": [{"rol": m.rol,
+                              "contenido": _texto_visible(m.contenido) if m.rol == "usuario" else m.contenido}
+                             for m in reversed(filas)],
                 "chat_id": _chat_id_de(usuario["uid"], conv.session_key) or "principal",
                 "titulo": _titulo_conversacion(db, conv.id_conversacion)}
     except SQLAlchemyError:

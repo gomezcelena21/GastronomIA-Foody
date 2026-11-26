@@ -1,5 +1,5 @@
 {
- "fecha": "26/11/2026 18:25",
+ "fecha": "26/11/2026 18:31",
  "resumen": {
   "OK": 64,
   "PARCIAL": 6,
@@ -197,7 +197,7 @@
    "id": "P-01",
    "titulo": "Todas las pruebas automáticas",
    "estado": "OK",
-   "detalle": "271 pruebas: 270 pasaron, 1 salteadas, 0 fallaron en 4.35 s.",
+   "detalle": "271 pruebas: 270 pasaron, 1 salteadas, 0 fallaron en 4.73 s.",
    "evidencia": "tests/test_*.py"
   },
   {
@@ -589,7 +589,7 @@
    "id": "C-10",
    "titulo": "Commits organizados e incrementales",
    "estado": "OK",
-   "detalle": "45 commits en el repositorio.",
+   "detalle": "46 commits en el repositorio.",
    "evidencia": "git"
   },
   {
