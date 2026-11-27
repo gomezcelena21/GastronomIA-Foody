@@ -66,7 +66,7 @@ E = [
     ("gba", "pizzería en Cañuelas", "Cañuelas", {"pizzeria"}, set(), None),
     ("gba", "parrilla en Marcos Paz", "Marcos Paz", {"parrilla"}, set(), None),
     ("gba", "pizzería en Presidente Perón", None, {"pizzeria"}, set(), "Presidente Perón"),
-    # --- casos difíciles que hoy NO se resuelven (errores de tipeo): quedan documentados como límite
+    # --- errores de tipeo: antes eran un límite conocido; ahora los resuelve la red neuronal propia (modelo_foody)
     ("tipeo", "pizeria en palermo", "Palermo", {"pizzeria"}, set(), None),
     ("tipeo", "sin tak en belgrano", "Belgrano", set(), {"sin_tacc"}, None),
 ]
@@ -128,7 +128,9 @@ def escribir_informe():
     f += ["", "## Qué muestra", "",
           "- Las consultas normales, ambiguas, nacionales (interior del país), fuera de Argentina y de GBA se resuelven bien. "
           "Una consulta ambigua no inventa parámetros.",
-          "- **Límite conocido (tipeo):** el intérprete trabaja por palabras clave y no corrige errores de escritura («pizeria», «sin tak»).",
+          "- **Errores de tipeo:** las reglas por palabras clave no los corregían («pizeria», «sin tak»). Desde el 27/11/2026 los "
+          "resuelve la red neuronal propia de Foody (ver docs/pruebas/modelo_propio.md) y las zonas mal escritas se corrigen "
+          "por parecido («palrmo» -> Palermo).",
           "- **Cobertura nacional:** con la base cargada (más de 71.000 lugares de todo el país) se reconocen %s barrios, localidades, "
           "ciudades y partidos. Para los partidos de GBA sin locales cargados (por ejemplo Presidente Perón) el sistema lo dice en lugar "
           "de mostrar locales de otra zona." % format(len(d.BARRIOS), ",").replace(",", "."),

@@ -28,3 +28,7 @@ render.env
 *.sql.gz
 *.dump
 *.bak
+
+# Consultas reales de la gente (para entrenar la red propia): nunca se suben
+data/consultas_reales*.csv
+neon.env

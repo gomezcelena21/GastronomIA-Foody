@@ -2,7 +2,7 @@
 
 Generado por `python tests/test_evaluacion_interprete.py --escribir`. Es el equivalente de evaluar un modelo con un conjunto de ejemplos: una persona preparó la respuesta correcta de cada consulta a partir del requisito (entender zona, tipo de comida y restricción) y se mide el porcentaje de aciertos exactos.
 
-**Resultado: 40 de 42 aciertos (95 %). Mínimo aceptable: 85 %.**
+**Resultado: 42 de 42 aciertos (100 %). Mínimo aceptable: 85 %.**
 
 | Categoría | Aciertos |
 |---|---|
@@ -13,7 +13,7 @@ Generado por `python tests/test_evaluacion_interprete.py --escribir`. Es el equi
 | nacional | 4 de 4 |
 | fuera | 3 de 3 |
 | gba | 11 de 11 |
-| tipeo | 0 de 2 |
+| tipeo | 2 de 2 |
 
 ## Detalle
 
@@ -59,12 +59,12 @@ Generado por `python tests/test_evaluacion_interprete.py --escribir`. Es el equi
 | gba | pizzería en Cañuelas | Acierta | ('Cañuelas', ['pizzeria'], [], None) |
 | gba | parrilla en Marcos Paz | Acierta | ('Marcos Paz', ['parrilla'], [], None) |
 | gba | pizzería en Presidente Perón | Acierta | (None, ['pizzeria'], [], 'Presidente Perón') |
-| tipeo | pizeria en palermo | **Falla** | ('Palermo', [], [], None) |
-| tipeo | sin tak en belgrano | **Falla** | ('Belgrano', [], [], None) |
+| tipeo | pizeria en palermo | Acierta | ('Palermo', ['pizzeria'], [], None) |
+| tipeo | sin tak en belgrano | Acierta | ('Belgrano', [], ['sin_tacc'], None) |
 
 ## Qué muestra
 
 - Las consultas normales, ambiguas, nacionales (interior del país), fuera de Argentina y de GBA se resuelven bien. Una consulta ambigua no inventa parámetros.
-- **Límite conocido (tipeo):** el intérprete trabaja por palabras clave y no corrige errores de escritura («pizeria», «sin tak»).
+- **Errores de tipeo:** las reglas por palabras clave no los corregían («pizeria», «sin tak»). Desde el 27/11/2026 los resuelve la red neuronal propia de Foody (ver docs/pruebas/modelo_propio.md) y las zonas mal escritas se corrigen por parecido («palrmo» -> Palermo).
 - **Cobertura nacional:** con la base cargada (más de 71.000 lugares de todo el país) se reconocen 1.598 barrios, localidades, ciudades y partidos. Para los partidos de GBA sin locales cargados (por ejemplo Presidente Perón) el sistema lo dice en lugar de mostrar locales de otra zona.
 - Cuando se cambia el intérprete, esta evaluación se vuelve a correr (es la prueba de regresión de la IA).

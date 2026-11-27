@@ -15,3 +15,5 @@ data/reporte_sin_tacc.csv
 .env.produccion
 **/.env
 *.log
+data/consultas_reales*.csv
+neon.env

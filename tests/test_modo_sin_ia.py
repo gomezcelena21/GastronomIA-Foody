@@ -125,7 +125,7 @@ class TonoYAviso(unittest.TestCase):
 
     def test_sin_resultados_suena_humano_y_ofrece_alternativas(self):
         texto, _ = d.armar_respuesta_sin_ia("sushi en Caballito", Buscador(lambda p: []))
-        self.assertIn("Uy, no encontré", texto)
+        self.assertIn("todavía no encontré", texto)
         self.assertIn("flexibilizar", texto)
         self.assertIn("filtros de Explorar", texto)
 
@@ -272,8 +272,9 @@ class ConexionConElChat(unittest.TestCase):
     def test_el_chat_le_pasa_la_sesion_al_modo_sin_ia(self):
         with open(os.path.join(os.path.dirname(__file__), "..", "backend", "chat_service.py"), encoding="utf-8") as f:
             src = f.read()
-        llamadas = [l for l in src.splitlines() if "self._sin_ia(message" in l]
-        self.assertGreaterEqual(len(llamadas), 4)
+        # Gemini falla -> _sin_gemini (respaldo) -> _sin_ia: en todos los pasos viaja la sesión.
+        llamadas = [l for l in src.splitlines() if "self._sin_ia(message" in l or "self._sin_gemini(message" in l]
+        self.assertGreaterEqual(len(llamadas), 5)
         self.assertTrue(all("session_id" in l for l in llamadas), llamadas)
         self.assertIn("historial=previos", src)
 
