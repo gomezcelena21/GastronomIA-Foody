@@ -1,0 +1,389 @@
+<title>Cómo aprende Foody</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: una columna de lectura (~68ch) con bandas: reproductor, gráficos, versiones, prueba en vivo. */
+:root {
+  --bg: #f7f6f3; --surface: #ffffff; --ink: #1d1b19; --ink-2: #5f5a55; --line: #e4e0da; --wash: #efece7;
+  --accent: #b4441c; --accent-ink: #ffffff;
+  --s1: #257de0; --s2: #f47230; --s3: #00b894;
+  --bar: #257de0; --bar-off: #c9c4bd; --ok: #006c10;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141312; --surface: #1c1b19; --ink: #efece8; --ink-2: #a39d96; --line: #34312d; --wash: #262421;
+    --accent: #e2693d; --accent-ink: #141312;
+    --s1: #338ced; --s2: #e76624; --s3: #00a888; --bar: #338ced; --bar-off: #4a4641; --ok: #3ec455;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141312; --surface: #1c1b19; --ink: #efece8; --ink-2: #a39d96; --line: #34312d; --wash: #262421;
+  --accent: #e2693d; --accent-ink: #141312;
+  --s1: #338ced; --s2: #e76624; --s3: #00a888; --bar: #338ced; --bar-off: #4a4641; --ok: #3ec455;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--f-body); }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 500; }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--ink-2); }
+.eyebrow { font: 600 12px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+section { display: grid; gap: 18px; min-width: 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; min-width: 0; }
+.num { font-variant-numeric: tabular-nums; font-family: var(--f-mono); }
+
+/* Hero */
+.hero { display: grid; gap: 18px; }
+.stats { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 6px; }
+.stat b { display: block; font: 700 1.9rem/1.1 var(--f-display); }
+.stat span { color: var(--ink-2); font-size: 13px; }
+
+/* Reproductor */
+.player { display: grid; gap: 16px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+button { font: 600 14px/1 var(--f-body); border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink); }
+button.ghost { background: var(--wash); color: var(--ink); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+input[type=range] { flex: 1 1 220px; accent-color: var(--accent); min-width: 0; }
+.clock { font: 600 13px/1.3 var(--f-mono); color: var(--ink-2); min-width: 14ch; }
+.frases { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px; }
+.frase { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.frase q { font: 500 15px/1.35 var(--f-mono); quotes: "«" "»"; }
+.frase .esperado { font-size: 12px; color: var(--ink-2); }
+.estado { font: 600 12px/1 var(--f-body); display: inline-flex; align-items: center; gap: 6px; }
+.estado.ok { color: var(--ok); }
+.estado.no { color: var(--ink-2); }
+.barras { display: grid; gap: 5px; min-height: 92px; align-content: start; }
+.b { display: grid; grid-template-columns: 11ch 1fr 4ch; align-items: center; gap: 8px; font-size: 12.5px; }
+.b .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.track { position: relative; height: 8px; background: var(--wash); border-radius: 4px; }
+.fill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--bar-off); transition: width .25s ease; }
+.fill.on { background: var(--bar); }
+.umbral { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); left: 65%; opacity: .55; }
+.b .v { text-align: right; font: 400 12px/1 var(--f-mono); color: var(--ink-2); }
+.nada { font-size: 12.5px; color: var(--ink-2); }
+
+/* Gráficos */
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--ink-2); margin-top: 8px; }
+.legend i { display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 6px; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 10px; font-size: 12px; box-shadow: 0 4px 14px rgb(0 0 0 / .12); min-width: 150px; z-index: 2; }
+.tip .r { display: flex; align-items: center; gap: 8px; }
+.tip .r i { width: 12px; height: 2px; }
+.tip strong { font: 600 13px/1.4 var(--f-mono); }
+.tip .h { color: var(--ink-2); margin-bottom: 4px; }
+.axis text { fill: var(--ink-2); font: 11px var(--f-mono); }
+.grid line { stroke: var(--line); }
+.cursor { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 3; }
+
+/* Tabla de versiones */
+.tabla { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font: 600 12px/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2); }
+td.num { text-align: right; }
+th.num { text-align: right; }
+tr.elegida td { background: var(--wash); font-weight: 600; }
+.chip { font: 600 11px/1 var(--f-body); background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 4px 8px; margin-left: 8px; }
+
+/* Probala */
+.probar { display: grid; gap: 14px; }
+.probar input[type=text] { font: 500 16px/1.3 var(--f-mono); padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); color: var(--ink); width: 100%; box-sizing: border-box; }
+.sug { display: flex; flex-wrap: wrap; gap: 8px; }
+.sug button { padding: 7px 12px; font-weight: 500; font-size: 13px; }
+.entendio { font-size: 14px; }
+.entendio b { font-weight: 600; }
+
+/* Cómo funciona */
+.flujo { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.paso { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 6px; min-width: 0; }
+.paso .eyebrow { color: var(--ink-2); }
+.paso code { font: 500 12.5px/1.4 var(--f-mono); color: var(--accent); word-break: break-word; }
+.nota { border-left: 3px solid var(--line); padding-left: 14px; color: var(--ink-2); font-size: 14px; }
+.cargando { color: var(--ink-2); font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">GastronomIA · Red neuronal propia de Foody</span>
+    <h1>Cómo aprende Foody</h1>
+    <p class="muted">Cuando Gemini no responde, Foody entiende los mensajes con una red neuronal propia. Esta página muestra su entrenamiento: empieza sin saber nada y, frase de ejemplo tras frase de ejemplo, aprende a reconocer qué comida, qué restricción, qué precio y qué intención hay en lo que escribe la gente, aunque tenga errores de tipeo.</p>
+    <div class="stats" id="stats"><span class="cargando">Cargando el registro del entrenamiento…</span></div>
+  </header>
+
+  <section class="player" aria-labelledby="t-mirala">
+    <span class="eyebrow">Paso a paso</span>
+    <h2 id="t-mirala">Mirala aprender</h2>
+    <p class="muted">Cada tarjeta es una frase que la red nunca vio entera al entrenar. Las barras muestran qué tan segura está de cada etiqueta (0 a 100 %). La raya vertical es el umbral del 65 %: solo lo que la supera cuenta como entendido. Tocá ▶ o mové la barra para recorrer el entrenamiento.</p>
+    <div class="controls">
+      <button id="play" type="button" aria-label="Reproducir el entrenamiento">▶ Reproducir</button>
+      <button id="reset" class="ghost" type="button">Volver al inicio</button>
+      <input id="slider" type="range" min="0" max="0" value="0" aria-label="Momento del entrenamiento">
+      <span class="clock" id="clock">—</span>
+    </div>
+    <div class="frases" id="frases"></div>
+  </section>
+
+  <section aria-labelledby="t-curvas">
+    <span class="eyebrow">Las curvas</span>
+    <h2 id="t-curvas">Se equivoca menos, acierta más</h2>
+    <p class="muted">La <b>pérdida</b> mide cuánto se equivoca la red en las frases con las que entrena: tiene que bajar. Los <b>aciertos</b> son el porcentaje de frases que no vio nunca en las que acierta todas las etiquetas. La línea punteada marca el momento del reproductor.</p>
+    <div class="charts">
+      <div class="card chart" id="c-perdida"><h3>Pérdida (más bajo es mejor)</h3></div>
+      <div class="card chart" id="c-aciertos"><h3>Frases acertadas completas</h3></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-versiones">
+    <span class="eyebrow">Comparación</span>
+    <h2 id="t-versiones">Seis versiones, una elegida</h2>
+    <p class="muted" id="versiones-texto">Se entrenaron varias redes con distinta cantidad de neuronas y de vueltas de entrenamiento (épocas). La elegida se decide solo con la validación, para que la prueba escrita a mano y las consultas reales sigan siendo un examen independiente.</p>
+    <div class="card tabla"><table id="tabla"><thead><tr>
+      <th>Neuronas ocultas</th><th class="num">Épocas</th><th class="num">Validación</th><th class="num">Prueba a mano</th><th class="num">Consultas reales</th><th class="num">Tiempo</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="probar" aria-labelledby="t-probar">
+    <span class="eyebrow">En vivo</span>
+    <h2 id="t-probar">Probala vos</h2>
+    <p class="muted">Esta es la misma red que usa Foody, corriendo en tu navegador. Escribí como escribirías en el chat, con errores y todo.</p>
+    <label for="frase-libre" class="muted" style="font-size:13px">Tu mensaje para Foody</label>
+    <input id="frase-libre" type="text" value="hola, busco una pizeria baratita sin tak" autocomplete="off">
+    <div class="sug" id="sug"></div>
+    <div class="card" style="display:grid;gap:10px">
+      <div class="entendio" id="entendio">Cargando la red…</div>
+      <div class="barras" id="barras-libre"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-como">
+    <span class="eyebrow">Por dentro</span>
+    <h2 id="t-como">Qué hace con cada mensaje</h2>
+    <div class="flujo">
+      <div class="paso"><span class="eyebrow">1 · Limpia</span><p>Pasa a minúsculas y saca tildes.</p><code>«Pizeria SIN TAK» → pizeria sin tak</code></div>
+      <div class="paso"><span class="eyebrow">2 · Corta</span><p>Separa palabras, pares de palabras y trozos de 2 a 4 letras. Los trozos son la clave contra los errores de tipeo.</p><code>piz · ize · zer · eri · ria · sin_tak</code></div>
+      <div class="paso"><span class="eyebrow">3 · Piensa</span><p>Esos rasgos entran a una capa de neuronas ocultas que combinan las pistas.</p><code id="paso-red">4.096 entradas → neuronas → 30 salidas</code></div>
+      <div class="paso"><span class="eyebrow">4 · Decide</span><p>Cada salida es una probabilidad. Lo que pasa el 65 % se toma como entendido; el resto se descarta.</p><code>pizzería 99 % · sin TACC 97 %</code></div>
+    </div>
+    <p class="nota">La red entiende, no redacta: las respuestas de Foody son textos escritos y revisados a mano, con las advertencias de seguridad. Nunca quita una restricción alimentaria que detectaron las reglas. Los datos de entrenamiento son frases generadas (sintéticas); la prueba a mano y las consultas reales no se usan para entrenar.</p>
+  </section>
+</div>
+
+<script>
+const NOMBRE = {
+  sin_tacc: "sin TACC", vegano: "vegano", vegetariano: "vegetariano", pizzeria: "pizzería", italiana: "italiana",
+  hamburguesa: "hamburguesa", japonesa: "japonesa", asiatica: "asiática", china: "china", parrilla: "parrilla",
+  cafe: "café", mexicana: "mexicana", peruana: "peruana", sandwicheria: "sandwichería", comida_rapida: "comida rápida",
+  pasteleria: "pastelería", panaderia: "panadería", heladeria: "heladería", empanadas: "empanadas",
+  comida_casera: "casera", precio_bajo: "barato", precio_alto: "caro", saludo: "saludo", gracias: "gracias",
+  despedida: "despedida", ayuda: "pide ayuda", pregunta_que_es: "¿qué es…?", otra_restriccion: "otra restricción",
+  opinion: "opinión", fuera_de_tema: "fuera de tema"
+};
+const ESPERADO = {
+  "pizeria en palermo": ["pizzeria"], "sin tak en belgrano": ["sin_tacc"], "¿qué es sin TACC?": ["pregunta_que_es", "sin_tacc"],
+  "hola foody!": ["saludo"], "algo begano y barato": ["vegano", "precio_bajo"], "los lacteos me caen mal": ["otra_restriccion"],
+  "asdf": [], "fui a la esquina y estaba re caro": ["opinion"]
+};
+const pct = v => (v * 100).toFixed(0) + " %";
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+
+let REG = null, VER = null, UMBRAL = 0.65, idx = 0, timer = null;
+
+function barras(cont, probs, maxN) {
+  cont.replaceChildren();
+  const orden = Object.entries(probs).filter(([, v]) => v >= 0.05).sort((a, b) => b[1] - a[1]).slice(0, maxN);
+  if (!orden.length) { cont.append(el("span", "nada", "Nada por encima del 5 %: no ve ninguna etiqueta.")); return; }
+  for (const [k, v] of orden) {
+    const fila = el("div", "b");
+    fila.append(el("span", "n", NOMBRE[k] || k));
+    const tr = el("div", "track"); const f = el("div", "fill" + (v >= UMBRAL ? " on" : "")); f.style.width = (v * 100).toFixed(1) + "%";
+    tr.append(f, el("div", "umbral")); fila.append(tr, el("span", "v", (v * 100).toFixed(0)));
+    cont.append(fila);
+  }
+}
+
+function pintarFrases() {
+  const p = VER.puntos[idx], cont = document.getElementById("frases");
+  if (!cont.children.length) {
+    REG.ejemplos.forEach((t, i) => {
+      const c = el("div", "frase"); c.append(el("q", null, t));
+      const esp = ESPERADO[t]; c.append(el("span", "esperado", "Correcto: " + (esp && esp.length ? esp.map(e => NOMBRE[e]).join(" + ") : "nada (no es una consulta)")));
+      c.append(el("span", "estado")); c.append(el("div", "barras")); c.dataset.i = i; cont.append(c);
+    });
+  }
+  [...cont.children].forEach((c, i) => {
+    const probs = p.ejemplos[i];
+    barras(c.querySelector(".barras"), probs, 4);
+    const elegidas = Object.keys(probs).filter(k => probs[k] >= UMBRAL).sort();
+    const esp = (ESPERADO[REG.ejemplos[i]] || []).slice().sort();
+    const ok = JSON.stringify(elegidas) === JSON.stringify(esp);
+    const est = c.querySelector(".estado"); est.className = "estado " + (ok ? "ok" : "no");
+    est.textContent = ok ? "✓ La entiende bien" : "… todavía no";
+  });
+  document.getElementById("clock").textContent = "Época " + p.epoca.toFixed(2) + " · paso " + p.paso.toLocaleString("es-AR");
+  document.getElementById("slider").value = idx;
+  for (const c of charts) c.mover(idx);
+}
+
+function play() {
+  const b = document.getElementById("play");
+  if (timer) { clearInterval(timer); timer = null; b.textContent = "▶ Reproducir"; return; }
+  if (idx >= VER.puntos.length - 1) idx = 0;
+  b.textContent = "❚❚ Pausar";
+  const paso = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 5 : 1;
+  timer = setInterval(() => {
+    idx = Math.min(VER.puntos.length - 1, idx + paso); pintarFrases();
+    if (idx >= VER.puntos.length - 1) play();
+  }, 140);
+}
+
+// ---- gráfico de líneas en SVG con cursor y tooltip
+const charts = [];
+function lineChart(cont, series, opts) {
+  const W = 460, H = 240, m = { l: 44, r: 14, t: 14, b: 30 };
+  const pts = VER.puntos, xs = pts.map(p => p.epoca), xMax = xs[xs.length - 1];
+  const yMax = opts.yMax, yMin = opts.yMin || 0;
+  const X = x => m.l + (x / xMax) * (W - m.l - m.r), Y = y => H - m.b - ((y - yMin) / (yMax - yMin)) * (H - m.t - m.b);
+  const ns = "http://www.w3.org/2000/svg", s = n => document.createElementNS(ns, n);
+  const svg = s("svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("role", "img"); svg.setAttribute("aria-label", opts.aria);
+  const g = s("g"); g.setAttribute("class", "grid"); const ax = s("g"); ax.setAttribute("class", "axis");
+  for (const t of opts.ticks) {
+    const l = s("line"); l.setAttribute("x1", m.l); l.setAttribute("x2", W - m.r); l.setAttribute("y1", Y(t)); l.setAttribute("y2", Y(t)); g.append(l);
+    const tx = s("text"); tx.setAttribute("x", m.l - 6); tx.setAttribute("y", Y(t) + 4); tx.setAttribute("text-anchor", "end"); tx.textContent = opts.fmt(t); ax.append(tx);
+  }
+  const paso = xMax > 12 ? 5 : 2;
+  for (let e = 0; e <= xMax + 1e-9; e += paso) {
+    const tx = s("text"); tx.setAttribute("x", X(e)); tx.setAttribute("y", H - 10); tx.setAttribute("text-anchor", "middle"); tx.textContent = e; ax.append(tx);
+  }
+  const lab = s("text"); lab.setAttribute("x", W - m.r); lab.setAttribute("y", H - 10); lab.setAttribute("text-anchor", "end"); lab.textContent = "épocas"; ax.append(lab);
+  svg.append(g, ax);
+  for (const se of series) {
+    let d = ""; pts.forEach((p, i) => { const v = p[se.key]; if (v == null) return; d += (d ? "L" : "M") + X(p.epoca).toFixed(1) + "," + Y(v).toFixed(1); });
+    const path = s("path"); path.setAttribute("d", d); path.setAttribute("fill", "none"); path.setAttribute("stroke", `var(${se.color})`);
+    path.setAttribute("stroke-width", "2"); path.setAttribute("stroke-linejoin", "round"); svg.append(path);
+  }
+  const cur = s("line"); cur.setAttribute("class", "cursor"); cur.setAttribute("y1", m.t); cur.setAttribute("y2", H - m.b); svg.append(cur);
+  const hover = s("line"); hover.setAttribute("stroke", "var(--ink-2)"); hover.setAttribute("y1", m.t); hover.setAttribute("y2", H - m.b); hover.style.display = "none"; svg.append(hover);
+  const hit = s("rect"); hit.setAttribute("x", m.l); hit.setAttribute("y", m.t); hit.setAttribute("width", W - m.l - m.r); hit.setAttribute("height", H - m.t - m.b);
+  hit.setAttribute("fill", "transparent"); hit.setAttribute("tabindex", "0"); svg.append(hit);
+  cont.append(svg);
+  if (series.length > 1) {
+    const lg = el("div", "legend");
+    for (const se of series) { const it = el("span"); const i = el("i"); i.style.background = `var(${se.color})`; it.append(i, document.createTextNode(se.label)); lg.append(it); }
+    cont.append(lg);
+  }
+  const tip = el("div", "tip"); tip.hidden = true; cont.append(tip);
+  const mostrar = (i) => {
+    const p = pts[i]; hover.style.display = ""; hover.setAttribute("x1", X(p.epoca)); hover.setAttribute("x2", X(p.epoca));
+    tip.replaceChildren(el("div", "h", "Época " + p.epoca.toFixed(2)));
+    for (const se of series) {
+      if (p[se.key] == null) continue;
+      const r = el("div", "r"); const i2 = el("i"); i2.style.background = `var(${se.color})`;
+      r.append(i2, el("strong", null, opts.fmtTip(p[se.key])), el("span", "muted", se.label)); tip.append(r);
+    }
+    tip.hidden = false;
+    const box = svg.getBoundingClientRect(), k = box.width / W, x = X(p.epoca) * k;
+    tip.style.left = Math.min(Math.max(8, x + 12), box.width - 170) + "px"; tip.style.top = "48px";
+  };
+  const cerca = (cx) => { const box = svg.getBoundingClientRect(); const e = ((cx - box.left) / box.width * W - m.l) / (W - m.l - m.r) * xMax;
+    let best = 0; xs.forEach((x, i) => { if (Math.abs(x - e) < Math.abs(xs[best] - e)) best = i; }); return best; };
+  hit.addEventListener("pointermove", ev => mostrar(cerca(ev.clientX)));
+  hit.addEventListener("pointerleave", () => { tip.hidden = true; hover.style.display = "none"; });
+  hit.addEventListener("click", ev => { idx = cerca(ev.clientX); pintarFrases(); });
+  hit.addEventListener("focus", () => mostrar(idx));
+  hit.addEventListener("blur", () => { tip.hidden = true; hover.style.display = "none"; });
+  charts.push({ mover: i => { cur.setAttribute("x1", X(pts[i].epoca)); cur.setAttribute("x2", X(pts[i].epoca)); } });
+}
+
+// ---- la red en el navegador (misma cuenta que backend/modelo_foody.py)
+let RED = null;
+const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(str) { const b = new TextEncoder().encode(str); let c = 0xFFFFFFFF; for (const x of b) c = CRC[(c ^ x) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function normalizar(t) { return t.normalize("NFD").replace(/\p{Mn}/gu, "").toLowerCase().replace(/\s+/g, " ").trim(); }
+function rasgos(texto, DIM) {
+  const pal = normalizar(texto).match(/[a-z0-9]+/g) || []; const claves = new Set();
+  for (const p of pal) { claves.add("w:" + p); const b = "<" + p + ">"; for (const k of [2, 3, 4]) for (let i = 0; i + k <= b.length; i++) claves.add("c" + k + ":" + b.slice(i, i + k)); }
+  for (let i = 0; i + 1 < pal.length; i++) claves.add("b:" + pal[i] + "_" + pal[i + 1]);
+  const pos = new Map(); for (const c of claves) { const i = crc32(c) % DIM; pos.set(i, (pos.get(i) || 0) + 1); }
+  let n = 0; for (const v of pos.values()) n += v * v; n = Math.sqrt(n); for (const [i, v] of pos) pos.set(i, v / n); return pos;
+}
+function predecir(texto) {
+  const R = RED, H = R.oculta, x = rasgos(texto, R.dim), ac = new Float64Array(H);
+  for (const [i, v] of x) { const base = i * H; for (let j = 0; j < H; j++) ac[j] += R.w1[base + j] * v; }
+  const h = new Float64Array(H); for (let j = 0; j < H; j++) h[j] = Math.max(0, R.b1[j] + R.s1[j] * ac[j]);
+  const out = {}; R.etiquetas.forEach((e, k) => { let z = R.b2[k]; for (let j = 0; j < H; j++) if (h[j]) z += h[j] * R.w2[j][k]; z = Math.max(-30, Math.min(30, z)); out[e] = x.size ? 1 / (1 + Math.exp(-z)) : 0; });
+  return out;
+}
+function probar() {
+  const t = document.getElementById("frase-libre").value, cont = document.getElementById("entendio");
+  if (!RED) return;
+  const probs = predecir(t); barras(document.getElementById("barras-libre"), probs, 6);
+  const ent = Object.keys(probs).filter(k => probs[k] >= UMBRAL);
+  cont.replaceChildren();
+  if (!normalizar(t)) { cont.textContent = "Escribí algo para ver qué entiende."; return; }
+  cont.append(document.createTextNode("Foody entiende: "), el("b", null, ent.length ? ent.map(e => NOMBRE[e]).join(" · ") : "nada en particular (lo resuelven las reglas o pide que reformules)"));
+}
+
+async function iniciar() {
+  try {
+    REG = await (await fetch("entrenamiento.json")).json();
+  } catch (e) { document.getElementById("stats").textContent = "No se pudo cargar el registro del entrenamiento."; return; }
+  UMBRAL = REG.umbral;
+  VER = REG.versiones.find(v => v.oculta === REG.elegida.oculta && v.epocas === REG.elegida.epocas);
+  const fin = VER.final, st = document.getElementById("stats"); st.replaceChildren();
+  for (const [b, s] of [[REG.n_entrenamiento.toLocaleString("es-AR"), "frases de entrenamiento"], [VER.epocas, "épocas (vueltas completas)"],
+    [VER.oculta, "neuronas ocultas"], [pct(fin.manual), "acierto en la prueba a mano"], [fin.reales != null ? pct(fin.reales) : "—", "acierto en consultas reales"]]) {
+    const d = el("div", "stat"); d.append(el("b", "num", String(b)), el("span", null, s)); st.append(d);
+  }
+  document.getElementById("paso-red").textContent = "4.096 entradas → " + VER.oculta + " neuronas → " + REG.etiquetas.length + " salidas";
+  const sl = document.getElementById("slider"); sl.max = VER.puntos.length - 1;
+  sl.addEventListener("input", () => { idx = +sl.value; pintarFrases(); });
+  document.getElementById("play").addEventListener("click", play);
+  document.getElementById("reset").addEventListener("click", () => { if (timer) play(); idx = 0; pintarFrases(); });
+  const maxL = Math.max(...VER.puntos.map(p => p.perdida || 0));
+  const topL = Math.ceil(maxL);
+  lineChart(document.getElementById("c-perdida"), [{ key: "perdida", label: "Pérdida", color: "--s1" }],
+    { yMax: topL, ticks: [0, topL / 4, topL / 2, 3 * topL / 4, topL], fmt: v => v.toFixed(1), fmtTip: v => v.toFixed(3), aria: "Pérdida durante el entrenamiento: baja rápido en la primera época y luego se estabiliza cerca de cero." });
+  const series = [{ key: "validacion", label: "Validación", color: "--s1" }, { key: "manual", label: "Prueba a mano", color: "--s2" }];
+  if (VER.puntos[0].reales != null) series.push({ key: "reales", label: "Consultas reales", color: "--s3" });
+  lineChart(document.getElementById("c-aciertos"), series,
+    { yMax: 1, ticks: [0, .25, .5, .75, 1], fmt: v => (v * 100) + "%", fmtTip: v => (v * 100).toFixed(1) + " %", aria: "Porcentaje de frases acertadas completas durante el entrenamiento, en validación, prueba a mano y consultas reales." });
+  const tb = document.querySelector("#tabla tbody");
+  for (const v of REG.versiones) {
+    const tr = el("tr"); const elegida = v === VER; if (elegida) tr.className = "elegida";
+    const c1 = el("td", "num", String(v.oculta)); if (elegida) c1.append(el("span", "chip", "elegida"));
+    tr.append(c1, el("td", "num", String(v.epocas)), el("td", "num", pct(v.final.validacion)), el("td", "num", pct(v.final.manual)),
+      el("td", "num", v.final.reales != null ? pct(v.final.reales) : "—"), el("td", "num", v.seg.toFixed(0) + " s"));
+    tb.append(tr);
+  }
+  pintarFrases();
+  try {
+    const d = await (await fetch("modelo.json")).json(), bin = atob(d.w1), w1 = new Int8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) w1[i] = (bin.charCodeAt(i) << 24) >> 24;
+    RED = { ...d, w1 }; UMBRAL = d.umbral;
+  } catch (e) { document.getElementById("entendio").textContent = "No se pudo cargar la red."; return; }
+  const sug = document.getElementById("sug");
+  for (const t of ["que diferencia hay entre vegano y vegetariano", "soy diabetica, donde como?", "sushi que no sea caro en belgrano", "contame un chiste", "eladeria vejana", "gracias foody!"]) {
+    const b = el("button", "ghost", t); b.type = "button"; b.addEventListener("click", () => { document.getElementById("frase-libre").value = t; probar(); }); sug.append(b);
+  }
+  document.getElementById("frase-libre").addEventListener("input", probar);
+  probar();
+}
+iniciar();
+</script>

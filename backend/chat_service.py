@@ -16,6 +16,7 @@ from google.genai import types
 import cuota
 import diseno
 import persistencia
+import respaldo_ia
 from database import engine
 from gemini_service import GeminiService, historial_desde_texto
 from recommendation import RecommendationEngine
@@ -177,6 +178,43 @@ class ChatService:
         if error:
             raise error["valor"]
         return resultado.get("valor")
+
+    def _sin_gemini(self, message: str, diaria: bool, session_id: Optional[str] = None,
+                    si_falla: Optional[str] = None) -> str:
+        """Gemini no pudo responder: se prueba el proveedor de respaldo y, si tampoco puede, el modo sin IA.
+
+        `si_falla` es el texto a devolver si el respaldo falla (en lugar del modo sin IA)."""
+        if respaldo_ia.disponible():
+            restaurantes: list = []
+            turnos: list = []
+            if session_id:
+                try:
+                    turnos = _SESIONES_BD.cargar(session_id)
+                except Exception:  # noqa: BLE001 - el historial es un extra
+                    log.warning("No pude leer el historial para el respaldo", exc_info=True)
+
+            def ejecutar(nombre: str, args: dict):
+                resultado = self._execute_tool(nombre, args)
+                if isinstance(resultado, dict):
+                    restaurantes.extend(r for r in resultado.get("restaurants", []) if r not in restaurantes)
+                return diseno.compactar_para_ia(resultado)
+
+            try:
+                texto = respaldo_ia.conversar(message, turnos, ejecutar)
+            except respaldo_ia.RespaldoNoDisponible as e:
+                log.warning("El respaldo de IA no pudo responder: se sigue sin IA (%s)", e)
+            else:
+                self.last_restaurants = restaurantes
+                if session_id:
+                    try:
+                        self._guardar_turno(session_id, message, texto)
+                    except Exception:  # noqa: BLE001
+                        log.warning("No pude guardar el turno del respaldo", exc_info=True)
+                    self._descartar_chat(session_id)   # Gemini rearma el historial desde la base, con este turno
+                return texto
+        if si_falla is not None:
+            return si_falla
+        return self._sin_ia(message, diaria, session_id)
 
     def _sin_ia(self, message: str, diaria: bool, session_id: Optional[str] = None) -> str:
         """Respuesta cuando Gemini no tiene cuota: búsqueda por reglas directo en la base.
@@ -575,15 +613,15 @@ class ChatService:
                 self._guardar_turno(session_id, message, diseno.RESPUESTA_GARANTIA)
             return diseno.RESPUESTA_GARANTIA
 
-        # Sin clave no hay a quién pedirle nada: búsqueda local directa.
+        # Sin clave de Gemini: respaldo (si hay) o búsqueda local directa.
         if not self.gemini.api_key:
-            return self._sin_ia(message, False, session_id)
+            return self._sin_gemini(message, False, session_id)
 
         # Solo se serializa la MISMA conversación. Distintos usuarios corren en paralelo.
         with self._lock_sesion(session_id):
             chat = self._obtener_chat(session_id)
             if chat is None:
-                return self._sin_ia(message, False, session_id)
+                return self._sin_gemini(message, False, session_id)
 
             try:
                 response = self._enviar(chat, message)
@@ -625,16 +663,17 @@ class ChatService:
                 return final_text or "No pude generar una respuesta."
 
             except cuota.CuotaAgotada as c:
-                log.warning("Sin cuota de Gemini: se responde sin IA (%s)", c)
-                return self._sin_ia(message, c.diaria, session_id)
+                log.warning("Sin cuota de Gemini: se pasa al respaldo o al modo sin IA (%s)", c)
+                return self._sin_gemini(message, c.diaria, session_id)
             except Exception as e:
                 if _es_timeout(e):
-                    log.warning("Gemini no respondió a tiempo: se responde sin IA (%s)", e)
+                    log.warning("Gemini no respondió a tiempo: se pasa al respaldo o al modo sin IA (%s)", e)
                     self._descartar_chat(session_id)
-                    return self._sin_ia(message, False, session_id)
+                    return self._sin_gemini(message, False, session_id)
                 log.exception("Error al hablar con Gemini")
                 err = str(e)
                 tipo, _ = cuota.clasificar_error(err)
                 if tipo != "otro":
-                    return self._sin_ia(message, tipo == "diaria", session_id)
-                return "No pude procesar tu mensaje en este momento. Probá de nuevo en un rato."
+                    return self._sin_gemini(message, tipo == "diaria", session_id)
+                return self._sin_gemini(message, False, session_id,
+                                        si_falla="No pude procesar tu mensaje en este momento. Probá de nuevo en un rato.")

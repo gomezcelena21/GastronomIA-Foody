@@ -23,6 +23,10 @@ from pathlib import Path
 from collections import defaultdict, deque
 from typing import Any, Dict, List, Optional, Tuple
 
+import difflib
+
+import conocimiento_foody as conocimiento
+import modelo_foody
 from geografia import (
     LUGARES_FUERA as _LUGARES_FUERA,
     _RE_FUERA,
@@ -507,8 +511,8 @@ _AVISO_DIARIO = ("Foody se tomó una pausa: alcanzó su límite de consultas por
                  "hay en nuestra base de datos. La charla completa vuelve")
 AVISO_SIN_IA_DIARIA = _AVISO_DIARIO + " mañana."
 AVISO_CORTO = "Sigo en modo simple, directo desde nuestra base de datos."
-SIN_INTERPRETAR = ("Mmm, no llegué a entender qué buscás. Contame el barrio, el tipo de comida o alguna restricción "
-                   "(por ejemplo: pizzería sin TACC en Palermo), o usá los filtros de Explorar.")
+SIN_INTERPRETAR = ("Perdón, no llegué a entender qué buscás. ¿Me contás el barrio, el tipo de comida o alguna "
+                   "restricción? Por ejemplo: pizzería sin TACC en Palermo. También podés usar los filtros de Explorar.")
 _MARCAS_SIN_IA = ("Foody llegó al límite de su cuota", "Foody se tomó una pausa", "Sigo en modo simple",
                   "estoy en modo simple")
 
@@ -617,8 +621,36 @@ def _reindexar_zonas() -> None:
 _reindexar_zonas()
 
 
+_RE_BARATO = re.compile(r"\b(barat\w*|economic\w*|accesible\w*|low cost)\b")
+_RE_ANTES_DE_ZONA = re.compile(r"\b(?:en|por|de|cerca de|zona|barrio|desde)\s+")
+
+
+def _zona_aproximada(texto_normalizado: str) -> Optional[str]:
+    """Zona escrita con un error de tipeo («palrmo», «velgrano»): solo después de «en», «por», «cerca de»...
+
+    Se compara con los nombres de la base y se exige mucho parecido (84 %) para no confundir palabras comunes.
+    """
+    claves = [c for c, _ in _ZONAS_NORM]
+    nombres = dict(_ZONAS_NORM)
+    for m in _RE_ANTES_DE_ZONA.finditer(texto_normalizado):
+        palabras = re.findall(r"[a-z0-9ñ]+", texto_normalizado[m.end():])[:3]
+        for k in range(len(palabras), 0, -1):         # primero «villa urqiza», después «villa»
+            candidata = " ".join(palabras[:k])
+            if len(candidata) < 5:
+                continue
+            parecida = difflib.get_close_matches(candidata, claves, n=1, cutoff=0.84)
+            if parecida:
+                return nombres[parecida[0]]
+    return None
+
+
 def interpretar_consulta_local(texto: Any) -> Dict[str, Any]:
-    """Interpretación simple por palabras clave (sin IA): restricciones, tipo de cocina y barrio."""
+    """Interpretación sin IA externa: reglas por palabras clave + red neuronal propia (modelo_foody).
+
+    Las reglas resuelven la zona y lo que se escribe bien; la red agrega tipos de comida y restricciones
+    escritos con errores o con otras palabras («pizeria», «sin tak», «pastas»). La red solo agrega: nunca
+    quita una restricción alimentaria detectada por las reglas.
+    """
     n = normalizar(texto)
     p: Dict[str, Any] = {}
     if re.search(r"sin ?tacc|celiac|gluten", n):
@@ -631,29 +663,46 @@ def interpretar_consulta_local(texto: Any) -> Dict[str, Any]:
     for clave, codigo in _COCINAS_LOCAL:
         if clave in n and codigo not in cocinas:
             cocinas.append(codigo)
-    if cocinas:
-        p["tipo_cocina"] = cocinas
+    sin_zona = n                                       # texto sin el nombre del lugar, para la red
     zona = _buscar_zona(n)                             # barrio, localidad o ciudad de todo el país
     if zona:
         p["ciudad"] = zona
+        sin_zona = sin_zona.replace(normalizar(zona), " ")
     if "ciudad" not in p:                              # partido de GBA mencionado
         m = _RE_GBA_PARTIDOS.search(n)
         if m:
+            sin_zona = sin_zona.replace(m.group(0), " ")
             cercano = _GBA_ZONA_CERCANA.get(m.group(0))
             if cercano:                              # p. ej. «Lanús» -> «Lanús Oeste», que sí tiene datos
                 p["ciudad"] = cercano
             else:
                 p["zona_sin_datos"] = _GBA_PARTIDOS_NORM[m.group(0)]
     if "ciudad" not in p and "zona_sin_datos" not in p:  # ciudad o país de otro país (fuera de la base)
-        fuera = _buscar_fuera(n)
-        if fuera:
-            p["ciudad"] = fuera
+        m = _RE_FUERA.search(n)
+        if m:
+            p["ciudad"] = _LUGARES_FUERA[m.group(0)]
+            sin_zona = sin_zona.replace(m.group(0), " ")
+    if "ciudad" not in p and "zona_sin_datos" not in p:  # zona escrita con error de tipeo
+        zona = _zona_aproximada(n)
+        if zona:
+            p["ciudad"] = zona
+            sin_zona = sin_zona.replace(normalizar(zona), " ")
+    entendido = modelo_foody.predecir(sin_zona)        # red neuronal propia (vacío si está apagada)
+    if _RE_BARATO.search(n) or "precio_bajo" in entendido.get("precio", ()):
+        p["precio_maximo"] = 2                         # $ o $$ (los locales sin dato de precio se incluyen)
+    for r in entendido["restricciones"]:
+        p["requiere_" + r] = True
+    for codigo in entendido["cocinas"]:
+        if codigo not in cocinas:
+            cocinas.append(codigo)
+    if cocinas:
+        p["tipo_cocina"] = cocinas
     p["limite"] = 6
     return p
 
 
 # --------------------------------------------------------------------------------------
-# Modo sin IA conversacional. Sin Gemini, sin red neuronal y sin costo: reglas + plantillas.
+# Modo sin IA conversacional. Sin Gemini y sin costo: reglas + red neuronal propia + plantillas.
 # Reglas de seguridad que se mantienen: solo datos reales de la base, nunca se relaja una
 # restricción alimentaria (sin TACC, vegano, vegetariano) y se conserva la advertencia.
 # --------------------------------------------------------------------------------------
@@ -699,14 +748,14 @@ def _fusionar_consulta(base: Optional[Dict[str, Any]], nuevo: Dict[str, Any], te
       el tipo de cocina y las restricciones. Lo nuevo siempre pisa a lo anterior.
     - Una consulta con su propia zona y sin marca se trata como búsqueda nueva.
     Devuelve (parámetros, si_se_retomó_algo)."""
-    if not base or not _tiene_busqueda(nuevo):
+    if not base or not (_tiene_busqueda(nuevo) or "precio_maximo" in nuevo):
         return nuevo, False
     fusion = dict(nuevo)
     heredo = False
     if "ciudad" not in nuevo and "zona_sin_datos" not in nuevo and "ciudad" in base:
         fusion["ciudad"] = base["ciudad"]
         heredo = True
-    if _MARCA_SEGUIMIENTO.search(_limpio(texto)):
+    if _MARCA_SEGUIMIENTO.search(_limpio(texto)) or not _tiene_busqueda(nuevo):
         for clave in ("tipo_cocina",) + _CLAVES_DIETA:
             if clave not in nuevo and clave in base:
                 fusion[clave] = base[clave]
@@ -739,6 +788,8 @@ def _describir_busqueda(p: Dict[str, Any]) -> str:
         mods.append("con opciones " + " y ".join(opciones))
     if mods:
         texto += " " + " y ".join(mods)
+    if p.get("precio_maximo") and int(p["precio_maximo"]) <= 2:
+        texto += " a buen precio"
     if p.get("ciudad"):
         texto += " en %s" % p["ciudad"]
     return texto
@@ -792,18 +843,26 @@ _DESPEDIDAS = (
 )
 
 
-def _respuesta_charla(texto: Any) -> Optional[str]:
-    """Saludos, gracias, ayuda y despedidas: no consultan la base."""
+def _hay_charla(n: str) -> bool:
+    return any(rx.search(n) for rx in (_RE_AYUDA, _RE_SALUDO, _RE_CHAU, _RE_GRACIAS))
+
+
+def _respuesta_charla(texto: Any, intenciones: Tuple[str, ...] = ()) -> Optional[str]:
+    """Saludos, gracias, ayuda y despedidas: no consultan la base.
+
+    Primero las reglas; si no reconocen nada, lo que entendió la red neuronal (`intenciones`)."""
     n = _limpio(texto)
-    if not n or len(n.split()) > 8:
+    if not n:
         return None
-    if _RE_AYUDA.search(n):
+    if len(n.split()) > 8 or not _hay_charla(n):
+        n = ""                                          # frase larga o sin palabras conocidas: decide la red
+    if _RE_AYUDA.search(n) or (not n and "ayuda" in intenciones):
         return "Soy Foody, tu guía gastronómica. " + _AYUDA_FOODY + " " + _NOTA_MODO_SIMPLE
-    if _RE_SALUDO.search(n):
+    if _RE_SALUDO.search(n) or (not n and "saludo" in intenciones):
         return _SALUDOS[_variante(texto, len(_SALUDOS))] + " " + _AYUDA_FOODY + " " + _NOTA_MODO_SIMPLE
-    if _RE_CHAU.search(n):
+    if _RE_CHAU.search(n) or (not n and "despedida" in intenciones):
         return _DESPEDIDAS[_variante(texto, len(_DESPEDIDAS))] + " Si querés explorar a mano, tenés los filtros de Explorar."
-    if _RE_GRACIAS.search(n):
+    if _RE_GRACIAS.search(n) or (not n and "gracias" in intenciones):
         return (_GRACIAS[_variante(texto, len(_GRACIAS))] + " Si querés seguir, contame otra zona o tipo de comida "
                 "(por ejemplo: y sin TACC), o usá los filtros de Explorar.")
     return None
@@ -820,13 +879,40 @@ def armar_respuesta_sin_ia(texto: Any, buscar, aviso: str = AVISO_SIN_IA,
     if ya_avisado:
         aviso = AVISO_CORTO
     propios = interpretar_consulta_local(texto)
-    if not _tiene_busqueda(propios):
-        charla = _respuesta_charla(texto)
+    intenciones = tuple(modelo_foody.predecir(texto).get("intenciones", ()))   # red neuronal propia
+    busca = _tiene_busqueda(propios)
+    temas = [k[len("requiere_"):] for k in _CLAVES_DIETA if propios.get(k)] + list(propios.get("tipo_cocina") or [])
+
+    # «¿Qué es sin TACC?», «¿qué diferencia hay entre vegano y vegetariano?»: se explica con textos revisados a mano
+    if "pregunta_que_es" in intenciones and "ciudad" not in propios:
+        explicacion = conocimiento.explicar(temas)
+        if explicacion:
+            return explicacion + " " + conocimiento.invitacion(temas), []
+        return conocimiento.QUE_ES_GENERAL, []
+    # Opinión o tema ajeno sin comida ni restricción pedida: gana la intención (en «fui a La Esquina...» o
+    # «capital de Francia» el lugar no es una búsqueda).
+    if "fuera_de_tema" in intenciones and not temas:
+        return conocimiento.FUERA_DE_TEMA, []
+    if "opinion" in intenciones and not temas:
+        return conocimiento.OPINION, []
+    nota = ""
+    if "otra_restriccion" in intenciones:            # lactosa, diabetes, alergias: no hay datos en la base
+        if not busca:
+            return conocimiento.OTRA_RESTRICCION + " ¿En qué zona querés buscar?", []
+        nota = "\n\n" + conocimiento.NOTA_OTRA_RESTRICCION
+
+    contexto = _contexto_previo(historial)
+    if not busca and not ("precio_maximo" in propios and contexto):
+        charla = _respuesta_charla(texto, intenciones)
         if charla:
             return charla, []
+        if "precio_maximo" in propios:
+            return conocimiento.SOLO_PRECIO, []
         return aviso + "\n\n" + SIN_INTERPRETAR, []
+    if "saludo" in intenciones or _RE_SALUDO.search(_limpio(texto)):
+        aviso = "¡Hola! " + aviso
 
-    params, retomo = _fusionar_consulta(_contexto_previo(historial), propios, texto)
+    params, retomo = _fusionar_consulta(contexto, propios, texto)
     if params.get("zona_sin_datos") and "ciudad" not in params:
         zona = params["zona_sin_datos"]
         return (aviso + "\n\n" + "Todavía no tengo locales cargados en %s. Probá con otra ciudad o zona cercana. "
@@ -863,18 +949,19 @@ def armar_respuesta_sin_ia(texto: Any, buscar, aviso: str = AVISO_SIN_IA,
         else:
             intro = "No encontré %s. Sí hay %s en otras zonas:" % (descripcion, _describir_busqueda(p2))
         cuerpo = _con_intro(construir_respuesta_segura(l2, params=p2), intro)
-        return aviso + "\n\n" + cuerpo + "\n\n" + _cierre(p2), l2
+        return aviso + "\n\n" + cuerpo + nota + "\n\n" + _cierre(p2), l2
 
     if not lista:
-        return (aviso + "\n\n" + "Uy, no encontré %s en nuestra base todavía. Probá flexibilizar algún criterio "
-                "(otra zona o tipo de comida) o usá los filtros de Explorar. Seguimos sumando locales." % descripcion), lista
+        return (aviso + "\n\n" + "Perdón, todavía no encontré %s en nuestra base. Si querés, podemos flexibilizar "
+                "algún criterio (otra zona o tipo de comida), o podés usar los filtros de Explorar. Seguimos sumando "
+                "locales todos los días." % descripcion), lista
 
     if retomo:
         intro = "Sigo con tu búsqueda anterior y le sumo lo nuevo: %s." % descripcion
     else:
         intro = _INTROS[_variante(texto, len(_INTROS))].format(d=descripcion)
     cuerpo = _con_intro(construir_respuesta_segura(lista, params=params), intro)
-    return aviso + "\n\n" + cuerpo + "\n\n" + _cierre(params), lista
+    return aviso + "\n\n" + cuerpo + nota + "\n\n" + _cierre(params), lista
 
 
 # Campos que la IA no necesita para redactar (ahorra tokens en cada pedido)

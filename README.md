@@ -37,7 +37,7 @@ Los scripts nuevos de `scripts/` leen `DATABASE_URL` de `backend/.env` o del ent
 - **Prompt del sistema:** constante `SYSTEM_PROMPT` en `backend/gemini_service.py`. Define a Foody y su regla principal: nunca garantiza que un lugar sea apto para una restricción alimentaria y recomienda contactar al local.
 - **Function calling:** la IA no consulta la base de datos. Interpreta el mensaje y devuelve parámetros (zona, tipo de comida, restricciones, presupuesto); el backend los valida y consulta PostgreSQL con SQL parametrizado.
 - **Validación de la respuesta:** antes de mostrarla, el backend bloquea locales, teléfonos o links inventados y garantías absolutas (`backend/diseno.py`, `RespuestaSegura`).
-- **Límites y respaldo:** `GEMINI_RPM` (consultas por minuto), `GEMINI_MAX_ESPERA` y `GEMINI_TIMEOUT` (segundos). Si el plan gratuito se agota o no responde, el chat pasa al modo sin IA (ver `docs/cuota_gemini.md`).
+- **Límites y respaldo:** `GEMINI_RPM` (consultas por minuto), `GEMINI_MAX_ESPERA` y `GEMINI_TIMEOUT` (segundos). Si el plan gratuito se agota o no responde, el chat pasa al proveedor de respaldo (`RESPALDO_API_KEY`, opcional, Groq gratis) y, si tampoco puede, al modo sin IA con la red neuronal propia (ver `docs/cuota_gemini.md` y `docs/pruebas/modelo_propio.md`).
 - **Probar la IA:** `python scripts\probar_ia.py` con el backend en marcha (10 casos, tres de ellos adversarios). El resultado queda en `docs/pruebas/resultados_ia_<fecha>.md`.
 - **Registro del uso de IA durante el proyecto:** `docs/uso_ia.md`.
 
